@@ -1,0 +1,18 @@
+# macOS / iCloud noise
+.DS_Store
+*.icloud
+# iCloud conflict duplicates ("name 2.ext")
+* [0-9].*
+
+# Claude session config
+.claude/
+
+# The webapp is its own git repository (github.com/Kanichelvan/MySAIYaDigitalHub2026)
+10_Source_Code/
+
+# Raw media library (284MB of images/video) — versioned via iCloud, not git.
+# Remove this line if you want media under version control too.
+02_Visual_Media/
+
+# Snapshots/archives — git history makes these redundant
+09_Backup/
