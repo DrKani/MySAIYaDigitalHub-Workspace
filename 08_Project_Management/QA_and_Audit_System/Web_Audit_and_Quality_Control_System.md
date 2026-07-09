@@ -336,7 +336,63 @@ To ensure a premium user experience, page performance must meet these targets:
 
 ---
 
-## 15. Five-Minute Smoke Test (Deploy Verification)
+## 15. Platform QA Checklist
+
+### 15.1 Web
+- [ ] Tested on Chrome, Safari, Firefox and Edge.
+- [ ] Tested on iOS Safari and Android Chrome.
+- [ ] Layout works from 360px to 1536px.
+- [ ] No horizontal scrolling on mobile.
+- [ ] Core Web Vitals targets are met.
+
+### 15.2 Progressive Web App (PWA)
+- [ ] Manifest includes correct name, short name and icons.
+- [ ] Theme colour uses Anchor Navy.
+- [ ] App can launch in standalone mode.
+- [ ] Offline fallback is present.
+- [ ] Install prompt does not interrupt core tasks.
+
+### 15.3 iOS Native & Web Shells
+- [ ] Safe-area insets are respected.
+- [ ] Status bar contrast is correct.
+- [ ] Swipe-back behaviour does not break navigation.
+- [ ] Touch targets meet minimum size.
+
+### 15.4 Android Native & Web Shells
+- [ ] System bar colours match Anchor Navy.
+- [ ] FAB does not overlap bottom navigation.
+- [ ] Ripple effects are restrained.
+- [ ] Edge-to-edge content remains readable.
+
+---
+
+## 16. Accessibility QA Checklist
+
+### 16.1 Component Level Compliance
+- [ ] Component is keyboard accessible.
+- [ ] Focus state is clearly visible.
+- [ ] Colour contrast meets WCAG 2.1 AA.
+- [ ] Component does not rely on colour alone.
+- [ ] Touch targets are at least 44×44px.
+- [ ] Screen reader label is present where needed.
+- [ ] Dynamic content uses appropriate live region.
+- [ ] Error messages are announced.
+- [ ] Reduced motion mode is supported.
+- [ ] Component remains usable at 200% zoom.
+
+### 16.2 Page Level Compliance
+- [ ] Page has one clear H1.
+- [ ] Headings do not skip levels.
+- [ ] Landmarks are used correctly.
+- [ ] Main content has skip link support.
+- [ ] Images have appropriate alt text.
+- [ ] Forms have labels and instructions.
+- [ ] Modals trap focus.
+- [ ] Drawer returns focus to trigger after closing.
+
+---
+
+## 17. Five-Minute Smoke Test (Deploy Verification)
 
 Run this test after *every* staging deploy or build update:
 
@@ -353,7 +409,7 @@ Run this test after *every* staging deploy or build update:
 
 ---
 
-## 16. Prototype Journey Audit System (Functional Verification)
+## 18. Prototype Journey Audit System (Functional Verification)
 
 The prototype journey tests mimic typical target personas to check the application's client-side logic.
 
@@ -388,7 +444,7 @@ The prototype journey tests mimic typical target personas to check the applicati
 
 ---
 
-## 17. Issue Log Template
+## 19. Issue Log Template
 
 Report bugs using the following format:
 
