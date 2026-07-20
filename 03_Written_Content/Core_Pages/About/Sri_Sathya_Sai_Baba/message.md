@@ -1,81 +1,637 @@
+---
+title: "His Message"
+route: "/about/sathya-sai-baba/message"
+eyebrow: "From Knowing to Becoming"
+hero_statement: "The purpose of spiritual teaching is not simply to change what we know, but to transform how we live."
+experience_type: "thematic-teaching-pathways"
+status: "ready-for-development"
+---
+
 # His Message
 
-**URL:** `/about/sathya-sai-baba/message`  
-> **Page Hero Statement:** "Love is not a feeling. It is the fabric of existence."
+## A Teaching for Life
+
+The teachings of Bhagawan Sri Sathya Sai Baba span thousands of discourses, conversations, writings and personal interactions across more than seven decades.
+
+They address profound spiritual questions.
+
+Who am I?
+
+What is God?
+
+What is the purpose of human life?
+
+How can the mind be controlled?
+
+What is true freedom?
+
+But they also address the realities of ordinary life.
+
+How should we speak?
+
+How should we work?
+
+How should we use money?
+
+What is the purpose of education?
+
+How should we respond to anger?
+
+How should we treat our parents?
+
+What makes a good leader?
+
+Why should we serve?
+
+How can people of different religions live together?
+
+This breadth is important.
+
+For Bhagawan, spirituality was not one department of life.
+
+It was the process of bringing greater truth, love, awareness and self-mastery into the whole of life.
 
 ---
 
-## The Simplest Teaching in the World
+## The Divinity Within
 
-While philosophers have debated the meaning of life across centuries, Bhagawan Sri Sathya Sai Baba arrived with a teaching so simple it unsettled those looking for complexity:
+At the centre of Bhagawan's teaching is a profound understanding of human identity.
 
-> "Love All, Serve All."  
-> "Help Ever, Hurt Never."
+We are not merely the body.
 
-These are not bumper stickers. When taken seriously — when actually lived — they upend every priority we have been conditioned to hold. They ask us to see the divine in the person who annoys us at work, in the stranger we pass without looking up, in ourselves on our most difficult days.
+Not merely the mind.
 
----
+Not merely our profession, achievements, relationships or possessions.
 
-## The Five Human Values
+Our essential nature is divine.
 
-At the core of Sathya Sai Baba's teaching is the conviction that five fundamental values are not religious commandments but the natural qualities of every human soul. They do not need to be acquired from outside — only uncovered from within:
+This teaching changes the direction of the spiritual search.
 
-- **🌿 Sathya — Truth**  
-  Truth is not merely the absence of lies. It is the courage to be authentic — in thought, word, and action.
-  
-- **⚖️ Dharma — Right Conduct**  
-  Do what is right, not merely what is convenient. Character is built in private, before anyone is watching.
-  
-- **☮️ Shanti — Peace**  
-  Inner peace is not the absence of difficulty. It is the stillness that persists beneath the storm.
-  
-- **💛 Prema — Love**  
-  Not romantic love, not transactional affection — but the selfless, unconditional love that asks nothing in return and discriminates against no one.
-  
-- **🕊️ Ahimsa — Non-Violence**  
-  Begin with your own thoughts. Violence, in its subtlest forms, begins long before it reaches the hands.
+Human beings need not manufacture divinity.
 
----
+They need to discover what is already present.
 
-## On Divinity
+The spiritual journey is therefore a movement from mistaken identity towards Self-knowledge.
 
-Perhaps the most radical thing Sathya Sai Baba ever said — and He said it repeatedly, in every language, to every kind of person — was this:
+From selfishness towards selflessness.
 
-> "I am God. And so are you. The only difference is that I know it."
+From restlessness towards peace.
 
-This was not a claim of superiority. It was a declaration of equality. It was His way of saying: stop treating yourself as small. Stop looking for God in distant places when the divine is the very substance of who you are.
+From separation towards unity.
 
-He consistently addressed every gathering as "Embodiments of the Divine Atma" — not as sinners to be redeemed, not as disciples who must prove themselves worthy, but as divinity that has temporarily forgotten its own nature.
+From fear towards love.
+
+This is why Bhagawan so frequently addressed people as embodiments of the Divine Atma or embodiments of love.
+
+It was both a statement and a challenge.
+
+If the Divine is inherent within us, how should we live?
 
 ---
 
-## Spirituality as a Daily Practice
+# The Five Human Values
 
-Sathya Sai Baba was practical above all else. He did not recommend retreating from the world to find God. He taught that the spiritual journey begins exactly where you are — in your kitchen, in your office, in your relationships.
+Bhagawan placed five universal Human Values at the heart of His educational and spiritual message.
 
-He encouraged:
-- **Namasmarana** — the repetition of God's name as a constant inner anchor
-- **Seva** — selfless service as the highest form of worship
-- **Satsang** — the company of those who uplift and inspire
-- **Swadhyaya** — self-study and honest self-reflection
-- **Silence and meditation** — turning the mind inward daily, even briefly
+They are deeply interconnected.
 
-He summarised it thus: *"The secret of happiness is not in doing what one likes, but in liking what one does."*
+## Truth — Sathya
+
+Truth is more than factual accuracy.
+
+It asks for harmony between what we think, what we say and what we do.
+
+It requires sincerity.
+
+Integrity.
+
+The courage to examine ourselves.
+
+And the willingness to live according to what we know to be right.
+
+## Right Conduct — Dharma
+
+When truth enters action, it becomes Right Conduct.
+
+Dharma asks:
+
+What is my responsibility?
+
+What is the right action in this situation?
+
+What choice is consistent with conscience?
+
+Right Conduct transforms values from ideas into habits.
+
+## Peace — Shanti
+
+Peace is not merely the absence of conflict around us.
+
+Bhagawan directed attention towards the causes of disturbance within us.
+
+Desire.
+
+Attachment.
+
+Anger.
+
+Jealousy.
+
+Fear.
+
+Comparison.
+
+An uncontrolled mind can create suffering even in favourable circumstances.
+
+Inner peace therefore requires understanding and discipline of the mind.
+
+## Love — Prema
+
+Love occupies a central place in Bhagawan's teaching.
+
+Not love limited by possession, preference or expectation.
+
+But love that expands.
+
+Love that recognises relationship.
+
+Love that expresses itself through patience, compassion, forgiveness and service.
+
+Love that gradually moves from:
+
+**I and mine**
+
+towards:
+
+**we and ours.**
+
+## Non-violence — Ahimsa
+
+Non-violence is more than refraining from physical harm.
+
+Thoughts can wound.
+
+Words can wound.
+
+Indifference can wound.
+
+Exploitation can wound.
+
+Non-violence therefore asks us to become aware of the consequences of our thoughts, speech, consumption, relationships and actions.
+
+In its deepest sense, non-violence is love fully expressed.
 
 ---
 
-## Sarva Dharma: Respect for All Faiths
+# Love All. Serve All.
 
-One of the most enduring symbols associated with Sathya Sai Baba is the **Sarva Dharma emblem** — a circular design incorporating the symbols of the world's major religions arranged in harmony. It was not an artistic choice. It was a statement:
+Few teachings associated with Bhagawan are more widely recognised.
 
-> "There is only one religion: the religion of Love. There is only one language: the language of the Heart. There is only one God, and He is Omnipresent."
+**Love All. Serve All.**
 
-MySAIYa carries this spirit. We are not a Hindu organisation. We are not a religion. We are a community of young adults from every background, held together by a shared commitment to live better, love more, and serve selflessly.
+Simple words.
 
-***
+A demanding practice.
 
-### Quote Carousel Content (3 quotes for rotating display)
+To love all is to challenge the boundaries we place around compassion.
 
-1. *"Start the day with Love. Fill the day with Love. End the day with Love. That is the way to God."*
-2. *"You are not one person, but three — the one you think you are, the one others think you are, and the one you really are."*
-3. *"Life is a challenge — meet it. Life is a dream — realize it. Life is a game — play it. Life is love — enjoy it."*
+The people we like.
+
+The people who agree with us.
+
+The people who belong to our community.
+
+The people who can help us.
+
+Bhagawan invited love to expand beyond these boundaries.
+
+And service gives that love practical expression.
+
+To feed.
+
+Teach.
+
+Listen.
+
+Heal.
+
+Protect.
+
+Comfort.
+
+Build.
+
+Share.
+
+Volunteer.
+
+Respond.
+
+Service need not always be dramatic.
+
+Its spiritual significance lies in the attitude with which it is performed.
+
+---
+
+# Help Ever. Hurt Never.
+
+The companion teaching is equally practical:
+
+**Help Ever. Hurt Never.**
+
+We may not always be able to help everyone.
+
+But we can become more conscious of the harm we cause.
+
+Through impatience.
+
+Careless speech.
+
+Gossip.
+
+Prejudice.
+
+Selfish decisions.
+
+Misuse of authority.
+
+Indifference.
+
+Bhagawan's teaching continually brings spirituality back to self-examination.
+
+Before asking whether the world is becoming better, we can ask:
+
+**Am I becoming less harmful?**
+
+**More helpful?**
+
+**More understanding?**
+
+**More loving?**
+
+---
+
+# The Unity of Thought, Word and Deed
+
+Bhagawan repeatedly emphasised harmony between thought, word and action.
+
+When these move in different directions, inner conflict develops.
+
+We believe one thing.
+
+Say another.
+
+Do something else.
+
+Character requires integration.
+
+This principle is especially relevant in an age of public profiles and digital identities.
+
+It is possible to appear compassionate without behaving compassionately.
+
+To speak about values without practising them.
+
+To promote service without serving.
+
+The spiritual journey asks us to reduce the distance between appearance and reality.
+
+---
+
+# The Mind: Instrument or Master?
+
+Much of Bhagawan's teaching concerns the mind.
+
+The mind can become an extraordinary instrument.
+
+It can learn.
+
+Create.
+
+Analyse.
+
+Remember.
+
+Imagine.
+
+Solve problems.
+
+But an undisciplined mind can also create anxiety, anger, envy, fear and endless dissatisfaction.
+
+Bhagawan therefore emphasised mastery of the mind.
+
+Not its destruction.
+
+Not the rejection of thought.
+
+But the development of discernment.
+
+The ability to observe our reactions.
+
+Question our desires.
+
+Redirect attention.
+
+Choose our responses.
+
+And prevent every passing thought from becoming our master.
+
+For young adults navigating constant information, comparison and digital stimulation, this teaching has particular relevance.
+
+---
+
+# Ceiling on Desires
+
+Bhagawan taught the practice known as **Ceiling on Desires**.
+
+Its purpose is not deprivation for its own sake.
+
+It is freedom from waste and excess.
+
+The discipline invites reflection upon four areas:
+
+- money;
+- food;
+- time; and
+- energy.
+
+Where are we wasting resources?
+
+Which desires are necessary?
+
+Which have become habits?
+
+What might be redirected towards helping others?
+
+In a culture built increasingly around consumption, Bhagawan's teaching asks a countercultural question:
+
+**How much is enough?**
+
+---
+
+# Education and Character
+
+Bhagawan placed extraordinary importance upon education.
+
+But He challenged the idea that education should be measured only through examinations, qualifications and employment.
+
+Knowledge without character can become dangerous.
+
+Skill without values can be misused.
+
+Achievement without responsibility can deepen inequality.
+
+Education should therefore develop the whole human being.
+
+Competence.
+
+Character.
+
+Compassion.
+
+Discipline.
+
+Discernment.
+
+Responsibility.
+
+This is the foundation of His approach to Educare:
+
+Not simply putting information into a person.
+
+But drawing out the values already within.
+
+---
+
+# Work as Worship
+
+Bhagawan did not separate spirituality from professional life.
+
+Work could become worship.
+
+Duty could become discipline.
+
+Excellence could become an offering.
+
+This does not mean performing religious rituals in the workplace.
+
+It means bringing values into the way we work.
+
+Honesty.
+
+Competence.
+
+Respect.
+
+Responsibility.
+
+Fairness.
+
+Care.
+
+The question becomes not merely:
+
+**What career should I choose?**
+
+But:
+
+**What kind of person am I becoming through the way I work?**
+
+---
+
+# Devotion and the Inner Relationship
+
+Bhagawan encouraged devotional practices including prayer, bhajans, remembrance of the Divine Name and meditation.
+
+But devotion was not meant to remain emotional dependence.
+
+Its purpose was transformation.
+
+To soften the heart.
+
+Reduce ego.
+
+Develop surrender.
+
+Strengthen faith.
+
+Purify motives.
+
+And deepen awareness of the Divine.
+
+Outer forms of worship can vary.
+
+The inner direction is towards love.
+
+---
+
+# Service as Spiritual Practice
+
+Bhagawan gave selfless service a central place in spiritual life.
+
+Why?
+
+Because service confronts the ego.
+
+It asks us to notice another person's need.
+
+To give time.
+
+To accept inconvenience.
+
+To work without applause.
+
+To cooperate.
+
+To recognise dignity.
+
+To see beyond social differences.
+
+Service is therefore not only humanitarian action.
+
+It can become a spiritual discipline.
+
+The hands serve.
+
+The heart expands.
+
+The individual changes.
+
+---
+
+# The Unity of Religions
+
+Bhagawan taught that no religion should be criticised or diminished.
+
+Different religions developed in different historical and cultural contexts.
+
+Their languages differ.
+
+Their practices differ.
+
+Their symbols differ.
+
+Yet sincere spiritual traditions call human beings towards higher values.
+
+Love.
+
+Compassion.
+
+Truth.
+
+Self-discipline.
+
+Sacrifice.
+
+Service.
+
+The principle of unity of religions does not require people to abandon their traditions.
+
+It asks them to deepen their own faith while respecting the faith of others.
+
+In a diverse nation such as Malaysia, this message carries particular importance.
+
+---
+
+# From Self-Confidence to Self-Realisation
+
+Bhagawan described a spiritual progression:
+
+**Self-confidence.**
+
+**Self-satisfaction.**
+
+**Self-sacrifice.**
+
+**Self-realisation.**
+
+Here, self-confidence is not ego or arrogance.
+
+It is confidence in the deeper Self.
+
+From this foundation emerges inner contentment.
+
+From contentment comes the capacity to give.
+
+And through the gradual transcendence of selfishness comes the discovery of our true nature.
+
+The spiritual journey is therefore not an escape from ourselves.
+
+It is the discovery of the Self.
+
+---
+
+# Start Where You Are
+
+The breadth of Bhagawan's teachings can appear overwhelming.
+
+Where should a person begin?
+
+His message repeatedly returns us to the present moment.
+
+Begin with one thought.
+
+One word.
+
+One action.
+
+Speak more carefully.
+
+Waste less.
+
+Serve someone.
+
+Control one reaction.
+
+Keep one promise.
+
+Forgive.
+
+Listen.
+
+Pray.
+
+Reflect.
+
+Examine the day before sleeping.
+
+Try again tomorrow.
+
+Transformation rarely happens in one dramatic moment.
+
+Character is built through repeated choices.
+
+---
+
+## The Question His Message Leaves With Us
+
+The ultimate purpose of Bhagawan's teaching is not to create people who can quote Him extensively.
+
+It is to create transformation.
+
+Are we more truthful?
+
+More compassionate?
+
+Less selfish?
+
+More disciplined?
+
+More peaceful?
+
+More willing to serve?
+
+More respectful of differences?
+
+More aware of the Divine within ourselves and others?
+
+The value of a spiritual teaching is revealed in the life of the person attempting to practise it.
+
+**The message becomes meaningful when it becomes lived.**
+
+---
+
+## Continue Exploring
+
+- [Discover His Life](/about/sathya-sai-baba/life)
+- [See His Message in Action](/about/sathya-sai-baba/work)
+- [Explore MySAIYa's Mission](/about/mysaiya/mission)

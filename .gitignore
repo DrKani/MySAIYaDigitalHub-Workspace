@@ -16,3 +16,4 @@
 
 # Snapshots/archives — git history makes these redundant
 09_Backup/
+.gstack/
