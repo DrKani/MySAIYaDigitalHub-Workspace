@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Signature & notification gradients" subtitle="Gold · purple updates banner · purple metallic · hero strokes I and II" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:20px;background:var(--off-white);font-family:var(--font-ui)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.sw{border-radius:var(--radius-lg);height:54px;display:flex;align-items:flex-end;padding:10px;color:#fff;font-weight:600;font-size:12px;box-shadow:var(--shadow-sm)}
+.stroke{height:54px;border-radius:var(--radius-lg);background:var(--navy-800);position:relative;display:flex;align-items:flex-end;padding:10px;color:#fff;font-weight:600;font-size:12px}
+.stroke::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;border-radius:4px 4px 0 0}
+.stroke.i::before{background:var(--gradient-hero-stroke-i)}
+.stroke.ii::before{background:var(--gradient-hero-stroke-ii)}
+</style></head>
+<body><div class="grid">
+  <div class="sw" style="background:var(--gradient-gold);color:var(--navy-900)">Gold (CTA, milestones)</div>
+  <div class="sw" style="background:var(--gradient-updates)">Updates banner</div>
+  <div class="sw" style="background:var(--gradient-purple-metallic)">Purple metallic (popup header)</div>
+  <div class="sw" style="background:var(--gradient-purple-notification)">Purple notification</div>
+  <div class="stroke i">Hero top accent stroke I</div>
+  <div class="stroke ii">Hero top accent stroke II (gold)</div>
+</div></body></html>

@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="900x360" name="Category colours" subtitle="Eight programme families — colour, icon and examples are locked together" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+body{margin:0;padding:22px;background:var(--off-white);font-family:var(--font-ui);color:var(--navy-900)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cat{border-radius:var(--radius-lg);overflow:hidden;background:var(--white);border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)}
+.fold{height:66px;padding:12px;display:flex;align-items:flex-start;gap:10px;color:#fff}
+.ico{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,0.22);display:flex;align-items:center;justify-content:center;flex:none}
+.nm{font-weight:700;font-size:13px;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,0.3)}
+.ex{padding:10px 12px 12px;font-size:11px;line-height:1.5;color:var(--gray-500)}
+</style></head>
+<body><div class="grid">
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-leadership)"><span class="ico"><i data-lucide="flag" style="width:18px;height:18px"></i></span><span class="nm">Leadership &amp; governance</span></div><div class="ex">MSYLP · YYLP · PAD · leadership training</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-service)"><span class="ico"><i data-lucide="heart-handshake" style="width:18px;height:18px"></i></span><span class="nm">Service</span></div><div class="ex">ROSE · DARTS · RISE · community work</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-spiritual)"><span class="ico"><i data-lucide="flower-2" style="width:18px;height:18px"></i></span><span class="nm">Spiritual &amp; cultural</span></div><div class="ex">TRAC · bhajans · Vedic chanting</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-medical)"><span class="ico"><i data-lucide="stethoscope" style="width:18px;height:18px"></i></span><span class="nm">Medical outreach</span></div><div class="ex">Medical camps · health service · blood donation</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-youth)"><span class="ico"><i data-lucide="graduation-cap" style="width:18px;height:18px"></i></span><span class="nm">Youth development</span></div><div class="ex">YYLP · SSEHV · skills · mentoring</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-learning);color:var(--navy-900)"><span class="ico" style="background:rgba(10,30,62,0.10)"><i data-lucide="book-open" style="width:18px;height:18px"></i></span><span class="nm" style="text-shadow:none">Learning &amp; resources</span></div><div class="ex">Blog · Book Club · learning modules</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-events)"><span class="ico"><i data-lucide="calendar-days" style="width:18px;height:18px"></i></span><span class="nm">Events</span></div><div class="ex">Calendar · upcoming and past event pages</div></div>
+  <div class="cat"><div class="fold" style="background:var(--gradient-category-committee)"><span class="ico"><i data-lucide="briefcase-business" style="width:18px;height:18px"></i></span><span class="nm">Committee hub</span></div><div class="ex">Internal admin · strategy · toolkit</div></div>
+</div>
+<script>lucide.createIcons()</script>
+</body></html>

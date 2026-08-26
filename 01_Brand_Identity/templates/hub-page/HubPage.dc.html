@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Hub Page" description="MySAIYa Digital Hub member homepage — ticker, navy header, hero greeting, feature grid and a devotional quote card." -->
+<helmet>
+<link rel="icon" href="../../assets/mysaiya-emblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@keyframes msy-ticker-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="./ds-base.js"></script>
+</helmet>
+
+<div style="min-height:100vh; background:var(--off-white); font-family:var(--font-ui); color:var(--navy-900);">
+
+  <sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+    <div style="background:var(--gradient-updates); color:#fff; height:32px; display:flex; align-items:center; gap:12px; padding:0 16px; font-weight:700; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;">
+      <i data-lucide="play" style="width:14px;height:14px;"></i>
+      <div style="flex:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">Welcome to MySAIYa Digital Hub by SSIOM &bull; Supporting every Malaysian Sai Young Adult in their spiritual journey</div>
+      <i data-lucide="x" style="width:14px;height:14px;"></i>
+    </div>
+  </sc-if>
+
+  <header style="background:var(--navy-900); color:#fff; min-height:72px; display:flex; align-items:center; gap:24px; padding:12px 32px; position:sticky; top:0; z-index:50; box-shadow:var(--shadow-md);">
+    <div style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
+      <img src="../../assets/mysaiya-emblem.png" alt="MySAIYa" style="height:40px; width:40px; flex-shrink:0;">
+      <div style="line-height:1.15; white-space:nowrap;">
+        <div style="font-family:var(--font-serif); font-weight:700; font-size:18px; white-space:nowrap;">My<span style="background:var(--gradient-gold-wordmark); -webkit-background-clip:text; background-clip:text; color:transparent;">SAI</span>Ya <span style="font-family:var(--font-ui); font-weight:600; font-size:12px; opacity:0.85;">Digital Hub</span></div>
+        <div style="font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-300); margin-top:2px; white-space:nowrap;">Service &middot; Adoration &middot; Illumination</div>
+      </div>
+    </div>
+    <nav style="display:flex; gap:4px; margin-left:16px; flex-shrink:0;" aria-label="Main navigation">
+      <a href="#" style="position:relative; color:#fff; text-decoration:none; font-size:14px; font-weight:600; padding:8px 12px;">Home<span style="position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--gradient-gold);"></span></a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">MySAIYa 101</a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">In Action</a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">Resources</a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">Events</a>
+    </nav>
+    <div style="flex:1;"></div>
+    <div style="display:flex; align-items:center; gap:8px; background:#fff; color:var(--gray-500); border-radius:9999px; padding:0 14px; height:42px; width:240px; flex-shrink:0;">
+      <i data-lucide="search" style="width:18px;height:18px;color:var(--gray-700);"></i>
+      <span style="font-size:14px; font-weight:600; flex:1;">Search the Hub</span>
+      <kbd style="font-size:11px; color:var(--navy-900); background:var(--gray-100); border-radius:4px; padding:2px 6px;">&#8984;K</kbd>
+    </div>
+    <button style="position:relative; width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.1); border:none; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer;" aria-label="Notifications">
+      <i data-lucide="bell" style="width:18px;height:18px;color:#fff;"></i>
+      <span style="position:absolute; top:2px; right:2px; width:8px; height:8px; border-radius:50%; background:var(--magenta-500);"></span>
+    </button>
+    <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="gold-outline" shape="pill" size="sm" uppercase="true" hint-size="90px,40px">Sign In</x-import>
+    <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="primary" shape="pill" size="sm" uppercase="true" hint-size="90px,40px">Sign Up</x-import>
+  </header>
+
+  <main style="max-width:1200px; margin:0 auto; padding:40px 32px 80px; display:flex; flex-direction:column; gap:36px;">
+
+    <sc-if value="{{ heroPhoto }}" hint-placeholder-val="{{ false }}">
+      <section style="position:relative; overflow:hidden; border-radius:var(--radius-3xl); padding:56px 40px; color:#fff; box-shadow:var(--shadow-lg); background:linear-gradient(90deg, rgba(10,30,62,0.92) 0%, rgba(13,47,92,0.62) 100%), url('../../assets/photo-youth-group.jpg'); background-size:cover; background-position:center;">
+        <div style="position:absolute; top:0; left:0; right:0; height:5px; background:var(--gradient-hero-stroke);"></div>
+        <h1 style="font-family:var(--font-serif); font-weight:700; font-size:48px; line-height:1.1; margin:0 0 12px; max-width:720px;">Om Sai Ram, friend</h1>
+        <p style="font-size:18px; line-height:1.6; opacity:0.92; max-width:560px; margin:0 0 28px;">Your journey continues. Three reflections this week, one Book Club chapter, and a new badge waiting to be unlocked.</p>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="primary" uppercase="true" hint-size="220px,48px">Continue Journey</x-import>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ heroPlain }}" hint-placeholder-val="{{ true }}">
+      <section style="position:relative; overflow:hidden; background:var(--navy-800); border-radius:var(--radius-3xl); padding:48px 40px; color:#fff; box-shadow:var(--shadow-lg);">
+        <div style="position:absolute; top:0; left:0; right:0; height:5px; background:var(--gradient-hero-stroke);"></div>
+        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.12); color:#fff; padding:7px 14px; border-radius:9999px; font-weight:700; font-size:12px; margin-bottom:16px;">
+          <i data-lucide="calendar-clock" style="width:14px;height:14px;"></i> Week 4 &bull; Solar Dynasty
+        </div>
+        <h1 style="font-family:var(--font-serif); font-weight:700; font-size:48px; line-height:1.1; margin:0 0 12px; max-width:720px;">Om Sai Ram, friend</h1>
+        <p style="font-size:18px; line-height:1.6; opacity:0.9; max-width:560px; margin:0 0 28px;">Your journey continues. Three reflections this week, one Book Club chapter, and a new badge waiting to be unlocked.</p>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="primary" uppercase="true" hint-size="220px,48px">Continue Journey</x-import>
+      </section>
+    </sc-if>
+
+    <section>
+      <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-600);">Explore</div>
+      <h2 style="font-weight:700; font-size:28px; color:var(--navy-900); margin:4px 0 20px;">Jump back in</h2>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+
+        <div style="border-radius:var(--radius-2xl); overflow:hidden; background:var(--white); box-shadow:var(--shadow-md); display:flex; flex-direction:column;">
+          <div style="padding:20px; min-height:100px; background:var(--gradient-feature-1);">
+            <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.22); margin-bottom:10px;"><i data-lucide="mic" style="width:22px;height:22px;color:#fff;"></i></div>
+            <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.85);">Mantra &amp; Likitha Japa</div>
+            <h3 style="margin:2px 0 0; font-weight:700; font-size:20px; color:#fff;">Sai SMS Namasmarana</h3>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:14px; flex:1;">
+            <p style="margin:0; font-size:14px; line-height:1.5; color:var(--text-body); flex:1;">Log your daily chanting and contribute to the national 2026 offering.</p>
+            <button style="height:44px; border-radius:9999px; border:1.5px solid var(--purple-lite-600); background:color-mix(in srgb, var(--purple-lite-600) 12%, white); color:var(--purple-lite-700); font-family:var(--font-ui); font-weight:700; font-size:14px; cursor:pointer;">Log Sadhana</button>
+          </div>
+        </div>
+
+        <div style="border-radius:var(--radius-2xl); overflow:hidden; background:var(--white); box-shadow:var(--shadow-md); display:flex; flex-direction:column;">
+          <div style="padding:20px; min-height:100px; background:var(--gradient-feature-2);">
+            <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.22); margin-bottom:10px;"><i data-lucide="book-open" style="width:22px;height:22px;color:#fff;"></i></div>
+            <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.85);">Ramakatha Rasavahini 2026</div>
+            <h3 style="margin:2px 0 0; font-weight:700; font-size:20px; color:#fff;">Sai SMS Book Club</h3>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:14px; flex:1;">
+            <p style="margin:0; font-size:14px; line-height:1.5; color:var(--text-body); flex:1;">Join the national reading journey. Read weekly chapters and share reflections.</p>
+            <button style="height:44px; border-radius:9999px; border:1.5px solid var(--teal-500); background:color-mix(in srgb, var(--teal-500) 12%, white); color:#166534; font-family:var(--font-ui); font-weight:700; font-size:14px; cursor:pointer;">Read Now</button>
+          </div>
+        </div>
+
+        <div style="border-radius:var(--radius-2xl); overflow:hidden; background:var(--white); box-shadow:var(--shadow-md); display:flex; flex-direction:column;">
+          <div style="padding:20px; min-height:100px; background:var(--gradient-feature-3);">
+            <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.22); margin-bottom:10px;"><i data-lucide="scroll" style="width:22px;height:22px;color:#fff;"></i></div>
+            <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.85);">My Journal</div>
+            <h3 style="margin:2px 0 0; font-weight:700; font-size:20px; color:#fff;">Sai SMS Reflections</h3>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:14px; flex:1;">
+            <p style="margin:0; font-size:14px; line-height:1.5; color:var(--text-body); flex:1;">Capture your spiritual insights privately and deepen your daily practice.</p>
+            <button style="height:44px; border-radius:9999px; border:1.5px solid var(--purple-700); background:color-mix(in srgb, var(--purple-700) 12%, white); color:var(--purple-700); font-family:var(--font-ui); font-weight:700; font-size:14px; cursor:pointer;">Open Journal</button>
+          </div>
+        </div>
+
+        <div style="border-radius:var(--radius-2xl); overflow:hidden; background:var(--white); box-shadow:var(--shadow-md); display:flex; flex-direction:column;">
+          <div style="padding:20px; min-height:100px; background:var(--gradient-feature-4);">
+            <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.22); margin-bottom:10px;"><i data-lucide="gamepad-2" style="width:22px;height:22px;color:#fff;"></i></div>
+            <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.85);">Interactive Games</div>
+            <h3 style="margin:2px 0 0; font-weight:700; font-size:20px; color:#fff;">Sai SMS Play It</h3>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:14px; flex:1;">
+            <p style="margin:0; font-size:14px; line-height:1.5; color:var(--text-body); flex:1;">Life is a game, play it! Test your knowledge with crosswords and quizzes.</p>
+            <button style="height:44px; border-radius:9999px; border:1.5px solid var(--orange-500); background:color-mix(in srgb, var(--orange-500) 12%, white); color:var(--orange-400); font-family:var(--font-ui); font-weight:700; font-size:14px; cursor:pointer;">Play Games</button>
+          </div>
+        </div>
+
+        <div style="border-radius:var(--radius-2xl); overflow:hidden; background:var(--white); box-shadow:var(--shadow-md); display:flex; flex-direction:column;">
+          <div style="padding:20px; min-height:100px; background:var(--gradient-feature-5);">
+            <div style="display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.22); margin-bottom:10px;"><i data-lucide="calendar-days" style="width:22px;height:22px;color:#fff;"></i></div>
+            <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.85);">Upcoming</div>
+            <h3 style="margin:2px 0 0; font-weight:700; font-size:20px; color:#fff;">Sai SMS Events</h3>
+          </div>
+          <div style="padding:20px; display:flex; flex-direction:column; gap:14px; flex:1;">
+            <p style="margin:0; font-size:14px; line-height:1.5; color:var(--text-body); flex:1;">Stay updated with the national spiritual calendar and collective sessions.</p>
+            <button style="height:44px; border-radius:9999px; border:1.5px solid var(--navy-700); background:color-mix(in srgb, var(--navy-700) 12%, white); color:var(--navy-700); font-family:var(--font-ui); font-weight:700; font-size:14px; cursor:pointer;">View Calendar</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <sc-if value="{{ showQuote }}" hint-placeholder-val="{{ true }}">
+      <section>
+        <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-600);">This week&rsquo;s wisdom</div>
+        <h2 style="font-weight:700; font-size:28px; color:var(--navy-900); margin:4px 0 20px;">Sai quotes for reflection</h2>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.QuoteCard" index="3" quote="Love all, serve all." hint-size="100%,340px"></x-import>
+      </section>
+    </sc-if>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showTicker&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;heroPhoto&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showQuote&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    // Lucide replaces <i data-lucide> nodes with SVGs after each render.
+    requestAnimationFrame(() => { if (window.lucide) window.lucide.createIcons(); });
+  }
+  renderVals() {
+    const heroPhoto = this.props.heroPhoto ?? false;
+    return {
+      showTicker: this.props.showTicker ?? true,
+      showQuote: this.props.showQuote ?? true,
+      heroPhoto,
+      heroPlain: !heroPhoto,
+    };
+  }
+}
+</script>
+</body>
+</html>

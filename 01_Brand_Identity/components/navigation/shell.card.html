@@ -1,0 +1,66 @@
+<!-- @dsCard group="Components" viewport="1000x680" name="Hub sidebar" subtitle="Member-only. 264px expanded / 76px collapsed." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hub sidebar</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui);color:var(--navy-900)}a{color:var(--navy-700);text-decoration:none}a:hover{color:var(--purple-700)}h4{font:600 11px/1 Poppins;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500);margin:0 0 12px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Sidebar, Card } = window.MySAIYaDesignSystem_424fc1;
+const I = ({n,s=18}) => <i data-lucide={n} style={{width:s,height:s,display:'inline-flex'}} />;
+/* The emblem is navy-on-transparent — on any navy surface it must sit on a white disc. */
+const Emblem = ({s=32}) => (
+  <span style={{width:s,height:s,borderRadius:'50%',background:'#fff',flexShrink:0,display:'inline-flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
+    <img src="../../assets/mysaiya-emblem.png" alt="" width={s} height={s} style={{display:'block',objectFit:'contain'}} />
+  </span>
+);
+function App() {
+  const [active, setActive] = React.useState('home');
+  React.useEffect(() => { window.lucide && window.lucide.createIcons(); });
+  const groups = [
+    { label: 'Main', items: [
+      { id:'home', label:'Home', icon:<I n="house" /> },
+      { id:'dash', label:'Dashboard', icon:<I n="layout-dashboard" /> },
+      { id:'events', label:'Events', icon:<I n="calendar-days" />, count:3 },
+    ]},
+    { label: 'Journey', items: [
+      { id:'book', label:'Book club', icon:<I n="book-open" /> },
+      { id:'journal', label:'Journal', icon:<I n="notebook-pen" /> },
+      { id:'bhajans', label:'Bhajans', icon:<I n="music" /> },
+      { id:'play', label:'Play It', icon:<I n="dice-5" /> },
+    ]},
+  ];
+  return (
+    <div style={{display:'flex',gap:20,alignItems:'stretch'}}>
+      <Sidebar groups={groups} active={active} onSelect={setActive} logo={<Emblem />}
+        progress={{ label:'Level 5 · Sevak', points:'1,240 pts', percent:62 }} />
+      <Sidebar collapsed groups={groups} active={active} onSelect={setActive} logo={<Emblem s={28} />}
+        progress={{ label:'Level 5', points:'1,240', percent:62 }} />
+      <Card style={{flex:1,minWidth:0}}>
+        <h4>Sidebar rules</h4>
+        <ul style={{margin:0,paddingLeft:20,fontSize:14,lineHeight:1.9,color:'var(--text-body)'}}>
+          <li>Grouped in labelled clusters (Main, Journey, Community, Committee). Max 6 items per group.</li>
+          <li>Active item: 3px gold left rule, 14% gold wash, gold icon, white semibold label. Only one at a time.</li>
+          <li>Hover: 8% white wash, no movement. Icons are Lucide outline, 18px, 2px stroke.</li>
+          <li>Counts use the semantic accent for that area — orange for live activity, red only for errors.</li>
+          <li>Progress footer is always pinned to the bottom: level, points, and a gold gradient bar.</li>
+          <li>Collapsed rail keeps 44px hit targets and shows tooltips on hover.</li>
+          <li>Committee tools appear as a separate group and only for members with that role.</li>
+        </ul>
+      </Card>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

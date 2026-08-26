@@ -1,0 +1,31 @@
+/* MySAIYa Digital Hub — Minimal base layer.
+   Body defaults + reduced-motion respect. Component styling stays inline / in components. */
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background: var(--surface-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Bahasa Malaysia / Tamil / Chinese fallbacks for long-form reading */
+html[lang="ms"] body { font-family: 'Open Sans', 'Noto Sans', sans-serif; }
+html[lang="ta"] body { font-family: 'Noto Sans Tamil', 'Open Sans', sans-serif; line-height: 1.8; }
+html[lang="zh-Hans"] body { font-family: 'Noto Sans SC', 'Open Sans', sans-serif; }
+
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

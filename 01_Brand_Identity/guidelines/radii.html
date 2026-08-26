@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Border radii" subtitle="Rounded, gentle, human — sm to modal + pill" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui);color:var(--navy-900)}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.item{display:flex;flex-direction:column;align-items:center;gap:8px}
+.box{width:72px;height:72px;background:var(--white);border:2px solid var(--navy-700);}
+.t{font-size:10px;color:var(--gray-500);font-weight:600}
+</style></head>
+<body><div class="row">
+  <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="t">sm · 8</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><span class="t">md · 12</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="t">lg · 16</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-xl)"></div><span class="t">xl · 24</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-2xl)"></div><span class="t">2xl · 32</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-3xl)"></div><span class="t">3xl · 40</span></div>
+  <div class="item"><div class="box" style="border-radius:var(--radius-pill)"></div><span class="t">pill</span></div>
+</div></body></html>

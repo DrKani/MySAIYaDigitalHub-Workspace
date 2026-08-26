@@ -1,0 +1,68 @@
+<!-- @dsCard group="Components" viewport="1040x620" name="Form controls & states" subtitle="Select · textarea · checkbox · radio · switch — default, focus, success, warning, error, disabled" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Form controls & states</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:26px;background:var(--off-white);font-family:var(--font-ui)}h4{margin:0 0 12px;font:600 11px/1 var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--gray-500)}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Select, Textarea, Checkbox, Radio, Switch, Input } = window.MySAIYaDesignSystem_424fc1;
+const col = {display:'flex',flexDirection:'column',gap:18};
+const row = {display:'grid',gridTemplateColumns:'repeat(3, 1fr)',gap:22,alignItems:'start'};
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={col}>
+    <div>
+      <h4>Text &amp; select — state ramp</h4>
+      <div style={row}>
+        <Input label="Full name" placeholder="Enter your name" hint="As it appears on your IC." />
+        <Input label="Email" state="success" message="Verified." defaultValue="devi@mysaiya.org" />
+        <Input label="Phone" error="Name is required." defaultValue="123" />
+        <Select label="Centre" options={['Select option','Petaling Jaya','Ipoh','Penang']} />
+        <Select label="Programme" state="warning" message="This programme closes in 2 days." options={['Bal Vikas','Youth Seva']} />
+        <Select label="Region" disabled options={['Locked to your centre']} />
+      </div>
+    </div>
+    <div>
+      <h4>Textarea</h4>
+      <div style={row}>
+        <Textarea label="Reflection" placeholder="Write here…" hint="Minimum 40 words." />
+        <Textarea label="Reflection" state="success" message="Saved to your journal." defaultValue="Today I helped at the kitchen." />
+        <Textarea label="Reflection" state="error" message="Message too short." defaultValue="Ok" />
+      </div>
+    </div>
+    <div>
+      <h4>Choice controls — teal confirms, never gold</h4>
+      <div style={row}>
+        <div style={{display:'flex',flexDirection:'column'}}>
+          <Checkbox label="I agree to the terms" />
+          <Checkbox label="I agree to the terms" defaultChecked />
+          <Checkbox label="I agree to the terms" state="error" message="You must agree to continue." />
+          <Checkbox label="I agree to the terms" disabled />
+        </div>
+        <div style={{display:'flex',flexDirection:'column'}}>
+          <Radio name="opt" label="Option one" defaultChecked />
+          <Radio name="opt" label="Option two" />
+          <Radio name="opt2" label="Option one" state="error" message="Please select one." />
+          <Radio name="opt3" label="Option one" disabled />
+        </div>
+        <div style={{display:'flex',flexDirection:'column'}}>
+          <Switch label="Notifications" defaultChecked />
+          <Switch label="Notifications" />
+          <Switch label="Auto-share reflections" state="warning" message="Visible to your centre." defaultChecked />
+          <Switch label="Notifications" disabled />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+</script>
+</body>
+</html>

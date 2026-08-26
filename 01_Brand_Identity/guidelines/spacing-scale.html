@@ -1,0 +1,16 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Spacing scale" subtitle="4 / 8pt system — space-1 to space-16" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui);color:var(--navy-900)}
+.row{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.bar{background:var(--gradient-gold-wordmark);border-radius:4px;width:24px}
+.t{font-size:10px;color:var(--gray-500);font-weight:600}
+</style></head>
+<body><div class="row" id="r"></div>
+<script>
+const tk=[['1',4],['2',8],['3',12],['4',16],['5',20],['6',24],['8',32],['10',40],['12',48],['16',64]];
+document.getElementById('r').innerHTML=tk.map(([n,v])=>
+`<div class="item"><div class="bar" style="height:${v}px"></div><span class="t">${n}</span><span class="t" style="color:var(--gray-400);font-weight:400">${v}</span></div>`).join('');
+</script></body></html>

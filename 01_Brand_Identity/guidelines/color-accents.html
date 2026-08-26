@@ -1,0 +1,16 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic colours" subtitle="Teal · magenta · luminous purple · orange · red — each hue names a meaning" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:20px;background:var(--off-white);font-family:var(--font-ui)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.sw{border-radius:var(--radius-md);height:88px;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;color:#fff}
+.t{font-weight:700;font-size:12px}.h{font-size:10px;opacity:.9;font-variant-numeric:tabular-nums}.u{font-size:10px;opacity:.85}
+</style></head>
+<body><div class="grid">
+  <div class="sw" style="background:var(--teal-500)"><span class="t">Teal</span><span class="u">success</span><span class="h">#1DC9A0</span></div>
+  <div class="sw" style="background:var(--magenta-600)"><span class="t">Magenta</span><span class="u">reading/alert</span><span class="h">#D91C5C</span></div>
+  <div class="sw" style="background:var(--purple-lite-600)"><span class="t">Lite purple</span><span class="u">progress</span><span class="h">#8B5CF6</span></div>
+  <div class="sw" style="background:var(--orange-500)"><span class="t">Orange</span><span class="u">activity</span><span class="h">#FF7F3F</span></div>
+  <div class="sw" style="background:var(--red-500)"><span class="t">Red</span><span class="u">error</span><span class="h">#EF4444</span></div>
+</div></body></html>

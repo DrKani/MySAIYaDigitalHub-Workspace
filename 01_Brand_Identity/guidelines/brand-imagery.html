@@ -1,0 +1,18 @@
+<!-- @dsCard group="Brand" viewport="700x260" name="Imagery" subtitle="Real community photography + reverent devotional portraits" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);background:var(--navy-900);aspect-ratio:1/1;position:relative}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile.dev img{object-fit:contain}
+.cap{font-size:11px;color:var(--gray-500);margin-top:6px}
+.col{display:flex;flex-direction:column}
+</style></head>
+<body><div class="grid">
+  <div class="col"><div class="tile"><img src="../assets/photo-youth-group.jpg" alt=""></div><span class="cap">Candid community</span></div>
+  <div class="col"><div class="tile"><img src="../assets/photo-service.jpg" alt=""></div><span class="cap">Service moments</span></div>
+  <div class="col"><div class="tile dev"><img src="../assets/sai-portrait-1.png" alt=""></div><span class="cap">Devotional portrait</span></div>
+  <div class="col"><div class="tile dev" style="background:#fff"><img src="../assets/sai-illustration.png" alt=""></div><span class="cap">Vector illustration</span></div>
+</div></body></html>

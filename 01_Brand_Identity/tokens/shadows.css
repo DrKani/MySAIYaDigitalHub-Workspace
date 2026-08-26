@@ -1,0 +1,15 @@
+/* MySAIYa Digital Hub — Shadows (soft, modern; never harsh black) */
+
+:root {
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.14);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.18);
+  --shadow-xl: 0 18px 40px rgba(0, 0, 0, 0.22);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.30);
+
+  /* Brand-tinted elevation */
+  --shadow-gold: 0 10px 24px rgba(212, 175, 55, 0.32);
+  --shadow-purple: 0 4px 20px rgba(122, 37, 130, 0.30);
+  --shadow-card: 0 8px 24px rgba(10, 30, 62, 0.06);
+  --shadow-card-hover: 0 12px 40px rgba(0, 46, 91, 0.12);
+}

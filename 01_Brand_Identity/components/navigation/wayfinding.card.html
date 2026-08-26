@@ -1,0 +1,58 @@
+<!-- @dsCard group="Components" viewport="960x680" name="Breadcrumbs & pagination" subtitle="Trails, back links, numbered pages, load-more and prev/next" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Breadcrumbs & pagination</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui);color:var(--navy-900)}a{color:var(--navy-700);text-decoration:none}a:hover{color:var(--purple-700)}h4{font:600 11px/1 Poppins;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500);margin:0 0 12px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Breadcrumbs, BackLink, Pagination, LoadMore, PrevNext, Card } = window.MySAIYaDesignSystem_424fc1;
+function App() {
+  const [page, setPage] = React.useState(3);
+  const [per, setPer] = React.useState(12);
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:24}}>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+        <Card style={{display:'flex',flexDirection:'column',gap:18}}>
+          <div><h4>On light</h4><Breadcrumbs items={[{label:'Home',href:'#'},{label:'Activities',href:'#'},{label:'Programmes',href:'#'},{label:'Sai Youth Camp 2026'}]} /></div>
+          <div><h4>Truncated (mobile / deep paths)</h4><Breadcrumbs maxItems={3} items={[{label:'Home',href:'#'},{label:'Activities',href:'#'},{label:'Programmes',href:'#'},{label:'Camps',href:'#'},{label:'Sai Youth Camp 2026'}]} /></div>
+          <div><h4>Back link (article &amp; detail pages)</h4><BackLink>Back to all stories</BackLink></div>
+        </Card>
+        <div style={{background:'var(--navy-900)',borderRadius:'var(--radius-2xl)',padding:24,display:'flex',flexDirection:'column',gap:14}}>
+          <h4 style={{color:'var(--gold-500)'}}>On navy (hero &amp; page headers)</h4>
+          <Breadcrumbs tone="dark" items={[{label:'Home',href:'#'},{label:'Stories',href:'#'},{label:'How service builds leadership'}]} />
+          <ul style={{margin:'6px 0 0',paddingLeft:18,color:'rgba(255,255,255,0.82)',fontSize:13,lineHeight:1.8}}>
+            <li>Separator is always a chevron, one step lighter than the links.</li>
+            <li>Current page is never a link and never gold — gold is for actions.</li>
+            <li>Maximum four levels; collapse the middle with an expandable &ldquo;…&rdquo;.</li>
+          </ul>
+        </div>
+      </div>
+      <Card style={{display:'flex',flexDirection:'column',gap:24}}>
+        <div><h4>Numbered — live</h4>
+          <Pagination page={page} pageCount={12} onChange={setPage} perPage={per} onPerPageChange={setPer}
+            summary={<span>Showing {(page-1)*per+1}&ndash;{page*per} of 138 programmes</span>} />
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1.4fr',gap:32,borderTop:'1px solid var(--gray-100)',paddingTop:22}}>
+          <div><h4>Load more (blog)</h4><LoadMore shown={9} total={47} /></div>
+          <div><h4>Prev / next (article footer)</h4>
+            <PrevNext prev={{label:'Silence as a practice'}} next={{label:'What Ramakatha taught us'}} />
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

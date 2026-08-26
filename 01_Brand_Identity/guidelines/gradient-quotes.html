@@ -1,0 +1,15 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Quote slider gradients" subtitle="20 rotating themes for devotional quote cards" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:20px;background:var(--off-white);font-family:var(--font-ui)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.sw{border-radius:var(--radius-sm);height:60px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;color:#fff;font-weight:700;font-size:10px}
+</style></head>
+<body><div class="grid" id="g"></div>
+<script>
+const light=[4,7,19];let h='';
+for(let i=1;i<=20;i++){const p=String(i).padStart(2,'0');
+h+=`<div class="sw" style="background:var(--gradient-quote-${p});${light.includes(i)?'color:#0A1E3E':''}">${i}</div>`;}
+document.getElementById('g').innerHTML=h;
+</script></body></html>

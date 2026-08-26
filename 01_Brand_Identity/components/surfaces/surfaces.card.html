@@ -1,0 +1,30 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Cards & Feature tiles" subtitle="Surface, shiny, glass cards and gradient feature tiles" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:28px;background:var(--off-white)}h4{font:600 18px/1.3 Poppins;margin:0 0 6px;color:var(--navy-900)}p{font:400 14px/1.5 Poppins;margin:0;color:var(--gray-700)}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Card, FeatureCard, Chip } = window.MySAIYaDesignSystem_424fc1;
+const grid = {display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:20};
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={grid}>
+    <Card hoverable><h4>Standard card</h4><p>White surface, soft navy shadow, large radius.</p></Card>
+    <Card variant="shiny"><h4 style={{color:'#fff'}}>Divine message</h4><p style={{color:'rgba(255,255,255,0.85)'}}>Navy with gold gradient border.</p></Card>
+    <Card glass accent="service"><h4>Service card</h4><p>Glass + teal category top border.</p></Card>
+    <FeatureCard gradient={1} title="Play It" description="Quizzes & games that grow your wisdom." />
+    <FeatureCard gradient={2} title="Book Club" description="Ramakatha Rasa Vahini, week by week." />
+    <FeatureCard gradient={3} title="Events" description="What's happening across Malaysia." />
+  </div>
+);
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" viewport="900x900" name="Blog posts" subtitle="Feature, stacked and horizontal post cards" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blog posts</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui)}a{color:var(--navy-700)}a:hover{color:var(--purple-700)}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { PostCard } = window.MySAIYaDesignSystem_424fc1;
+const posts = [
+  { category: 'Reflections', title: 'What a week of silence taught me about listening', excerpt: 'Three days into the retreat I stopped rehearsing my answers. What came next surprised me more than anything I had planned to say.', author: 'Anand Kumaran', date: '4 Aug 2026', readTime: '6 min read', cover: '../../assets/photo-youth-group.jpg' },
+  { category: 'Seva', title: 'Feeding 400 in Sentul: how the Saturday kitchen runs', excerpt: 'A look inside the rota, the shopping list and the volunteers who show up before sunrise every week.', author: 'Devi Rajan', date: '28 Jul 2026', readTime: '4 min read', cover: '../../assets/photo-service.jpg' },
+  { category: 'Study', title: 'Ramakatha Rasavahini, week 4: the exile begins', excerpt: 'Notes from the national reading circle, with the three questions our group could not agree on.', author: 'Book Club', date: '21 Jul 2026', readTime: '8 min read', cover: '../../assets/sai-portrait-2.png' },
+];
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{display:'flex',flexDirection:'column',gap:20}}>
+    <PostCard layout="feature" {...posts[0]} />
+    <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+      <PostCard {...posts[1]} />
+      <PostCard {...posts[2]} />
+    </div>
+    <PostCard layout="horizontal" {...posts[2]} title="Ladies wing offering raises RM12,400 for flood relief" category="In action" />
+  </div>
+);
+</script>
+</body>
+</html>

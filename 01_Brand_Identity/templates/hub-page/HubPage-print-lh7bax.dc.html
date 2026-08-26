@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0; }
+  body { padding: 0.5in; box-sizing: border-box; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="icon" href="../../assets/mysaiya-emblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@keyframes msy-ticker-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="./ds-base.js"></script>
+</helmet>
+
+<div style="min-height:100vh; background:var(--off-white); font-family:var(--font-ui); color:var(--navy-900);">
+
+  <sc-if value="{{ showTicker }}" hint-placeholder-val="{{ true }}">
+    <div style="background:var(--gradient-updates); color:#fff; height:32px; display:flex; align-items:center; gap:12px; padding:0 16px; font-weight:700; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;">
+      <i data-lucide="play" style="width:14px;height:14px;"></i>
+      <div style="flex:1; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">Welcome to MySAIYa Digital Hub by SSIOM &bull; Supporting every Malaysian Sai Young Adult in their spiritual journey</div>
+      <i data-lucide="x" style="width:14px;height:14px;"></i>
+    </div>
+  </sc-if>
+
+  <header style="background:var(--navy-900); color:#fff; height:72px; display:flex; align-items:center; gap:24px; padding:0 32px; position:sticky; top:0; z-index:50; box-shadow:var(--shadow-md);">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <img src="../../assets/mysaiya-emblem.png" alt="MySAIYa" style="height:46px; width:46px;">
+      <div style="line-height:1.15;">
+        <div style="font-weight:700; font-size:17px;">MySAIYa Digital Hub</div>
+        <div style="font-size:11px; color:var(--navy-300);">by SSIOM</div>
+      </div>
+    </div>
+    <nav style="display:flex; gap:4px; margin-left:16px;" aria-label="Main navigation">
+      <a href="#" style="position:relative; color:#fff; text-decoration:none; font-size:14px; font-weight:600; padding:8px 12px;">Home<span style="position:absolute; bottom:2px; left:50%; transform:translateX(-50%); width:6px; height:6px; border-radius:50%; background:var(--gradient-gold);"></span></a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">MySAIYa 101</a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">In Action</a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">Resources</a>
+      <a href="#" style="color:#fff; text-decoration:none; font-size:14px; font-weight:500; padding:8px 12px; opacity:0.8;">Events</a>
+    </nav>
+    <div style="flex:1;"></div>
+    <div style="display:flex; align-items:center; gap:8px; background:#fff; color:var(--gray-500); border-radius:9999px; padding:0 14px; height:42px; width:240px;">
+      <i data-lucide="search" style="width:18px;height:18px;color:var(--gray-700);"></i>
+      <span style="font-size:14px; font-weight:600; flex:1;">Search the Hub</span>
+      <kbd style="font-size:11px; color:var(--navy-900); background:var(--gray-100); border-radius:4px; padding:2px 6px;">&#8984;K</kbd>
+    </div>
+    <div style="width:40px; height:40px; border-radius:50%; background:var(--gradient-gold); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--navy-900);">K</div>
+  </header>
+
+  <main style="max-width:1200px; margin:0 auto; padding:40px 32px 80px; display:flex; flex-direction:column; gap:36px;">
+
+    <sc-if value="{{ heroPhoto }}" hint-placeholder-val="{{ false }}">
+      <section style="position:relative; overflow:hidden; border-radius:var(--radius-3xl); padding:56px 40px; color:#fff; box-shadow:var(--shadow-lg); background:linear-gradient(90deg, rgba(10,30,62,0.92) 0%, rgba(13,47,92,0.62) 100%), url('../../assets/photo-youth-group.jpg'); background-size:cover; background-position:center;">
+        <div style="position:absolute; top:0; left:0; right:0; height:5px; background:var(--gradient-hero-stroke);"></div>
+        <h1 style="font-family:var(--font-serif); font-weight:700; font-size:48px; line-height:1.1; margin:0 0 12px; max-width:720px;">Om Sai Ram, friend</h1>
+        <p style="font-size:18px; line-height:1.6; opacity:0.92; max-width:560px; margin:0 0 28px;">Your journey continues. Three reflections this week, one Book Club chapter, and a new badge waiting to be unlocked.</p>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="primary" uppercase="true" hint-size="220px,48px">Continue Journey</x-import>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ heroPlain }}" hint-placeholder-val="{{ true }}">
+      <section style="position:relative; overflow:hidden; background:var(--navy-800); border-radius:var(--radius-3xl); padding:48px 40px; color:#fff; box-shadow:var(--shadow-lg);">
+        <div style="position:absolute; top:0; left:0; right:0; height:5px; background:var(--gradient-hero-stroke);"></div>
+        <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.12); color:#fff; padding:7px 14px; border-radius:9999px; font-weight:700; font-size:12px; margin-bottom:16px;">
+          <i data-lucide="calendar-clock" style="width:14px;height:14px;"></i> Week 4 &bull; Solar Dynasty
+        </div>
+        <h1 style="font-family:var(--font-serif); font-weight:700; font-size:48px; line-height:1.1; margin:0 0 12px; max-width:720px;">Om Sai Ram, friend</h1>
+        <p style="font-size:18px; line-height:1.6; opacity:0.9; max-width:560px; margin:0 0 28px;">Your journey continues. Three reflections this week, one Book Club chapter, and a new badge waiting to be unlocked.</p>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="primary" uppercase="true" hint-size="220px,48px">Continue Journey</x-import>
+      </section>
+    </sc-if>
+
+    <section>
+      <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-600);">Explore</div>
+      <h2 style="font-weight:700; font-size:28px; color:var(--navy-900); margin:4px 0 20px;">Jump back in</h2>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+
+        <div style="position:relative; overflow:hidden; border-radius:var(--radius-2xl); padding:24px; min-height:150px; background:var(--gradient-feature-4); color:#fff; box-shadow:var(--shadow-md);">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.18);"></div>
+          <div style="position:relative; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.18);"><i data-lucide="dice-5" style="width:24px;height:24px;"></i></div>
+            <h3 style="margin:0; font-weight:700; font-size:22px;">Play It</h3>
+            <p style="margin:0; font-size:14px; line-height:1.5; opacity:0.92;">Quizzes &amp; games that grow your wisdom.</p>
+          </div>
+        </div>
+
+        <div style="position:relative; overflow:hidden; border-radius:var(--radius-2xl); padding:24px; min-height:150px; background:var(--gradient-feature-2); color:#fff; box-shadow:var(--shadow-md);">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.18);"></div>
+          <div style="position:relative; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.18);"><i data-lucide="book-open" style="width:24px;height:24px;"></i></div>
+            <h3 style="margin:0; font-weight:700; font-size:22px;">Book Club</h3>
+            <p style="margin:0; font-size:14px; line-height:1.5; opacity:0.92;">Ramakatha Rasa Vahini, week by week.</p>
+          </div>
+        </div>
+
+        <div style="position:relative; overflow:hidden; border-radius:var(--radius-2xl); padding:24px; min-height:150px; background:var(--gradient-feature-3); color:#fff; box-shadow:var(--shadow-md);">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.18);"></div>
+          <div style="position:relative; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.18);"><i data-lucide="feather" style="width:24px;height:24px;"></i></div>
+            <h3 style="margin:0; font-weight:700; font-size:22px;">Journal</h3>
+            <p style="margin:0; font-size:14px; line-height:1.5; opacity:0.92;">Reflect, record and revisit your sadhana.</p>
+          </div>
+        </div>
+
+        <div style="position:relative; overflow:hidden; border-radius:var(--radius-2xl); padding:24px; min-height:150px; background:var(--gradient-feature-1); color:#fff; box-shadow:var(--shadow-md);">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.18);"></div>
+          <div style="position:relative; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.18);"><i data-lucide="music" style="width:24px;height:24px;"></i></div>
+            <h3 style="margin:0; font-weight:700; font-size:22px;">Bhajan of the Month</h3>
+            <p style="margin:0; font-size:14px; line-height:1.5; opacity:0.92;">Learn this month&rsquo;s devotional song.</p>
+          </div>
+        </div>
+
+        <div style="position:relative; overflow:hidden; border-radius:var(--radius-2xl); padding:24px; min-height:150px; background:var(--gradient-feature-5); color:#fff; box-shadow:var(--shadow-md);">
+          <div style="position:absolute; inset:0; background:rgba(0,0,0,0.18);"></div>
+          <div style="position:relative; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:var(--radius-lg); background:rgba(255,255,255,0.18);"><i data-lucide="calendar-days" style="width:24px;height:24px;"></i></div>
+            <h3 style="margin:0; font-weight:700; font-size:22px;">Events</h3>
+            <p style="margin:0; font-size:14px; line-height:1.5; opacity:0.92;">What&rsquo;s happening across Malaysia.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <sc-if value="{{ showQuote }}" hint-placeholder-val="{{ true }}">
+      <section>
+        <div style="font-weight:800; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-600);">This week&rsquo;s wisdom</div>
+        <h2 style="font-weight:700; font-size:28px; color:var(--navy-900); margin:4px 0 20px;">Sai quotes for reflection</h2>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.QuoteCard" index="3" quote="Love all, serve all." hint-size="100%,340px"></x-import>
+      </section>
+    </sc-if>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showTicker&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;heroPhoto&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot; },
+  &quot;showQuote&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  componentDidMount() { this.icons(); }
+  componentDidUpdate() { this.icons(); }
+  icons() {
+    // Lucide replaces <i data-lucide> nodes with SVGs after each render.
+    requestAnimationFrame(() => { if (window.lucide) window.lucide.createIcons(); });
+  }
+  renderVals() {
+    const heroPhoto = this.props.heroPhoto ?? false;
+    return {
+      showTicker: this.props.showTicker ?? true,
+      showQuote: this.props.showQuote ?? true,
+      heroPhoto,
+      heroPlain: !heroPhoto,
+    };
+  }
+}
+</script>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "HubPage";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  @page { margin: 0.5cm; }\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks, whose
+  // slides are sized to the page.
+  try {
+    if (!document.querySelector('deck-stage')) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a body padding inset only when we also zero the
+      // @page margin; computed style can't tell us (it reports screen media),
+      // so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /body\s*\{[^}]*padding/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

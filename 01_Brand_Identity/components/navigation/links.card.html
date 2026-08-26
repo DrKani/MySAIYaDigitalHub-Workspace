@@ -1,0 +1,63 @@
+<!-- @dsCard group="Components" viewport="900x420" name="Link styles" subtitle="Inline · navigation · footer · card · utility · danger — one active pattern per surface" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Link styles</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:26px;background:var(--off-white);font-family:var(--font-ui)}h4{margin:0 0 12px;font:600 11px/1 var(--font-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--gray-500)}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Link } = window.MySAIYaDesignSystem_424fc1;
+const cell = {padding:'12px 14px',borderBottom:'1px solid var(--gray-200)'};
+const th = {...cell,font:'600 11px/1 var(--font-ui)',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--gray-500)',background:'var(--white)'};
+const rows = [
+  ['Inline text link','inline'],
+  ['Navigation link','nav'],
+  ['Footer link','footer'],
+  ['Card / tile link','card'],
+  ['Utility link','utility'],
+];
+const label = {inline:'This is a link',nav:'Home',footer:'Footer link',card:'Card link',utility:'View all'};
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{display:'flex',flexDirection:'column',gap:16}}>
+    <div style={{background:'var(--white)',border:'1px solid var(--gray-200)',borderRadius:'var(--radius-lg)',overflow:'hidden'}}>
+      <table style={{width:'100%',borderCollapse:'collapse',tableLayout:'fixed'}}>
+        <thead><tr><th style={{...th,textAlign:'left'}}>Link type</th><th style={th}>Default</th><th style={th}>Active</th><th style={th}>Visited</th><th style={th}>On dark</th></tr></thead>
+        <tbody>
+          {rows.map(([name,role]) => (
+            <tr key={role}>
+              <td style={{...cell,font:'500 13px/1.4 var(--font-ui)',color:'var(--navy-900)'}}>{name}</td>
+              <td style={{...cell,textAlign:'center'}}><Link role={role}>{label[role]}</Link></td>
+              <td style={{...cell,textAlign:'center'}}><Link role={role} active>{label[role]}</Link></td>
+              <td style={{...cell,textAlign:'center'}}>{role==='inline'||role==='card' ? <Link role={role} visited>{label[role]}</Link> : <span style={{color:'var(--gray-400)'}}>—</span>}</td>
+              <td style={{...cell,textAlign:'center',background:'var(--navy-900)'}}><Link role={role} onDark>{label[role]}</Link></td>
+            </tr>
+          ))}
+          <tr>
+            <td style={{...cell,font:'500 13px/1.4 var(--font-ui)',color:'var(--navy-900)',borderBottom:'none'}}>Danger link</td>
+            <td style={{...cell,textAlign:'center',borderBottom:'none'}}><Link danger>Delete item</Link></td>
+            <td style={{...cell,textAlign:'center',borderBottom:'none'}}><Link danger active>Delete item</Link></td>
+            <td style={{...cell,textAlign:'center',borderBottom:'none',color:'var(--gray-400)'}}>—</td>
+            <td style={{...cell,textAlign:'center',borderBottom:'none',background:'var(--navy-900)'}}><Link danger onDark>Delete item</Link></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul style={{margin:0,paddingLeft:20,display:'flex',flexDirection:'column',gap:6,font:'400 13px/1.5 var(--font-ui)',color:'var(--gray-700)'}}>
+      <li>Inline links stay underlined; UI links underline on hover only.</li>
+      <li>Gold underline marks the active navigation item — one active pattern per surface.</li>
+      <li>Gold is for active navigation and dark surfaces, never ordinary body links.</li>
+      <li>Use danger links sparingly; prefer a button for irreversible actions.</li>
+    </ul>
+  </div>
+);
+</script>
+</body>
+</html>

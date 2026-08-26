@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="900x720" name="Tabs, segments & filters" subtitle="Single-select tabs, compact segments, removable filter pills" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tabs, segments & filters</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:24px;background:var(--off-white);font-family:var(--font-ui);color:var(--navy-900)}a{color:var(--navy-700);text-decoration:none}a:hover{color:var(--purple-700)}h4{font:600 11px/1 Poppins;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-500);margin:0 0 12px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Tabs, SegmentedControl, FilterPills, Card } = window.MySAIYaDesignSystem_424fc1;
+const I = ({n,s=18}) => <i data-lucide={n} style={{width:s,height:s,display:'inline-flex'}} />;
+React.useEffect || null;
+const Redraw = () => { React.useEffect(() => { window.lucide && window.lucide.createIcons(); }); return null; };
+function App() {
+  const [filters, setFilters] = React.useState(['seva']);
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:28}}>
+      <Redraw />
+      <div><h4>Tabs — underline (default)</h4>
+        <Tabs tabs={[{id:'all',label:'All programmes',count:138},{id:'up',label:'Upcoming',count:12},{id:'past',label:'Past'}]}>
+          {(a) => <Card style={{marginTop:4}}><span style={{fontSize:14,color:'var(--text-body)'}}>Panel for <strong>{a}</strong> — panels swap with a 150ms crossfade and nothing else.</span></Card>}
+        </Tabs>
+      </div>
+      <div><h4>Tabs — elevated (navy surface, gold top stroke)</h4>
+        <Tabs variant="elevated" tabs={[{id:'reg',label:'Registered',count:3},{id:'hist',label:'History',count:18},{id:'cert',label:'Certificates',count:4}]}>
+          {(a) => <Card style={{marginTop:4}}><span style={{fontSize:14,color:'var(--text-body)'}}>Panel for <strong>{a}</strong>. Counts are neutral pills — they describe, they never alert.</span></Card>}
+        </Tabs>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:28}}>
+        <div><h4>Tabs — section (purple)</h4>
+          <Tabs variant="section" tabs={['Overview','Schedule','Speakers','Venue']}>{() => null}</Tabs>
+        </div>
+        <div><h4>Segmented control</h4>
+          <SegmentedControl options={['Week','Month','Year']} />
+        </div>
+      </div>
+      <div><h4>Filter pills — multi-select, removable</h4>
+        <FilterPills value={filters} onChange={setFilters}
+          options={[{id:'seva',label:'Seva'},{id:'study',label:'Study'},{id:'camps',label:'Camps'},{id:'bhajan',label:'Bhajan'},{id:'medical',label:'Medical'}]} />
+        <p style={{fontSize:13,color:'var(--gray-500)',margin:'12px 0 0'}}>Never mix filter pills and tabs in one row: one narrows a set, the other switches a view.</p>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+<script>lucide.createIcons()</script>
+</body>
+</html>
