@@ -1,6 +1,6 @@
 # MySAIYa Digital Hub — Platform Specifications
 
-This folder is the planning index for the hub. It complements, but does not replace, the implementation sources of truth in `10_Source_Code/webapp/apps/web/docs/`.
+This folder holds planning decisions for the hub. The implementation sources of truth live in `10_Source_Code/webapp/apps/web/docs/`.
 
 ## Working order
 
@@ -10,9 +10,9 @@ This folder is the planning index for the hub. It complements, but does not repl
 
 ## Authority
 
-- Routes and navigation: `apps/web/docs/10-sitemap.md`
-- Data collections: `apps/web/docs/09-database-schema.md`
-- Visual tokens: `apps/web/docs/05-comprehensive-visual-design-system.md`
-- Firestore and Storage enforcement: `firestore.rules`, `storage.rules`
+- Routes and navigation: `10_Source_Code/webapp/apps/web/docs/10-sitemap.md`
+- Data collections: `10_Source_Code/webapp/apps/web/docs/09-database-schema.md`
+- Visual rules and tokens: `01_Brand_Identity/readme.md` and `01_Brand_Identity/tokens/`
+- Firestore and Storage enforcement: `10_Source_Code/webapp/firestore.rules` and `10_Source_Code/webapp/storage.rules`
 
 Specifications marked **Decision required** are intentionally non-binding until an owner approves them.

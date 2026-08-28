@@ -17,6 +17,7 @@
 # Snapshots/archives — git history makes these redundant
 09_Backup/
 .gstack/
+graphify-out/
 
 # Local service-account credential (never commit)
 05_Technical_Assets/mysaiya-hub-my-9a271f1cba69.json
