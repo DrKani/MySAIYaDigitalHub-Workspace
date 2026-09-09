@@ -8,11 +8,27 @@ A visitor may identify their relationship to MySAIYa during onboarding, but must
 
 | Entry point | Route | Outcome |
 |---|---|---|
-| Join MySAIYa header CTA | `/account/sign-up` | Starts account creation |
-| Members-only learning prompt | `/account/sign-in?redirect=...` | Returns the user to the requested resource after authentication |
-| Committee invitation link | `/account/sign-up?invite=...` | Starts standard registration and validates the invitation server-side |
-| Existing member sign-in | `/account/sign-in` | Opens the appropriate dashboard after authentication |
-| Continue with Google | `/account/sign-in` or `/account/sign-up` | Federated sign-in; a first-time Google account is sent to the registration wizard to finish onboarding |
+| Join MySAIYa header CTA | `/signup` | Google-first account creation |
+| Members-only learning prompt | `/signin?redirect=...` | Returns the user to the requested resource after authentication |
+| Existing member sign-in | `/signin` | Opens the appropriate dashboard after authentication |
+| Continue with Google | `/signin` or `/signup` | Federated sign-in; a first-time Google account is sent to `/setup` to finish onboarding |
+| Continue as Guest | `/signin` or `/signup` | Browses the public site with no account and no Firestore record |
+| Profile setup wizard | `/setup` | Collects onboarding steps 3–7; sets `onboardingComplete` |
+| Committee invitation link | `/account/sign-up?invite=...` | Email/password registration; the invitation is validated server-side |
+| Email and password | `/account/sign-in`, `/account/sign-up` | Kept for members who registered before Google sign-in, and for invitations |
+
+Hash-style links (`#/signin`, `#/signup`, `#/setup`) are rewritten to the
+equivalent path by `src/components/HashRouteBridge.js`, so older printed and
+linked material keeps working.
+
+### Guest mode
+
+A guest is deliberately **not** a Firebase user. There is no anonymous auth
+account and no `users/{uid}` document — the whole session is a `mysaiya.guest`
+flag in the browser's localStorage (`src/lib/auth/guest.ts`). That is what makes
+the two warnings in the guest dialog literally true: nothing is saved, and the
+visit is not attributed to any Centre's count. Signing in clears the flag; the
+two states are mutually exclusive.
 
 ## Recommended Signup Flow
 
@@ -36,9 +52,15 @@ flowchart TD
 
 ## Step-by-Step Specification
 
+The Google path collapses steps 1–2 (Google attests the email) and presents
+steps 3–7 on the single `/setup` screen. The compulsory fields there are name,
+gender (chosen with the avatar), date of birth, state, and Centre — with
+"Not Affiliated to SSIOM Sai Centre" always available. Nickname, SSIOM role,
+favourite quote or bhajan link, and SSE/SSEHV graduation year are optional.
+
 | Step | Route or state | User action | System action | Outcome |
 |---|---|---|---|---|
-| 1 | `/account/sign-up` | Enter name, email, password | Validate input, apply rate limits, create unverified account | Email-verification message sent |
+| 1 | `/signup` (or `/account/sign-up`) | Continue with Google, or enter name, email, password | Validate input, apply rate limits, create the account | Google accounts arrive verified; email accounts get a verification message |
 | 2 | `/account/verify-email` | Open verification link | Verify token and email ownership | Continue onboarding |
 | 3 | Onboarding: relationship | Select: MySAIYa Young Adult, prospective young adult, SSIOM volunteer/supporter, or invited committee member | Store relationship as profile metadata, not as privileged authorization | Standard account remains least-privileged |
 | 4 | Onboarding: eligibility | Confirm age eligibility for young-adult participation and provide only the minimum necessary details | Apply eligibility rules; do not collect national ID numbers | Appropriate content and programmes shown |
