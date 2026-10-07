@@ -1,0 +1,28 @@
+{
+  "buildPath": "code",
+  "workflowNotes": "Owner preference confirmed 2026-10-01: start future new screens code-first for velocity; move to image-first when the environment becomes complicated or compliance matters. Reassess the build path at that point.",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "10_Source_Code/webapp/apps/web/src/components/youthVikas/Home.module.css"
+        ],
+        "createdAt": "2026-10-02T02:25:36.248Z",
+        "reason": "Agent reviewed against git diff and 01_Brand_Identity/readme.md: all four accents predate this session. Three are horizontal gold hero/table dividers, not side tabs; the remaining gold devotional callout marker follows the canonical sacred-accent treatment. Preserve these existing branded accents; no regression introduced."
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "10_Source_Code/webapp/apps/web/src/components/sadhana/Remembrance.module.css"
+        ],
+        "createdAt": "2026-10-04T23:15:43.729Z",
+        "reason": "user requested: MySAIYa Sadhana eyebrow should adopt a 3D, glossy, metallic, golden metal feel (5 October 2026). Preserve this intentional gold title treatment; exception scoped to its CSS file."
+      }
+    ]
+  }
+}

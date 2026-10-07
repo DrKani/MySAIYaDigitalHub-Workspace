@@ -1,0 +1,20 @@
+/* MySAIYa Digital Hub — Motion tokens
+   Subtle over dramatic. Fast over slow. Purposeful over decorative. */
+
+:root {
+  /* ---- Durations ---- */
+  --duration-instant: 100ms;   /* @kind other */
+  --duration-fast: 200ms;      /* @kind other */
+  --duration-standard: 300ms;  /* @kind other */
+  --duration-slow: 400ms;      /* @kind other */
+  --duration-deliberate: 600ms;/* @kind other */
+
+  /* ---- Easing ---- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1); /* @kind other */
+  --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* @kind other */
+
+  /* ---- Interaction defaults ---- */
+  --hover-scale: 1.02; /* @kind other */
+  --glow-opacity-max: 0.3; /* @kind other */
+}

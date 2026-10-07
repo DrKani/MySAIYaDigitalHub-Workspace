@@ -1,0 +1,193 @@
+/* MySAIYa Digital Hub — Colour System
+   Deep navy anchors, energy purple signal, gold spiritual accent,
+   plus a calm neutral spine and semantic accents. */
+
+:root {
+  /* ---- Brand cores ---- */
+  --brand-navy: #002E5B;
+  --brand-purple: #7B2482;
+  --brand-gold: #D2AC47;
+
+  /* ---- Navy scale (spiritual anchor) ---- */
+  --navy-950: #06162F; /* deep overlays, drawer shadow, footer base */
+  --navy-900: #0A1E3E; /* main header, footer, dark surfaces */
+  --navy-850: #0B2545; /* alt deep header */
+  --navy-800: #0D2F5C; /* hero background, strong cards */
+  --navy-700: #14366D; /* content panels, quiz containers */
+  --navy-600: #1B4568; /* update banner start, hover surfaces */
+  --navy-500: #1E5A8E; /* borders, interactive hover */
+  --navy-300: #4B7399; /* muted borders, subtle text on dark */
+  --navy-100: #EAF2FA; /* light navy tint background */
+
+  /* ---- Purple scale (signal colour) ---- */
+  --purple-950: #210326;
+  --purple-900: #36083D;
+  --purple-850: #4A0F55;
+  --purple-800: #5F176C;
+  --purple-700: #7B2482; /* core brand purple */
+  --purple-600: #9837A1;
+  --purple-500: #B44DBE;
+  --purple-400: #CF79D6;
+  --purple-300: #E7B7EB;
+  --purple-100: #F8EBFA;
+
+  /* ---- Gold scale (sacred accent) ---- */
+  --gold-600: #B88A24; /* pressed, darker gold text on light */
+  --gold-500: #D4AF37; /* primary accent, headings, FAB, key CTA */
+  --gold-400: #DAB757; /* hover */
+  --gold-300: #E5C158; /* soft highlights, disabled gold */
+  --gold-100: #FFF7D6; /* light achievement backgrounds */
+
+  /* ---- Semantic colours ----
+     "Semantic" not "accent": each hue names a meaning, not a decoration. */
+  --teal-500: #1DC9A0;  /* success, selection, confirm */
+  --teal-400: #2DD4BF;  /* lighter success */
+  --magenta-600: #D91C5C; /* energy, reading, alert */
+  --magenta-500: #E91E63; /* high-energy hover */
+  --purple-lite-700: #6D28D9; /* deep personal journey */
+  --purple-lite-600: #8B5CF6; /* personal progress */
+  --purple-lite-500: #9333EA; /* luminous purple */
+  --orange-500: #FF7F3F; /* activity, offering, engagement */
+  --orange-400: #FF9A3D; /* warm hover */
+  --red-500: #EF4444;    /* notification / error */
+
+  /* ---- Neutrals ---- */
+  --white: #FFFFFF;
+  --off-white: #FBFAF7;  /* main page background */
+  --cream: #F7F3EA;      /* warm spiritual sections */
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-700: #374151;
+  --black-soft: #111827;
+
+  /* ---- Semantic surface sets (light) ----
+     Four values each: background, border, accent, text. Every banner, inline
+     message, toast and card header fold draws from one of these sets — never a
+     one-off hex. */
+  --alert-success-bg: #ECFDF3;   --alert-success-border: #ABEFC6;  --alert-success-accent: #17B26A; --alert-success-text: #054F31;
+  --alert-info-bg: #EFF8FF;      --alert-info-border: #B2DDFF;     --alert-info-accent: #2E90FA;    --alert-info-text: #175CD3;
+  --alert-warning-bg: #FFFAEB;   --alert-warning-border: #FEDF89;  --alert-warning-accent: #F79009; --alert-warning-text: #7A2E0E;
+  --alert-error-bg: #FEF3F2;     --alert-error-border: #FECDCA;    --alert-error-accent: #F04438;   --alert-error-text: #7A271A;
+  --alert-progress-bg: #F5F3FF;  --alert-progress-border: #DDD6FE;  --alert-progress-accent: #8B5CF6; --alert-progress-text: #4C1D95;
+  /* Greeting / festival card header fold — happy announcements, never errors */
+  --alert-devotional-bg: #F8F5FF;--alert-devotional-border: #D9D6FE;--alert-devotional-accent: #7B2482;--alert-devotional-text: #3B0764;
+  /* Achievement, congratulation, badge, milestone, certificate */
+  --alert-achievement-bg: #FFF7D6;--alert-achievement-border: #E5C158;--alert-achievement-accent: #B88A24;--alert-achievement-text: #4A3410;
+
+  /* ---- Category / navigational taxonomy ----
+     Eight programme families. Each has one solid, one gradient and one Lucide
+     icon; the pairing is locked so a colour never means two things on a screen. */
+  --category-leadership-solid: #0F3B75;  --category-leadership-text: #FFFFFF;
+  --category-service-solid:    #D91C5C;  --category-service-text:    #FFFFFF;
+  --category-spiritual-solid:  #7B2482;  --category-spiritual-text:  #FFFFFF;
+  --category-medical-solid:    #1E5AA8;  --category-medical-text:    #FFFFFF;
+  --category-youth-solid:      #5B21B6;  --category-youth-text:      #FFFFFF;
+  --category-learning-solid:   #FFFFFF;  --category-learning-text:   #0A1E3E;
+  --category-events-solid:     #6B1F73;  --category-events-text:     #FFFFFF;
+  --category-committee-solid:  #12325C;  --category-committee-text:  #FFFFFF;
+
+  /* ---- Pill tokens — ONE family for badges AND chips ----
+     One geometry, one type ramp. Colour comes from the brand three (navy, gold,
+     purple) plus stone — never pastel. Each pill's border is its own fill one
+     step lighter, so no pill ever borrows another's accent. Badges carry the
+     deep fills (status is loud); chips carry the tinted fills (metadata is
+     quiet). That difference in weight is the only difference between them. */
+
+  /* Badges — deep fills, status */
+  --badge-active-bg: linear-gradient(135deg, #001224 0%, #002E5B 55%, #123B76 100%);
+  --badge-active-border: #3C6DA8;   --badge-active-text: #FDFDFD;
+  --badge-admin-bg: linear-gradient(135deg, #001224 0%, #002E5B 55%, #123B76 100%);
+  --badge-admin-border: #D1AB21;    --badge-admin-text: #F0CE6A;
+  --badge-pending-bg: linear-gradient(135deg, #310E34 0%, #7A2582 55%, #9E45A6 100%);
+  --badge-pending-border: #C88FCE;  --badge-pending-text: #FFFFFF;
+  --badge-suspended-bg: linear-gradient(135deg, #4A0B0B 0%, #8E1B1B 55%, #B33232 100%);
+  --badge-suspended-border: #E39B9B;--badge-suspended-text: #FFFFFF;
+  --badge-points-bg: linear-gradient(135deg, #0B2752 0%, #1E5AA8 55%, #3C82D6 100%);
+  --badge-points-border: #8FBBEC;   --badge-points-text: #FFFFFF;
+  --badge-guest-bg: #CFCBBF;
+  --badge-guest-border: #8C887C;    --badge-guest-text: #201F1F;
+  --badge-earned-bg: linear-gradient(90deg, #AE8625 0%, #F7EF8A 48%, #D2AC47 100%);
+  --badge-earned-border: #F7EF8A;   --badge-earned-text: #4A3410;
+  --badge-neutral-bg: #E7EAEF;
+  --badge-neutral-border: #C3CAD5;  --badge-neutral-text: #2B3A4E;
+
+  /* Chips — tinted fills of the same three hues, metadata weight */
+  --chip-navy-bg: #DCE6F3;    --chip-navy-border: #A9C2E0;  --chip-navy-text: #0F3B75;
+  --chip-gold-bg: #FBF0CC;    --chip-gold-border: #E0C46A;  --chip-gold-text: #6B4A0B;
+  --chip-purple-bg: #F1E1F4;  --chip-purple-border: #CFA3D6; --chip-purple-text: #6B1F73;
+  --chip-teal-bg: #D5F2EA;    --chip-teal-border: #8CD6C3;  --chip-teal-text: #0B6B55;
+  --chip-orange-bg: #FCE4D3;  --chip-orange-border: #F0B187; --chip-orange-text: #9A3412;
+
+  /* ---- Destructive set ----
+     Irreversible actions only. Built on --magenta-600, the system's existing
+     destructive hue; never a raw red. */
+  --destructive-500: #D91C5C; /* delete buttons, danger links */
+  --destructive-600: #B0164A; /* hover */
+  --destructive-700: #8C1039; /* pressed */
+  --destructive-soft: #FDE7EF; /* error card / banner fill */
+  --destructive-border: #F5A3C2; /* error field & card border */
+  --destructive-text: #7A0B2E; /* error text on soft fill */
+
+  /* ---- Field states ----
+     Every form control reads these four borders. Purple = focus (brand),
+     blue = the accessibility focus ring, teal = verified, magenta = invalid. */
+  --field-border-default: var(--gray-300);
+  --field-border-focus: var(--purple-700);
+  --field-border-success: var(--teal-500);
+  --field-border-warning: var(--alert-warning-accent);
+  --field-border-error: var(--destructive-500);
+  --field-bg: var(--white);
+  --field-bg-disabled: var(--gray-100);
+  --field-text-disabled: var(--gray-400);
+  --field-placeholder: var(--gray-400);
+  --focus-ring-accessible: #2563EB; /* high-visibility ring; pairs with --focus-ring */
+
+  /* ---- Light navy washes ----
+     Page-level tints below --navy-100; too pale for borders, right for sections. */
+  --navy-50: #F4F8FD;
+  --navy-25: #FAFCFF;
+
+  /* ---- Interactive surface states ---- */
+  --surface-hover-warm: var(--cream);   /* cards, list rows on light */
+  --surface-hover-cool: var(--navy-100); /* nav items, tabs */
+
+  /* ---- Card states ----
+     The card state matrix in one place: fill, border, text per state. */
+  --card-hover-bg: var(--surface-hover-warm);
+  --card-hover-border: var(--navy-300);
+  --card-selected-bg: var(--purple-100);
+  --card-selected-border: var(--purple-700);
+  --card-disabled-bg: var(--gray-100);
+  --card-disabled-border: var(--gray-300);
+  --card-error-bg: var(--destructive-soft);
+  --card-error-border: var(--destructive-border);
+
+  /* ---- Link tokens ----
+     One active pattern per surface: purple on hover, gold on dark and for the
+     active navigation item, magenta for danger. */
+  --link-default: var(--navy-500);
+  --link-hover: var(--purple-700);
+  --link-active: var(--gold-600);
+  --link-visited: var(--purple-lite-700);
+  --link-on-dark: var(--gold-400);
+  --link-danger: var(--destructive-500);
+
+  /* ---- Semantic aliases ---- */
+  --surface-app: var(--off-white);
+  --surface-card: var(--white);
+  --surface-dark: var(--navy-800);
+  --surface-header: var(--navy-900);
+  --text-primary: var(--navy-900);
+  --text-on-dark: var(--white);
+  --text-body: var(--gray-700);
+  --text-muted: var(--gray-500);
+  --text-heading: var(--navy-900);
+  --accent: var(--gold-500);
+  --signal: var(--purple-700);
+  --border-subtle: var(--gray-200);
+  --border-strong: var(--gray-300);
+  --focus-ring: var(--purple-700);
+}

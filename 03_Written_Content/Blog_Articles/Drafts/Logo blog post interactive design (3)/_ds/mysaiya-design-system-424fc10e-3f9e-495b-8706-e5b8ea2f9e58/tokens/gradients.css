@@ -1,0 +1,97 @@
+/* MySAIYa Digital Hub — Gradient System
+   Gradients are highlights, never default surfaces. Each has a locked role. */
+
+:root {
+  /* ---- Signature gold ---- */
+  --gradient-gold: linear-gradient(135deg, #B88A24 0%, #F7EF8A 50%, #AE8625 100%); /* @kind color */
+  --gradient-gold-metallic: linear-gradient(120deg, #8A6416 0%, #E9B949 22%, #FCEBA0 50%, #B87400 78%, #6B3E00 100%); /* @kind color */
+  --gradient-gold-wordmark: linear-gradient(90deg, #D2AC47 5%, #F7EF8A 45%, #AE8625 85%); /* @kind color */
+  /* Centennial Heritage Gold — ceremonial certificates, centenary marks only */
+  --gradient-gold-heritage: linear-gradient(135deg, #B8860B 0%, #DAA520 30%, #FFD700 50%, #DAA520 70%, #B8860B 100%); /* @kind color */
+
+  /* ---- Top updates banner ---- */
+  --gradient-updates:        linear-gradient(90deg, #310E34 0%, #7B2482 50%, #A855F7 100%); /* @kind color */
+  --gradient-updates-hover:  linear-gradient(90deg, #3E1442 0%, #932C9B 50%, #B96BF7 100%); /* @kind color */
+  --gradient-updates-active: linear-gradient(90deg, #250A28 0%, #5F1B64 50%, #8636C4 100%); /* @kind color */
+
+  /* ---- Purple (premium notification / popup only) ---- */
+  --gradient-purple-notification: linear-gradient(135deg, #210326 0%, #4A0F55 18%, #7B2482 36%, #CF79D6 49%, #B44DBE 58%, #5F176C 76%, #36083D 100%); /* @kind color */
+  --gradient-purple-metallic: linear-gradient(135deg, #36083D 0%, #7B2482 32%, #E7B7EB 50%, #B44DBE 64%, #4A0F55 100%); /* @kind color */
+  --gradient-purple-metallic-header: linear-gradient(100deg, #36083D 0%, #7B2482 30%, #E7B7EB 48%, #B44DBE 60%, #4A0F55 100%); /* @kind color */
+  --gradient-purple-metallic-surface: linear-gradient(150deg, #4A0F55 0%, #8B2A93 34%, #E7B7EB 54%, #A03DAA 70%, #36083D 100%); /* @kind color */
+  --gradient-purple-glow: linear-gradient(90deg, #5F176C 0%, #9837A1 45%, #CF79D6 100%); /* @kind color */
+  --gradient-purple-shine: linear-gradient(180deg, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.00) 45%); /* @kind color */
+
+  /* ---- Hero top accent stroke (thin only) ---- */
+  --gradient-hero-stroke-i:  linear-gradient(90deg, #8B5CF6 0%, #E91E63 50%, #FF7F3F 100%); /* @kind color */
+  --gradient-hero-stroke-ii: linear-gradient(90deg, #AE8625 0%, #F7EF8A 45%, #D2AC47 70%, #8A6416 100%); /* @kind color */
+  --gradient-hero-stroke: var(--gradient-hero-stroke-i);
+
+  /* ---- Dashboard feature gradients ----
+     Numbered, not named: features are assigned 1–5 in layout order, never by
+     module identity. Five is the maximum on screen at any time. Shared with the
+     special release set so the palette stays one family. */
+  --gradient-feature-1: var(--gradient-release-divine-dawn); /* @kind color */
+  --gradient-feature-2: var(--gradient-release-cosmic-violet); /* @kind color */
+  --gradient-feature-3: var(--gradient-release-oceanic-glow); /* @kind color */
+  --gradient-feature-4: var(--gradient-release-rose-royal); /* @kind color */
+  --gradient-feature-5: var(--gradient-release-emerald-metallic); /* @kind color */
+
+  /* ---- Game level gradients ---- */
+  --gradient-level-1:  linear-gradient(135deg, #001224 0%, #002E5B 55%, #8096AD 100%); /* @kind color */
+  --gradient-level-2:  linear-gradient(135deg, #310E34 0%, #7B2482 50%, #BD92C0 100%); /* @kind color */
+  --gradient-level-3:  linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #166534 100%); /* @kind color */
+  --gradient-level-4:  linear-gradient(135deg, #fde047 0%, #facc15 50%, #854d0e 100%); /* @kind color */
+  --gradient-level-5:  linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #9d174d 100%); /* @kind color */
+  --gradient-level-6:  linear-gradient(135deg, #fb923c 0%, #f97316 50%, #9a3412 100%); /* @kind color */
+  --gradient-level-7:  linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #5b21b6 100%); /* @kind color */
+  --gradient-level-8:  linear-gradient(135deg, #a3e635 0%, #84cc16 50%, #3f6212 100%); /* @kind color */
+  --gradient-level-9:  linear-gradient(135deg, #f87171 0%, #ef4444 50%, #991b1b 100%); /* @kind color */
+  --gradient-level-10: linear-gradient(90deg, #D2AC47 5%, #F7EF8A 45%, #AE8625 85%); /* @kind color */
+
+  /* ---- Special release gradients ---- */
+  --gradient-release-divine-dawn:   linear-gradient(135deg, #F8E7B5 0%, #E9B949 28%, #B87400 60%, #6B3E00 100%); /* @kind color */
+  --gradient-release-cosmic-violet: linear-gradient(135deg, #310E34 0%, #7B2482 42%, #A56AAA 72%, #E9D5FF 100%); /* @kind color */
+  --gradient-release-oceanic-glow:  linear-gradient(135deg, #001224 0%, #002E5B 38%, #0F4C81 68%, #8096AD 100%); /* @kind color */
+  --gradient-release-emerald-flame: linear-gradient(135deg, #14532D 0%, #16A34A 35%, #CA8A04 70%, #FACC15 100%); /* @kind color */
+  --gradient-release-rose-royal:    linear-gradient(135deg, #5A0017 0%, #9D002A 32%, #E0325B 65%, #F4B4C7 100%); /* @kind color */
+  --gradient-release-emerald-metallic: linear-gradient(135deg, #06301F 0%, #12603F 26%, #3FBF86 52%, #A9F0CE 66%, #0B4E33 100%); /* @kind color */
+
+  --gradient-release-seva-green:     linear-gradient(135deg, #06301F 0%, #12603F 40%, #2E9E6B 100%); /* @kind color */
+  --gradient-release-festival-crimson: linear-gradient(135deg, #5A0017 0%, #B3122F 45%, #E64A3C 100%); /* @kind color */
+  --gradient-release-announcement:   linear-gradient(135deg, #001224 0%, #0B3468 48%, #1E5AA8 100%); /* @kind color */
+
+  /* ---- Category gradients ----
+     One per programme family. Paired with the --category-*-solid tokens and a
+     fixed Lucide icon; never reused for an unrelated meaning on the same screen. */
+  --gradient-category-leadership: linear-gradient(135deg, #00152B 0%, #0B3468 55%, #1E5AA8 100%); /* @kind color */
+  --gradient-category-service:    linear-gradient(135deg, #5A0017 0%, #A81745 52%, #D9376B 100%); /* @kind color */
+  --gradient-category-spiritual:  linear-gradient(135deg, #240826 0%, #6B1F73 52%, #A75BB0 100%); /* @kind color */
+  --gradient-category-medical:    linear-gradient(135deg, #062B57 0%, #145AA8 52%, #3E8AD6 100%); /* @kind color */
+  --gradient-category-youth:      linear-gradient(135deg, #2C1065 0%, #5B21B6 52%, #8B5CF6 100%); /* @kind color */
+  --gradient-category-learning:   linear-gradient(135deg, #FFFFFF 0%, #E4EBF4 40%, #17406F 100%); /* @kind color */
+  --gradient-category-events:     linear-gradient(135deg, #2E0736 0%, #7B2482 48%, #C39A34 100%); /* @kind color */
+  --gradient-category-committee:  linear-gradient(135deg, #050F1F 0%, #12325C 55%, #56718F 100%); /* @kind color */
+
+  /* ---- Quote slider gradients ---- */
+  --gradient-quote-01: linear-gradient(135deg, #22C55E 0%, #15803D 100%); /* @kind color */
+  --gradient-quote-02: linear-gradient(135deg, #001224 0%, #002E5B 55%, #8096AD 100%); /* @kind color */
+  --gradient-quote-03: linear-gradient(135deg, #310E34 0%, #7B2482 50%, #BD92C0 100%); /* @kind color */
+  --gradient-quote-04: linear-gradient(135deg, #FACC15 0%, #F59E0B 100%); /* @kind color */
+  --gradient-quote-05: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%); /* @kind color */
+  --gradient-quote-06: linear-gradient(135deg, #e879f9 0%, #d946ef 50%, #86198f 100%); /* @kind color */
+  --gradient-quote-07: linear-gradient(135deg, #a3e635 0%, #84cc16 50%, #3f6212 100%); /* @kind color */
+  --gradient-quote-08: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%); /* @kind color */
+  --gradient-quote-09: linear-gradient(135deg, #F97316 0%, #DC2626 100%); /* @kind color */
+  --gradient-quote-10: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #166534 100%); /* @kind color */
+  --gradient-quote-11: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #5b21b6 100%); /* @kind color */
+  --gradient-quote-12: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1e40af 100%); /* @kind color */
+  --gradient-quote-13: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); /* @kind color */
+  --gradient-quote-14: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #9d174d 100%); /* @kind color */
+  --gradient-quote-15: linear-gradient(90deg, #4B2E1E 0%, #D4AF37 50%, #7B3F00 100%); /* @kind color */
+  --gradient-quote-16: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); /* @kind color */
+  --gradient-quote-17: linear-gradient(135deg, #EC4899 0%, #BE185D 100%); /* @kind color */
+  --gradient-quote-18: linear-gradient(135deg, #0B132B 0%, #5BC0BE 50%, #1C2541 100%); /* @kind color */
+  --gradient-quote-19: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); /* @kind color */
+  --gradient-quote-20: linear-gradient(45deg, #2E1A47 0%, #9D50BB 45%, #F1D5FF 70%, #6E48AA 100%); /* @kind color */
+}

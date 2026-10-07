@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>One Lotus, Many Paths — the story of our logo · MySAIYa Digital Hub</title>
+  <link rel="stylesheet" href="_ds/mysaiya-design-system-424fc10e-3f9e-495b-8706-e5b8ea2f9e58/styles.css">
+  <script src="_ds/mysaiya-design-system-424fc10e-3f9e-495b-8706-e5b8ea2f9e58/_ds_bundle.js"></script>
+  <style>
+    body { margin: 0; background: #FBFAF7; }
+    a { color: var(--link-default); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--link-hover); }
+    button:focus-visible { outline: 2px solid var(--purple-700); outline-offset: 2px; }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: var(--off-white); color: var(--text-body); font-family: var(--font-sans);">
+
+  <header style="position: sticky; top: 0; z-index: 20; background: var(--navy-900);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <img src="logo-assets/mysaiya-lockup-reversed.png" alt="MySAIYa — Malaysian Sai Young Adults" style="height: 48px; width: auto; display: block;">
+      <nav style="display: flex; gap: 28px; font-family: var(--font-ui); font-size: 14px; font-weight: 500; flex-wrap: wrap;">
+        <span style="color: rgba(255,255,255,0.78);">Home</span>
+        <span style="color: rgba(255,255,255,0.78);">About</span>
+        <span style="color: rgba(255,255,255,0.78);">Learn</span>
+        <span style="color: var(--gold-400); font-weight: 600;">Stories</span>
+        <span style="color: rgba(255,255,255,0.78);">Connect</span>
+      </nav>
+    </div>
+    <sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
+      <div style="height: 3px; background: rgba(255,255,255,0.08);">
+        <div style="height: 3px; width: {{ progress }}; background: var(--gradient-gold-wordmark); transition: width 120ms linear;"></div>
+      </div>
+    </sc-if>
+  </header>
+
+  <section style="background: var(--navy-800); position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(circle at 78% 45%, rgba(212,175,55,0.22) 0%, rgba(13,47,92,0) 46%);"></div>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 56px 24px 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Breadcrumbs" tone="dark" items="{{ crumbs }}" hint-size="260px,20px"></x-import>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Chip" tone="gold" hint-size="80px,30px">Stories</x-import>
+          <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Chip" tone="purple" hint-size="120px,30px">Human values</x-import>
+        </div>
+        <h1 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(40px, 5.4vw, 64px); line-height: 1.08; background: var(--gradient-gold-wordmark); -webkit-background-clip: text; background-clip: text; color: transparent; text-wrap: balance;">One Lotus, Many Paths</h1>
+        <p style="margin: 0; font-family: var(--font-sans); font-size: 20px; line-height: 1.6; color: rgba(255,255,255,0.88); max-width: 560px; text-wrap: pretty;">The story behind our logo — five human values, five great faiths, and the one religion of love that holds them together.</p>
+        <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-ui); font-size: 13px; color: rgba(255,255,255,0.66); flex-wrap: wrap;">
+          <img src="logo-assets/mysaiya-emblem-sm.png" alt="" style="width: 32px; height: 32px; border-radius: 50%; background: #fff; object-fit: contain;">
+          <span style="color: #fff; font-weight: 600;">MySAIYa Editorial</span>
+          <span>·</span><span>24 September 2026</span><span>·</span><span>10 min read</span>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <div style="position: relative; width: min(100%, 500px); aspect-ratio: 1;">
+          <div style="position: absolute; inset: 8%; border-radius: 50%; background: radial-gradient(circle, rgba(247,239,138,0.28) 0%, rgba(212,175,55,0.14) 45%, rgba(13,47,92,0) 72%); filter: blur(24px); pointer-events: none;"></div>
+          <img src="logo-assets/hq-emblem-navy.png" alt="The Sarva Dharma emblem" style="position: relative; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transform: scale(1.42); display: block; mix-blend-mode: lighten; -webkit-mask-image: radial-gradient(circle, #000 52%, rgba(0,0,0,0) 70%); mask-image: radial-gradient(circle, #000 52%, rgba(0,0,0,0) 70%); filter: drop-shadow(0 0 18px rgba(212,175,55,0.35));">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 32px; display: flex; flex-direction: column; gap: 96px;">
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 56px; align-items: center;">
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px;">
+      <div style="border-radius: var(--radius-3xl); overflow: hidden; aspect-ratio: 1; box-shadow: 0 8px 24px rgba(10,30,62,0.10);">
+        <img src="logo-assets/swami-emblem.jpg" alt="Bhagawan Sri Sathya Sai Baba standing before the Sarva Dharma emblem" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+      <figcaption style="font-family: var(--font-ui); font-size: 13px; color: var(--text-muted);">Bhagawan Sri Sathya Sai Baba before the Sarva Dharma emblem.</figcaption>
+    </figure>
+    <div style="display: flex; flex-direction: column; gap: 22px; font-size: 18px; line-height: 1.7; color: var(--text-body);">
+      <p style="margin: 0; font-family: var(--font-serif); font-size: 26px; line-height: 1.5; color: var(--navy-900); text-wrap: pretty;">You have seen it on banners, name tags and the cover of every programme booklet. But our logo is more than a mark of affiliation with the Sri Sathya Sai International Organisation. It is a small map of the whole spiritual journey.</p>
+      <p style="margin: 0; text-wrap: pretty;">At its centre stands a pillar crowned by a lotus and a flame. Around it bloom five petals. In the original emblem, each petal held the symbol of one of the world's great religions. Today, they carry the five human values every faith shares: <strong style="color: var(--navy-900);">Truth, Right Conduct, Peace, Love and Non-violence.</strong></p>
+      <p style="margin: 0; text-wrap: pretty;">Both versions say the same thing in different words. In Swami's own declaration: there is only one religion, the religion of love. This piece explores the emblem petal by petal — and why, for a community as diverse as Malaysia's, it fits so naturally.</p>
+    </div>
+    </div>
+
+    <nav aria-label="In this story" style="display: flex; flex-direction: column; gap: 14px; padding: 28px 32px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-2xl); box-shadow: 0 8px 24px rgba(10,30,62,0.06); margin-top: -40px;">
+      <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);">In this story</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <sc-for list="{{ toc }}" as="t" hint-placeholder-count="8">
+          <a href="{{ t.href }}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--gray-300); background: var(--off-white); font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--navy-900); text-decoration: none; transition: all 300ms cubic-bezier(0.22, 0.61, 0.36, 1);" style-hover="border-color: var(--purple-700); color: var(--purple-700); background: var(--purple-100);"><span style="color: var(--gold-600);">{{ t.n }}</span>{{ t.label }}</a>
+        </sc-for>
+      </div>
+    </nav>
+
+    <section id="values" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px;">
+        <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700);">01 · The five human values</span>
+        <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--navy-900);">Five petals, one heart</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65;">Tap a petal to explore each value. Switch language to see the logo as it appears across our community.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 32px; align-items: stretch;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-3xl); box-shadow: 0 8px 24px rgba(10,30,62,0.06); padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+          <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.SegmentedControl" options="{{ langOptions }}" value="{{ lang }}" on-change="{{ setLang }}" hint-size="260px,44px"></x-import>
+          <div style="position: relative; width: min(100%, 420px); aspect-ratio: 298 / 300;">
+            <img src="{{ logoSrc }}" alt="Five human values logo" style="width: 100%; height: 100%; display: block; object-fit: contain;">
+            <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+              <button onClick="{{ v.select }}" aria-label="{{ v.en }}" aria-pressed="{{ v.on }}" style="position: absolute; left: {{ v.x }}; top: {{ v.y }}; width: 27%; aspect-ratio: 1; transform: translate(-50%, -50%) scale({{ v.scale }}); border-radius: 50%; background: transparent; cursor: pointer; border: 3px solid {{ v.ring }}; box-shadow: {{ v.glow }}; transition: all 300ms cubic-bezier(0.22, 0.61, 0.36, 1); padding: 0;"></button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background: var(--navy-900); border-radius: var(--radius-3xl); padding: 40px; color: #fff; display: flex; flex-direction: column; gap: 22px; position: relative; overflow: hidden; min-height: 460px;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-gold-wordmark);"></div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400);">Value {{ cur.num }} of 5</span>
+            <div style="display: flex; gap: 8px;">
+              <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+                <button onClick="{{ v.select }}" aria-label="{{ v.en }}" style="width: {{ v.dotW }}; height: 8px; border-radius: 999px; border: none; padding: 0; cursor: pointer; background: {{ v.dot }}; transition: all 300ms cubic-bezier(0.22, 0.61, 0.36, 1);"></button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: 44px; line-height: 1.1; color: var(--gold-400);">{{ cur.display }}</h3>
+            <span style="font-family: var(--font-serif); font-style: italic; font-size: 20px; color: rgba(255,255,255,0.78);">{{ cur.skt }}</span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <sc-for list="{{ cur.names }}" as="n" hint-placeholder-count="4">
+              <span style="display: inline-flex; gap: 6px; align-items: baseline; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); font-family: var(--font-ui); font-size: 13px; color: #fff;"><span style="font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,0.6);">{{ n.k }}</span>{{ n.v }}</span>
+            </sc-for>
+          </div>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.9); text-wrap: pretty;">{{ cur.body }}</p>
+          <div style="margin-top: auto; padding: 18px 20px; border-radius: var(--radius-xl); background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.35); display: flex; flex-direction: column; gap: 6px;">
+            <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400);">Live it this week</span>
+            <span style="font-family: var(--font-ui); font-size: 15px; line-height: 1.55; color: #fff;">{{ cur.practice }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--cream); border-radius: var(--radius-3xl); padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 32px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-600);">The undercurrent</span>
+          <h3 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: 28px; line-height: 1.25; color: var(--navy-900);">Love is the root of every value</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.65;">Swami taught that the five values are not separate rules but one love, expressed in different ways.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+          <sc-for list="{{ loveAs }}" as="l" hint-placeholder-count="4">
+            <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-xl); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-family: var(--font-ui); font-size: 12px; color: var(--text-muted);">Love as {{ l.as }}</span>
+              <span style="font-family: var(--font-serif); font-weight: 600; font-size: 20px; color: var(--navy-900);">is {{ l.is }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section id="faiths" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px;">
+        <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700);">02 · Sarva Dharma</span>
+        <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--navy-900);">All paths, one destination</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; text-wrap: pretty;">Before the values, there were the faiths. The first Sai emblem — the Sarva Dharma symbol — set the symbols of five major religions in a lotus, affirming that every sincere path leads to the same goal. Select a symbol to read what it teaches.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 32px; align-items: center;">
+        <div style="position: relative; width: min(100%, 460px); aspect-ratio: 1; margin: 0 auto;">
+          <img src="logo-assets/pg11-1.png" alt="The Sarva Dharma emblem" style="width: 100%; height: 100%; display: block; object-fit: contain;">
+          <sc-for list="{{ faiths }}" as="f" hint-placeholder-count="6">
+            <button onClick="{{ f.select }}" aria-label="{{ f.name }}" aria-pressed="{{ f.on }}" style="position: absolute; left: {{ f.x }}; top: {{ f.y }}; width: {{ f.size }}; aspect-ratio: 1; transform: translate(-50%, -50%) scale({{ f.scale }}); border-radius: 50%; background: transparent; cursor: pointer; border: 3px solid {{ f.ring }}; box-shadow: {{ f.glow }}; transition: all 300ms cubic-bezier(0.22, 0.61, 0.36, 1); padding: 0;"></button>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <sc-for list="{{ faiths }}" as="f" hint-placeholder-count="6">
+              <button onClick="{{ f.select }}" style="min-height: 40px; padding: 8px 16px; border-radius: 999px; cursor: pointer; font-family: var(--font-ui); font-size: 13px; font-weight: 600; border: 1px solid {{ f.pillBorder }}; background: {{ f.pillBg }}; color: {{ f.pillFg }}; transition: all 300ms cubic-bezier(0.22, 0.61, 0.36, 1);">{{ f.name }}</button>
+            </sc-for>
+          </div>
+          <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-2xl); box-shadow: 0 8px 24px rgba(10,30,62,0.06); padding: 32px; display: flex; flex-direction: column; gap: 12px; min-height: 230px;">
+            <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-600);">{{ curFaith.symbol }}</span>
+            <h3 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: 30px; line-height: 1.2; color: var(--navy-900);">{{ curFaith.name }}</h3>
+            <p style="margin: 0; font-size: 17px; line-height: 1.7; text-wrap: pretty;">{{ curFaith.body }}</p>
+          </div>
+          <p style="margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 19px; line-height: 1.55; color: var(--navy-900);">Together, the symbols say one thing: every religion converges on the same divine destination.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="everyfaith" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 32px; align-items: end;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700);">03 · One love, every faith</span>
+          <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--navy-900);">He lived what the emblem says</h2>
+        </div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; text-wrap: pretty;">Swami never asked anyone to leave their faith. He asked them to live it more deeply — so that a Christian becomes a better Christian, a Muslim a better Muslim, a Hindu a better Hindu. Tap any moment to view it larger.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); grid-auto-rows: 240px; grid-auto-flow: dense; gap: 16px;">
+        <sc-for list="{{ faithMoments }}" as="m" hint-placeholder-count="7">
+          <button onClick="{{ m.open }}" aria-label="{{ m.title }}" style="position: relative; grid-row: {{ m.rows }}; grid-column: {{ m.cols }}; border: none; padding: 0; cursor: zoom-in; border-radius: var(--radius-2xl); overflow: hidden; background: var(--navy-900); text-align: left;">
+            <img src="{{ m.src }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ m.pos }}; display: block; transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);" style-hover="transform: scale(1.04);">
+            <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,30,62,0) 45%, rgba(10,30,62,0.85) 100%); pointer-events: none;"></span>
+            <span style="position: absolute; left: 18px; right: 18px; bottom: 16px; display: flex; flex-direction: column; gap: 2px; pointer-events: none;">
+              <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400);">{{ m.faith }}</span>
+              <span style="font-family: var(--font-ui); font-size: 15px; font-weight: 600; line-height: 1.35; color: #fff;">{{ m.title }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="stupa" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="position: relative; border-radius: var(--radius-3xl); overflow: hidden; min-height: 540px; display: flex; align-items: flex-end;">
+        <img src="logo-assets/hq-stupa-garden.png" alt="The Sarva Dharma Stupa, Prasanthi Nilayam" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,30,62,0) 30%, rgba(10,30,62,0.82) 100%);"></div>
+        <div style="position: relative; padding: 40px; display: flex; flex-direction: column; gap: 10px; max-width: 720px;">
+          <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400);">04 · The pillar at the centre</span>
+          <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.15; color: #fff;">The Sarva Dharma Stupa</h2>
+          <p style="margin: 0; font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.9);">The pillar in our logo is real. Called the world religions stupa, it stands near the temple in Prasanthi Nilayam, Bhagawan's main ashram in Puttaparthi — once the front face of Yajur Mandir, His residence.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px; align-items: start;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-3xl); padding: 24px; display: flex; justify-content: center; align-self: stretch; align-items: center;">
+          <div style="position: relative; width: min(100%, 260px); aspect-ratio: 768 / 1344; border-radius: var(--radius-xl); overflow: hidden;">
+            <img src="logo-assets/hq-stupa-tall.png" alt="Illustration of the stupa" style="width: 100%; height: 100%; display: block; object-fit: cover;">
+                        <div style="position: absolute; left: 8px; right: 8px; top: {{ band.top }}; height: {{ band.h }}; border-radius: 12px; background: rgba(255,255,255,0.14); border: 2px solid var(--gold-400); box-shadow: 0 0 0 9999px rgba(10,30,62,0.35), 0 0 24px rgba(212,175,55,0.5); transition: all 400ms cubic-bezier(0.22, 0.61, 0.36, 1);"></div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+          <p style="margin: 0 0 8px; font-size: 17px; line-height: 1.7; text-wrap: pretty;">Read the pillar from the ground up. Its rising column signifies humanity rising above differences, towards the unfolding of the lotus of the heart.</p>
+          <sc-for list="{{ parts }}" as="p" hint-placeholder-count="4">
+            <button onClick="{{ p.select }}" style="text-align: left; cursor: pointer; display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; padding: 18px 20px; border-radius: var(--radius-xl); border: 1px solid {{ p.border }}; background: {{ p.bg }}; transition: all 300ms cubic-bezier(0.22, 0.61, 0.36, 1); font: inherit; color: inherit;">
+              <span style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-ui); font-weight: 700; font-size: 14px; background: {{ p.numBg }}; color: {{ p.numFg }};">{{ p.num }}</span>
+              <span style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-family: var(--font-ui); font-weight: 600; font-size: 17px; color: var(--navy-900);">{{ p.title }} <span style="font-weight: 500; color: var(--text-muted);">· {{ p.tag }}</span></span>
+                <span style="font-size: 15px; line-height: 1.6; color: var(--text-body);">{{ p.body }}</span>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <figure style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px; align-items: center;">
+        <img src="logo-assets/stupa-historic.jpg" alt="Devotees gathered around the Sarva Dharma Stupa" style="width: 100%; border-radius: var(--radius-2xl); display: block; filter: grayscale(1);">
+        <figcaption style="font-family: var(--font-serif); font-style: italic; font-size: 20px; line-height: 1.55; color: var(--navy-900);">Just as the lotus lives in water without being touched by it, we are asked to live in the world without being bound by it. <span style="display: block; margin-top: 10px; font-family: var(--font-ui); font-style: normal; font-size: 13px; color: var(--text-muted);">Devotees gather at the stupa, Prasanthi Nilayam.</span></figcaption>
+      </figure>
+    </section>
+
+    <section id="journey" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px;">
+        <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700);">05 · How the logo grew</span>
+        <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--navy-900);">From a sketch to a symbol</h2>
+      </div>
+
+      <div style="display: flex; gap: 0; overflow-x: auto; border-bottom: 1px solid var(--gray-200);">
+        <sc-for list="{{ eras }}" as="e" hint-placeholder-count="6">
+          <button onClick="{{ e.select }}" style="flex: 1 0 140px; cursor: pointer; background: transparent; border: none; border-bottom: 3px solid {{ e.line }}; padding: 14px 12px 12px; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; text-align: left; margin-bottom: -1px;">
+            <span style="font-family: var(--font-serif); font-weight: 600; font-size: 22px; color: {{ e.yearFg }};">{{ e.year }}</span>
+            <span style="font-family: var(--font-ui); font-size: 12px; color: var(--text-muted);">{{ e.short }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-3xl); box-shadow: 0 8px 24px rgba(10,30,62,0.06); padding: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; align-items: center;">
+        <div style="aspect-ratio: 1; max-width: 340px; width: 100%; margin: 0 auto; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center;">
+          <img src="{{ curEra.img }}" alt="{{ curEra.title }}" style="width: 76%; height: 76%; object-fit: contain; display: block; mix-blend-mode: multiply;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-600);">{{ curEra.year }}</span>
+          <h3 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: 32px; line-height: 1.2; color: var(--navy-900);">{{ curEra.title }}</h3>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; text-wrap: pretty;">{{ curEra.body }}</p>
+          <sc-if value="{{ curEra.hasRef }}" hint-placeholder-val="{{ true }}">
+            <span style="font-family: var(--font-ui); font-size: 13px; color: var(--text-muted);">Ref: {{ curEra.ref }}</span>
+          </sc-if>
+          <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap;">
+            <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="tertiary" size="sm" on-click="{{ prevEra }}" disabled="{{ atFirst }}" hint-size="100px,40px">Previous</x-import>
+            <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="secondary" size="sm" on-click="{{ nextEra }}" disabled="{{ atLast }}" hint-size="100px,40px">Next</x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="everywhere" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px;">
+        <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700);">06 · In Prasanthi Nilayam</span>
+        <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--navy-900);">A symbol you cannot miss</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; text-wrap: pretty;">Today the Sarva Dharma symbol is synonymous with Prasanthi Nilayam. It greets you on the arch into Puttaparthi, repeats across the blue, white, pink and yellow buildings along the road, and rests on the front face of the marble Mahasamadhi in Sai Kulwant Hall — just as the stupa once stood before Yajur Mandir. Tap an image to view it larger.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px;">
+        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="5">
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px;">
+            <div onClick="{{ g.open }}" style="border-radius: var(--radius-2xl); overflow: hidden; aspect-ratio: 3 / 2; background: var(--gray-100); cursor: zoom-in;">
+              <img src="{{ g.src }}" alt="{{ g.cap }}" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);" style-hover="transform: scale(1.04);">
+            </div>
+            <figcaption style="font-family: var(--font-ui); font-size: 14px; line-height: 1.5; color: var(--text-muted);"><strong style="color: var(--navy-900); font-weight: 600;">{{ g.title }}</strong> — {{ g.cap }}</figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="malaysia" style="background: var(--navy-900); border-radius: var(--radius-3xl); padding: 56px 40px; color: #fff; display: flex; flex-direction: column; gap: 36px; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient-gold-wordmark);"></div>
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px;">
+        <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400);">07 · Malaysian roots, Sai wings</span>
+        <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--gold-400);">A logo for every Malaysian</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.88); text-wrap: pretty;">In 1997, the five values logo came to represent the international organisation — speaking beyond any single belief and suiting the religious climate of every country. It fitted Malaysia's multilingual, multiethnic fabric naturally. The Majlis Pusat Sathya Sai Baba Malaysia used a trilingual version from 1997 to 2014. Today, SSIOM carries the clean, crisp logo adopted by all SSSIO-affiliated bodies since 2014.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 20px;">
+        <sc-for list="{{ langCards }}" as="c" hint-placeholder-count="4">
+          <div style="background: #fff; border-radius: var(--radius-2xl); padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+            <img src="{{ c.src }}" alt="{{ c.label }} logo" style="width: 100%; max-width: 180px; aspect-ratio: 1; object-fit: contain; display: block;">
+            <span style="font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--navy-900);">{{ c.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="playit" style="display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 720px;">
+          <span style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple-700);">08 · Play it</span>
+          <h2 style="margin: 0; font-family: var(--font-serif); font-weight: 600; font-size: clamp(30px, 3.6vw, 40px); line-height: 1.2; color: var(--navy-900);">How well do you know our logo?</h2>
+        </div>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Chip" tone="{{ scoreTone }}" hint-size="120px,30px">{{ scoreLabel }}</x-import>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px; align-items: start;">
+        <sc-for list="{{ quiz }}" as="q" hint-placeholder-count="3">
+          <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.QuizQuestion" index="{{ q.index }}" total="{{ q.total }}" question="{{ q.question }}" options="{{ q.options }}" correct="{{ q.correct }}" explanation="{{ q.explanation }}" on-answer="{{ q.onAnswer }}" hint-size="100%,420px"></x-import>
+        </sc-for>
+      </div>
+    </section>
+
+    <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.QuoteCard" index="3" quote="There is only one religion, the religion of Love. There is only one caste, the caste of Humanity. There is only one language, the language of the Heart." emblem="logo-assets/mysaiya-emblem-sm.png" hint-size="100%,420px"></x-import>
+
+    <div style="max-width: 720px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 28px;">
+      <p style="margin: 0; font-family: var(--font-serif); font-size: 24px; line-height: 1.5; color: var(--navy-900); text-wrap: pretty;">Next time you pin on a MySAIYa badge, look closely. The lotus is an invitation: rise above difference, open the heart, and let love become action.</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 24px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200);">
+        <span style="font-family: var(--font-ui); font-size: 15px; font-weight: 600; color: var(--navy-900);">Discover your potential. Deepen your purpose.</span>
+        <x-import component-from-global-scope="MySAIYaDesignSystem_424fc1.Button" variant="primary" hint-size="160px,48px">Explore Learn</x-import>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; font-family: var(--font-ui); font-size: 13px; line-height: 1.6; color: var(--text-muted);">
+        <span style="font-weight: 600; color: var(--navy-900);">Sources</span>
+        <span>Kasturi, N. Sathyam Shivam Sundaram, Part II, p. 231.</span>
+        <span>Sri Sathya Sai Digvijayam, Part 1 (1926–1985).</span>
+      </div>
+    </div>
+  </article>
+
+  <footer style="background: var(--navy-950); margin-top: 64px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+      <img src="logo-assets/mysaiya-lockup-reversed.png" alt="MySAIYa" style="height: 44px; width: auto;">
+      <span style="font-family: var(--font-ui); font-size: 13px; color: rgba(255,255,255,0.6);">Service · Adoration · Illumination</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ lb.open }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="{{ lb.title }}" onClick="{{ lbClose }}" style="position: fixed; inset: 0; z-index: 100; background: rgba(6,22,47,0.92); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 32px;">
+      <div onClick="{{ lbStop }}" style="display: flex; flex-direction: column; gap: 16px; max-width: min(1100px, 100%); max-height: 100%; align-items: center;">
+        <img src="{{ lb.src }}" alt="{{ lb.title }}" style="max-width: 100%; max-height: calc(100vh - 200px); object-fit: contain; border-radius: var(--radius-xl); display: block; box-shadow: 0 30px 80px rgba(0,0,0,0.5);">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; gap: 4px; max-width: 720px;">
+            <span style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-400);">{{ lb.kicker }}</span>
+            <span style="font-family: var(--font-ui); font-size: 16px; font-weight: 600; color: #fff;">{{ lb.title }}</span>
+            <span style="font-family: var(--font-sans); font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.75);">{{ lb.cap }}</span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span style="font-family: var(--font-ui); font-size: 13px; color: rgba(255,255,255,0.6); margin-right: 8px;">{{ lb.count }}</span>
+            <button onClick="{{ lbPrev }}" aria-label="Previous image" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; cursor: pointer; font-size: 18px;" style-hover="background: rgba(255,255,255,0.1);">‹</button>
+            <button onClick="{{ lbNext }}" aria-label="Next image" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; cursor: pointer; font-size: 18px;" style-hover="background: rgba(255,255,255,0.1);">›</button>
+            <button onClick="{{ lbClose }}" aria-label="Close" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--gradient-gold); color: var(--navy-900); cursor: pointer; font-size: 18px; font-weight: 700;">×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showProgress&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;}, &quot;defaultLang&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;en&quot;, &quot;zh&quot;, &quot;ta&quot;], &quot;default&quot;: &quot;en&quot;, &quot;tsType&quot;: &quot;'en'|'zh'|'ta'&quot;}}">
+const VALUES = [
+  { en: 'Truth', skt: 'Sathya', zh: '真理', ta: 'சத்யம்', bm: 'Kebenaran', x: '50%', y: '19%',
+    body: 'Truth is harmony between what you think, say and do. It begins with honesty towards yourself, and becomes the steady ground every other value stands on.',
+    practice: 'Before you commit to something, pause and ask: do I mean this? Then follow through.' },
+  { en: 'Right Conduct', skt: 'Dharma', zh: '正义', ta: 'தர்மம்', bm: 'Kesucian', x: '81%', y: '41%',
+    body: 'Right conduct is truth in action — doing what is right in each role you hold, as a student, colleague, child, friend and citizen, even when no one is watching.',
+    practice: 'Choose one duty you have been postponing and complete it quietly, without being asked.' },
+  { en: 'Peace', skt: 'Shanti', zh: '和平', ta: 'சாந்தி', bm: 'Keamanan', x: '69%', y: '79%',
+    body: 'Peace is the inner stillness that stays with you through praise and blame, success and setback. It grows through silence, prayer and honest self-reflection.',
+    practice: 'Take five minutes of silence each morning before reaching for your phone.' },
+  { en: 'Love', skt: 'Prema', zh: '爱', ta: 'ப்ரேமை', bm: 'Cinta', x: '31%', y: '79%',
+    body: 'Love is the undercurrent of every value. Selfless and expecting nothing in return, it widens from family and friends to every being — and turns naturally into service.',
+    practice: 'Offer an hour of seva this week, and give it without keeping score.' },
+  { en: 'Non-violence', skt: 'Ahimsa', zh: '非暴力', ta: 'அஹிம்சை', bm: 'Tanpa Kekerasan', x: '19%', y: '41%',
+    body: 'Non-violence means causing no harm in thought, word or deed — to people, to living beings, or to the earth we share. The 1997 logo established it firmly as one of the core human values.',
+    practice: 'Notice one harsh word before it leaves you, and replace it with a kind one.' },
+];
+const FAITHS = [
+  { name: 'Hinduism', symbol: 'Aum', x: '50%', y: '15%', size: '22%',
+    body: 'Sanatana Dharma echoes the eternal resonance of Aum — the primordial sound that vibrates within every heart and throughout the universe.' },
+  { name: 'Buddhism', symbol: 'Wheel of Dharma', x: '82%', y: '38%', size: '22%',
+    body: 'The wheel of cause and consequence, guided by the wheel of Dharma, reminds us of the path to righteousness and enlightenment.' },
+  { name: 'Zoroastrianism', symbol: 'Sacred fire', x: '69%', y: '77%', size: '22%',
+    body: 'The call to offer our bitterness into the sacred fire speaks of transformation — base qualities burnt away into grandeur and divinity.' },
+  { name: 'Islam', symbol: 'Crescent and star', x: '31%', y: '77%', size: '22%',
+    body: 'The star, steadfast and fixed in the sky, is compared to faith that does not waver — a picture of unwavering dedication to God.' },
+  { name: 'Christianity', symbol: 'Cross', x: '18%', y: '38%', size: '22%',
+    body: 'The cross speaks of transcending the ego. When the "I" is crossed out, what remains is eternal life beyond the self.' },
+  { name: 'The centre', symbol: 'Lotus pillar', x: '50%', y: '53%', size: '40%',
+    body: 'At the heart of the emblem stands the stupa with its lotus and flame. Every symbol around it points inward, to the same light.' },
+];
+const PARTS = [
+  { title: 'The base', tag: 'unity of faiths', top: '59%', h: '28%',
+    body: 'The base is surrounded by plaques bearing quotations from the five main religions — the shared ground of the spiritual journey.' },
+  { title: 'The rings', tag: 'Yoga', top: '25%', h: '35%',
+    body: 'The concentric rings along the column represent the stages of yogic sadhana — steady discipline that lifts us above difference.' },
+  { title: 'The lotus', tag: 'Bhakti', top: '8%', h: '17%',
+    body: 'The lotus of the heart blossoms at the top — the flowering of devotion. It lives in water, yet is never soaked by it.' },
+  { title: 'The flame', tag: 'Jnana', top: '2%', h: '8%',
+    body: 'Crowning it all is the Jyothi, the flame of wisdom — the final illumination, lit within the heart.' },
+];
+const ERAS = [
+  { year: '1967', short: 'First sketch', img: 'logo-assets/pg1-1.png', title: 'A rough sketch by Swami',
+    body: 'The first Sai movement logo was initially drawn as a rough sketch by Sathya Sai Baba Himself: a lotus motif holding the symbols of five major religions, affirming the validity of all paths to the same goal.',
+    ref: 'Sathyam Shivam Sundaram, Part II, p. 231' },
+  { year: '1970', short: 'Sarva Dharma emblem', img: 'logo-assets/sarva-dharma-colour.jpg', title: 'The Sarva Dharma emblem',
+    body: 'On Mahashivarathri in March 1970, Swami drew the completed version — the holy symbols of Hinduism, Islam, Christianity, Buddhism and Zoroastrianism around the lotus pillar. It declared that there is only one religion, the religion of love.',
+    ref: 'Sri Sathya Sai Digvijayam, Part 1 (1926–1985)' },
+  { year: 'To 1996', short: 'Organisation emblem', img: 'logo-assets/pg2-1.png', title: 'Symbol of unity and basic values',
+    body: 'Until early 1996, the Sarva Dharma symbol served as the emblem of the Organisation — an open lotus with five petals and five leaves, with a lamp at its centre.', ref: '' },
+  { year: '1997', short: 'Five values', img: 'logo-assets/pg8-1.png', title: 'The five human values logo',
+    body: 'To suit the religious climate of different countries and extend the Sai message beyond religious belief, a logo with the five values came to represent the international organisation. It firmly established Ahimsa alongside Sathya, Dharma, Shanti and Prema.', ref: '' },
+  { year: '1997–2014', short: 'Trilingual Malaysia', img: 'logo-assets/pg9-2.png', title: 'Four languages, one lotus',
+    body: 'The Majlis Pusat Sathya Sai Baba Malaysia — the Sathya Sai Baba Central Council of Malaysia — adopted a version carrying the values in Bahasa Malaysia, English, Chinese and Tamil for its official communications.', ref: '' },
+  { year: '2014', short: 'Today', img: 'logo-assets/pg10-1.png', title: 'Clean, crisp, shared',
+    body: 'The logo was given a clean, contemporary look and has been adopted by all SSSIO-affiliated bodies since 2014 — the emblem SSIOM and MySAIYa carry today.', ref: '' },
+];
+const MOMENTS = [
+  { src: 'logo-assets/swami-buddha.jpg', faith: 'Buddhism', title: 'Swami holding an image of the Buddha', cap: 'The Buddha taught the wheel of Dharma — the path of right living that leads to enlightenment.', rows: 'span 2', cols: 'span 1', pos: '40% 30%' },
+  { src: 'logo-assets/crucifix.jpg', faith: 'Christianity', title: 'A crucifix materialised by Swami', cap: 'The cross: when the "I" is crossed out, what remains is eternal life beyond the self.', rows: 'span 1', cols: 'span 1', pos: '50% 40%' },
+  { src: 'logo-assets/swami-krishna.png', faith: 'Hinduism', title: 'Swami with an idol of Krishna', cap: 'Sanatana Dharma — the eternal way — and its sacred sound, Aum.', rows: 'span 2', cols: 'span 1', pos: '50% 30%' },
+  { src: 'logo-assets/swami-book.png', faith: 'Sacred texts', title: 'Swami holding a miniature holy book', cap: 'Every scripture, He taught, points to the same Truth.', rows: 'span 1', cols: 'span 1', pos: '50% 25%' },
+  { src: 'logo-assets/swami-gayatri.png', faith: 'Hinduism', title: 'Initiating a young boy into the Gayatri Mantra', cap: 'The Gayatri, a universal prayer for the illumination of the intellect.', rows: 'span 1', cols: 'span 1', pos: '50% 20%' },
+  { src: 'logo-assets/swami-thread.png', faith: 'Hinduism', title: 'Swami with the sacred thread', cap: 'Sacred rites, honoured with love and simplicity.', rows: 'span 1', cols: 'span 1', pos: '50% 30%' },
+  { src: 'logo-assets/swami-ceremony.png', faith: 'Celebration', title: 'Swami presiding over a sacred ceremony', cap: 'Festivals of every faith are celebrated together in Prasanthi Nilayam.', rows: 'span 1', cols: 'span 1', pos: '50% 40%' },
+];
+const PLACES = [
+  { src: 'logo-assets/hq-archway.png', title: 'The welcome arch', cap: 'The Sarva Dharma symbol crowns the gateway into Puttaparthi.' },
+  { src: 'logo-assets/hq-gopuram.png', title: 'Held aloft', cap: 'Celestial figures raise the emblem above the arch, over every traveller who passes beneath.' },
+  { src: 'logo-assets/hq-elephants.png', title: "Sai Geetha's samadhi", cap: "The emblem in painted relief, flanked by elephants, at the resting place of Swami's beloved elephant." },
+  { src: 'logo-assets/mahasamadhi-hq.jpg', title: 'The Mahasamadhi', cap: 'The original symbol on the marble front face in Sai Kulwant Hall, beside "Love All, Serve All".' },
+  { src: 'logo-assets/dharmakshetra.jpg', title: 'Dharmakshetra, Mumbai', cap: 'A golden stupa inscribed with Sathya and Dharma rises before the lotus-shaped building.' },
+  { src: 'logo-assets/stupa-photo.jpg', title: 'The stupa today', cap: 'The Sarva Dharma Stupa in its star-shaped garden, Prasanthi Nilayam.' },
+];
+const QUIZ = [
+  { question: 'Which value did the 1997 logo firmly establish alongside Sathya, Dharma, Shanti and Prema?', options: ['Seva — service', 'Ahimsa — non-violence', 'Bhakti — devotion', 'Tyaga — sacrifice'], correct: 1,
+    explanation: 'The five values logo made Ahimsa one of the pillars of human values, beside Truth, Right Conduct, Peace and Love.' },
+  { question: 'When did Swami draw the completed Sarva Dharma emblem?', options: ['Guru Purnima, 1967', 'His birthday, 1996', 'Mahashivarathri, March 1970', 'New Year, 2014'], correct: 2,
+    explanation: 'After a first rough sketch in 1967, the completed emblem was drawn on Mahashivarathri in March 1970.' },
+  { question: 'What does the flame at the top of the stupa represent?', options: ['Jnana — the illumination of wisdom', 'Karma — action', 'Yoga — discipline', 'Dhyana — meditation'], correct: 0,
+    explanation: 'The rings are the path of Yoga, the lotus is Bhakti, and the Jyothi above them is Jnana, the final illumination.' },
+];
+const LOGOS = { en: 'logo-assets/pg10-1.png', zh: 'logo-assets/pg10-2.png', ta: 'logo-assets/pg10-3.png' };
+
+class Component extends DCLogic {
+  state = { v: 0, lang: this.props.defaultLang ?? 'en', f: 0, p: 0, era: 0, progress: 0, lb: null, answers: {} };
+  lbList() { return this.state.lb && this.state.lb.set === 'm' ? MOMENTS : PLACES; }
+  lbStep(d) { this.setState((s) => { if (!s.lb) return null; const n = (s.lb.set === 'm' ? MOMENTS : PLACES).length; return { lb: { ...s.lb, i: (s.lb.i + d + n) % n } }; }); }
+
+  componentDidMount() {
+    this.onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop / max) * 100)) : 0;
+      if (Math.abs(pct - this.state.progress) > 0.4) this.setState({ progress: pct });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onKey = (e) => { if (!this.state.lb) return; if (e.key === 'Escape') this.setState({ lb: null }); if (e.key === 'ArrowRight') this.lbStep(1); if (e.key === 'ArrowLeft') this.lbStep(-1); };
+    window.addEventListener('keydown', this.onKey);
+    this.onScroll();
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('keydown', this.onKey); }
+
+  renderVals() {
+    const { v, lang, f, p, era } = this.state;
+    const ease = '0 0 0 6px rgba(212,175,55,0.25)';
+    const values = VALUES.map((x, i) => {
+      const on = i === v;
+      return { ...x, on, select: () => this.setState({ v: i }),
+        ring: on ? 'var(--gold-500)' : 'transparent', glow: on ? ease : 'none', scale: on ? 1.06 : 1,
+        dot: on ? 'var(--gold-500)' : 'rgba(255,255,255,0.25)', dotW: on ? '28px' : '8px' };
+    });
+    const c = VALUES[v];
+    const cur = { ...c, num: v + 1,
+      display: lang === 'zh' ? c.zh : lang === 'ta' ? c.ta : c.en,
+      names: [{ k: 'EN', v: c.en }, { k: 'BM', v: c.bm }, { k: '中文', v: c.zh }, { k: 'தமிழ்', v: c.ta }] };
+    const faiths = FAITHS.map((x, i) => {
+      const on = i === f;
+      return { ...x, on, select: () => this.setState({ f: i }),
+        ring: on ? 'var(--purple-700)' : 'transparent', glow: on ? '0 0 0 6px rgba(123,36,130,0.18)' : 'none', scale: on ? 1.05 : 1,
+        pillBg: on ? 'var(--navy-900)' : 'var(--white)', pillFg: on ? '#fff' : 'var(--text-body)', pillBorder: on ? 'var(--navy-900)' : 'var(--gray-300)' };
+    });
+    const parts = PARTS.map((x, i) => {
+      const on = i === p;
+      return { ...x, num: String(i + 1).padStart(2, '0'), select: () => this.setState({ p: i }),
+        bg: on ? 'var(--purple-100)' : 'var(--white)', border: on ? 'var(--purple-700)' : 'var(--gray-200)',
+        numBg: on ? 'var(--purple-700)' : 'var(--gray-100)', numFg: on ? '#fff' : 'var(--navy-900)' };
+    });
+    const eras = ERAS.map((x, i) => ({ ...x, select: () => this.setState({ era: i }),
+      line: i === era ? 'var(--navy-900)' : 'transparent', yearFg: i === era ? 'var(--navy-900)' : 'var(--gray-400)' }));
+    const e = ERAS[era];
+    return {
+      showProgress: this.props.showProgress ?? true,
+      progress: this.state.progress.toFixed(1) + '%',
+      crumbs: [{ label: 'Home', href: '#' }, { label: 'Stories', href: '#' }, { label: 'Our logo' }],
+      langOptions: [{ id: 'en', label: 'English' }, { id: 'zh', label: '中文' }, { id: 'ta', label: 'தமிழ்' }],
+      lang, setLang: (id) => this.setState({ lang: id }), logoSrc: LOGOS[lang],
+      values, cur,
+      loveAs: [{ as: 'thought', is: 'Truth' }, { as: 'action', is: 'Right Conduct' }, { as: 'feeling', is: 'Peace' }, { as: 'understanding', is: 'Non-violence' }],
+      faiths, curFaith: FAITHS[f],
+      parts, band: { top: PARTS[p].top, h: PARTS[p].h },
+      eras, curEra: { ...e, hasRef: !!e.ref },
+      atFirst: era === 0, atLast: era === ERAS.length - 1,
+      prevEra: () => this.setState((s) => ({ era: Math.max(0, s.era - 1) })),
+      nextEra: () => this.setState((s) => ({ era: Math.min(ERAS.length - 1, s.era + 1) })),
+      gallery: PLACES.map((g, i) => ({ ...g, cap: g.cap.charAt(0).toLowerCase() + g.cap.slice(1), open: () => this.setState({ lb: { set: 'p', i } }) })),
+      faithMoments: MOMENTS.map((m, i) => ({ ...m, open: () => this.setState({ lb: { set: 'm', i } }) })),
+      lb: this.state.lb ? (() => { const L = this.lbList(); const it = L[this.state.lb.i]; return { open: true, src: it.src, title: it.title, cap: it.cap, kicker: it.faith || 'Prasanthi Nilayam and beyond', count: (this.state.lb.i + 1) + ' / ' + L.length }; })() : { open: false },
+      lbClose: () => this.setState({ lb: null }),
+      lbStop: (e) => e.stopPropagation(),
+      lbPrev: () => this.lbStep(-1),
+      lbNext: () => this.lbStep(1),
+      toc: [['01', 'Five values', '#values'], ['02', 'Sarva Dharma', '#faiths'], ['03', 'Every faith', '#everyfaith'], ['04', 'The stupa', '#stupa'], ['05', 'Timeline', '#journey'], ['06', 'Prasanthi Nilayam', '#everywhere'], ['07', 'Malaysia', '#malaysia'], ['08', 'Play it', '#playit']].map(([n, label, href]) => ({ n, label, href })),
+      quiz: QUIZ.map((q, i) => ({ ...q, index: i + 1, total: QUIZ.length, onAnswer: (pick, ok) => this.setState((s) => ({ answers: { ...s.answers, [i]: ok } })) })),
+      scoreLabel: (() => { const a = Object.values(this.state.answers); return a.length === QUIZ.length ? a.filter(Boolean).length + ' of ' + QUIZ.length + ' correct' : a.length + ' of ' + QUIZ.length + ' answered'; })(),
+      scoreTone: Object.keys(this.state.answers).length === QUIZ.length ? 'teal' : 'navy',
+      langCards: [
+        { src: 'logo-assets/pg9-2.png', label: '1997–2014 · Four languages' },
+        { src: 'logo-assets/pg10-1.png', label: 'English' },
+        { src: 'logo-assets/pg10-2.png', label: '中文' },
+        { src: 'logo-assets/pg10-3.png', label: 'தமிழ்' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

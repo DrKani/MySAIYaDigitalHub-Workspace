@@ -1,0 +1,8 @@
+const COMMITMENTS = [
+  { title: 'Every person with dignity', body: 'Kindness and respect regardless of background, ability, personality or level of involvement.' },
+  { title: 'Respect for every faith', body: 'We never seek to convert anyone, and we honour Malaysia’s multi-religious society and its laws.' },
+  { title: 'Service without reward', body: 'We serve to give, not to be seen — and we protect the dignity of those we serve.' },
+  { title: 'Speech with care', body: 'We disagree without becoming divided, and we honour the trust placed in us.' },
+  { title: 'Responsible digital spaces', body: 'Online, we speak as we would in person, with appropriate boundaries.' },
+  { title: 'Accountable leadership', body: 'Leadership is service. We stay politically neutral and never solicit money in SSIOM’s or MySAIYa’s name.' },
+];

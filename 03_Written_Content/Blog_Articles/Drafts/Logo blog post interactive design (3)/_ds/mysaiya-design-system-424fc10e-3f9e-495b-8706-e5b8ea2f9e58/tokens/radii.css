@@ -1,0 +1,13 @@
+/* MySAIYa Digital Hub — Border radius tokens (rounded, gentle, human) */
+
+:root {
+  --radius-sm: 8px;     /* badges, chips */
+  --radius-md: 12px;    /* inputs */
+  --radius-lg: 16px;    /* buttons */
+  --radius-xl: 24px;    /* answer buttons, smaller cards */
+  --radius-2xl: 32px;   /* dashboard cards, hero */
+  --radius-3xl: 40px;   /* bento containers, wisdom card */
+  --radius-modal: 48px; /* modal / drawer corners */
+  --radius-pill: 9999px;/* search, pills, profile chip */
+  --radius-circle: 50%; /* FAB, avatar, icon circles */
+}

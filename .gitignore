@@ -21,3 +21,15 @@ graphify-out/
 
 # Local service-account credential (never commit)
 05_Technical_Assets/mysaiya-hub-my-9a271f1cba69.json
+
+# Blog-article media (images, PDFs, video) — versioned via iCloud, not git,
+# like 02_Visual_Media. The article text and HTML drafts stay in git.
+03_Written_Content/Blog_Articles/**/*.png
+03_Written_Content/Blog_Articles/**/*.jpg
+03_Written_Content/Blog_Articles/**/*.jpeg
+03_Written_Content/Blog_Articles/**/*.webp
+03_Written_Content/Blog_Articles/**/*.gif
+03_Written_Content/Blog_Articles/**/*.heic
+03_Written_Content/Blog_Articles/**/*.pdf
+03_Written_Content/Blog_Articles/**/*.mp4
+03_Written_Content/Blog_Articles/**/*.mov

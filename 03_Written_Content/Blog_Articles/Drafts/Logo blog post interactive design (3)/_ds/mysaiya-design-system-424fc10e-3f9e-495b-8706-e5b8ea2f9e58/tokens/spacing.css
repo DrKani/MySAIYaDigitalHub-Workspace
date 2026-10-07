@@ -1,0 +1,46 @@
+/* MySAIYa Digital Hub — Spacing tokens (4pt / 8pt system) */
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-30: 120px;
+
+  /* ---- Named aliases ---- */
+  --space-xs: 4px;   /* tight spacing, badges */
+  --space-sm: 8px;   /* icon gaps, compact */
+  --space-md: 16px;  /* standard padding */
+  --space-lg: 24px;  /* section spacing */
+  --space-xl: 32px;  /* component separation */
+  --space-2xl: 48px; /* major sections */
+  --space-3xl: 64px; /* page-level spacing */
+  --space-4xl: 80px; /* hero sections */
+
+  /* ---- Container widths ---- */
+  --container-tablet: 768px; /* @kind spacing */
+  --container-desktop: 1200px; /* @kind spacing */
+  --container-wide: 1400px; /* @kind spacing */
+  --container-legal: 1100px; /* @kind spacing */
+  --container-grid-max: 1320px; /* @kind spacing */
+
+  /* ---- Z-index hierarchy ---- */
+  --z-base: 0; /* @kind other */
+  --z-dropdown: 10; /* @kind other */
+  --z-sticky-nav: 100; /* @kind other */
+  --z-modal-backdrop: 1000; /* @kind other */
+  --z-modal-content: 1010; /* @kind other */
+  --z-notification: 2000; /* @kind other */
+  --z-tooltip: 3000; /* @kind other */
+
+  /* ---- Touch targets ---- */
+  --touch-min: 44px; /* @kind spacing */
+  --touch-rec: 48px; /* @kind spacing */
+}
