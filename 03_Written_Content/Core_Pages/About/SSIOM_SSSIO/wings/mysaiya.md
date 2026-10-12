@@ -33,6 +33,8 @@ Service (Karma Yoga) puts compassion into action through our hands. Adoration (B
 
 The five human values are Truth (Sathya), Right Conduct (Dharma), Peace (Shanti), Love (Prema) and Non-violence (Ahimsa).
 
+The values are explored through the approved SSIOM lotus emblem. Each blue petal is a native keyboard-accessible button that reveals the value’s description and an everyday practice, with the selected petal highlighted and the explanation announced to screen readers. Descriptions reuse `apps/web/src/content/blog/oneLotus.ts`. The section links to the existing blog feature **One Lotus, Many Paths** at `/resources/blog/one-lotus-many-paths`.
+
 ## History
 
 - SSIOM was established in 1983.
@@ -73,7 +75,7 @@ Public assets are in `apps/web/public/images/about/mysaiya/`:
 | bhajans.jpg | User’s shared Drive folder; tabla and devotional gathering |
 | camp-teamwork.jpg | User’s shared Google Photos album, East Coast Sadhana Camp 2025; activity photograph |
 | fellowship.jpg | Existing Event_Photos original, also supplied in the user’s attachments; rural-road fellowship |
-| history-2006.jpg | User’s `dikirbarat2006.jpg`; Malaysian group with Bhagawan, 2006 |
+| history-2006-enhanced.png | User’s replacement `Sathya Sai Baba Amidst Devotees in Ornate Hall-2.png` (5504 × 3072); Malaysian group with Bhagawan, 2006. Replaces the earlier `dikirbarat2006.jpg` image. |
 | jaffna-2023.jpg | User’s `SSIOM YA Jaffna 2023.jpeg` |
 | panel.jpg | User’s conference photograph `18.jpg`; no unsupported event date or speaker identity |
 | women-hero-v4.png | AI-generated illustrative hero using the user’s attire references; not a documentary event photograph. Final generation and correction prompts are in `mysaiya-hero-image-prompt.md`. |
@@ -84,3 +86,10 @@ Duplicate photographs were omitted. Adobe’s upload connector failed before the
 ## Page behaviour
 
 Name controls switch the explanation with native buttons and pressed states. Gallery filters show relevant photographs; the native dialog provides full photographs, captions, previous/next controls, arrow keys, Escape dismissal and focus restoration. Shared About navigation, canonical metadata, programme links and related FAQ IDs (67, 141, 143, 145, 146) are retained. Next steps link to the Sai Centre directory and the contact page.
+
+
+## Malaysian membership and participation
+
+Site membership and account features are limited to non-Muslim Malaysians. Our community services, societal commitments and general non-religious initiatives remain available to everyone, regardless of religious beliefs, ethnicity, gender or age. Contact your Centre for guidance on spiritual participation under Malaysian law and SSIOM’s guidelines.
+
+[Membership eligibility](/terms#access-restriction)

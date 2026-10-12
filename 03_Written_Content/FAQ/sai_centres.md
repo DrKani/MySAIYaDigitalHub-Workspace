@@ -639,3 +639,16 @@ You do not need to arrive knowing anyone or understanding everything. Begin simp
 ### What’s the easiest way to begin?
 
 Start with whatever feels most natural to you. Attend a bhajan, join a service activity, sit in on a Study Circle or simply visit your nearest Sai Centre and meet the community. There is no need to do everything at once — come, experience and grow at your own pace.
+
+
+## Malaysian participation and account eligibility
+
+### Can anyone visit a Sai Centre?
+
+Our community services and general non-religious initiatives are available to everyone. For bhajans and other spiritual activities, contact the Centre for guidance under Malaysian law and SSIOM’s participation guidelines. Formal membership is not required for many regular activities, but eligibility still applies. Separately, site membership and account features are limited to non-Muslim Malaysians.
+
+### If I already practise my own religion seriously, is there still a place for me at a Sai Centre?
+
+Sai teachings encourage people to deepen, rather than replace, sincere religious practice. In Malaysia, spiritual participation follows applicable law and SSIOM’s guidelines; please ask your Centre for guidance. Site membership and account features are limited to non-Muslim Malaysians. Our community services and general non-religious initiatives remain open to everyone.
+
+[Membership eligibility and access policy](/terms#access-restriction)

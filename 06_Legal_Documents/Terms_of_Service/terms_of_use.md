@@ -29,13 +29,13 @@ To use interactive features of the Site (e.g., user profiles, comments, quizzes,
 
 General browsing is open to all users.
 
-### 1.2 Religious Compliance (Malaysia)
-To comply with Article 11(4) of the Federal Constitution and relevant state enactments governing propagation:
-- Registration, membership features, and full engagement on this site are restricted to non-Muslim Malaysians only.
-- This restriction applies only to account creation and interactive features.
-- General content, public resources, and non-religious community initiatives are available to everyone.
+### 1.2 Access Restriction (Malaysian Law)
 
-We uphold full respect for all faith traditions and encourage Muslim brothers and sisters interested in joining a spiritual community to participate in community activities through their respective religious platforms, Islamic organisations and institutions across Malaysia. However, our community services, societal commitments, and general non-religious initiatives are available to all individuals, regardless of their religious beliefs, ethnicity, gender, or age.
+In light of Article 11(4) of the Federal Constitution of Malaysia and applicable state laws on the propagation of non-Islamic religions among Muslims, our platform’s access policy limits registration for site membership and full engagement (including commenting and user profiles) exclusively to non-Muslim Malaysians. Relevant state provisions include, where applicable, sections 5 and 6 of Selangor’s Non-Islamic Religions (Control of Propagation Amongst Muslims) Enactment 1988.
+
+We respect all faiths. Muslim brothers and sisters interested in joining a spiritual community are respectfully encouraged to participate in activities within Islamic organisations and institutions across Malaysia.
+
+Our community services, societal commitments and general non-religious initiatives remain available to all individuals, regardless of religious beliefs, ethnicity, gender or age. This membership restriction does not apply to receiving these services.
 
 ---
 

@@ -50,3 +50,10 @@ He taught us that serving another human being is the highest form of worship. SS
 ## A Quick Fact Worth Knowing
 
 The name *SSIOM* only came into official use in **2014**. When the organisation was first registered with the Registrar of Societies Malaysia on **October 8, 1983**, it bore the name *Majlis Pusat Sathya Sai Baba Malaysia* (Sathya Sai Baba Central Council of Malaysia). On **March 4, 2014**, it was formally renamed to align with its global parent, the Sri Sathya Sai International Organisation — joining over 150 countries under a unified identity.
+
+
+## Malaysian membership and participation
+
+Site membership and account features are limited to non-Muslim Malaysians. Our community services, societal commitments and general non-religious initiatives remain available to everyone, regardless of religious beliefs, ethnicity, gender or age. Contact your Centre for guidance on spiritual participation under Malaysian law and SSIOM’s guidelines.
+
+[Membership eligibility](/terms#access-restriction)

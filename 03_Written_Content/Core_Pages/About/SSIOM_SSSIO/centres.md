@@ -16,7 +16,7 @@ They are humble, by design. You will not find grand architecture or elaborate fa
 ## What Happens at a Sai Centre
 
 Regular activities at Sai Centres include:
-- **Weekly bhajan sessions** — devotional singing open to all
+- **Weekly bhajan sessions** — devotional singing for eligible participants
 - **Study circles** — structured discussion of spiritual texts and teachings
 - **Sai Spiritual Education (SSE)** — weekly character development classes for children aged 6–17
 - **Service projects** — medical camps, food distribution, environmental drives
@@ -44,3 +44,10 @@ Centres are located across:
 - **Sabah, Sarawak**
 
 *For the most current centre schedules and contact details, reach out to SSIOM directly at [info@ssiomya.org](mailto:info@ssiomya.org) or call +603-7499 3159.*
+
+
+## Malaysian membership and participation
+
+Site membership and account features are limited to non-Muslim Malaysians. Our community services, societal commitments and general non-religious initiatives remain available to everyone, regardless of religious beliefs, ethnicity, gender or age. Contact your Centre for guidance on spiritual participation under Malaysian law and SSIOM’s guidelines.
+
+[Membership eligibility](/terms#access-restriction)
