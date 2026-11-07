@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MySAIYa Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#062a5a; --navy-2:#0d3a78; --panel:#7a2386; --panel-2:#6a1c76;
+  --crimson:#c8104f; --violet:#5a1aa8; --indigo:#3b2380; --cyan:#0a7f9a;
+  --orange:#d9631a; --plum:#a0307a; --lilac:#d9cbe8; --white:#f1eff6;
+  --teal:#0e9384; --pink:#f4a3c6; --ink:#1d1630; --ink-2:#4b4361;
+  --gold-1:#c99a2e; --gold-2:#f8ef9a; --gold-3:#d4a63a;
+  --gold:linear-gradient(135deg,#c99a2e 0%,#f6e58d 45%,#d9ac3f 75%,#f3df86 100%);
+  --ok:#11845b; --bad:#c62845; --card:#fffdf8;
+  --radius:10px; --shadow:0 10px 40px rgba(0,0,0,.35);
+  --font-head:'Fredoka',system-ui,sans-serif; --font-body:'Nunito',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--navy);color:#fff;font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+body.modal-open{overflow:hidden}
+button{font:inherit;cursor:pointer;color:inherit}
+button:disabled{cursor:not-allowed}
+:focus-visible{outline:3px solid var(--gold-2);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- layout ---------- */
+.app{display:grid;grid-template-columns:minmax(260px,320px) minmax(0,1fr);gap:16px;padding:16px;max-width:1240px;margin:0 auto;align-items:start}
+.side{background:var(--panel);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.board-wrap{background:var(--panel);border-radius:6px;padding:12px;width:min(100%,calc(100dvh - 32px));min-width:0}
+.turnbar{background:var(--crimson);border-radius:4px;padding:10px 14px;font-family:var(--font-head);font-weight:600;font-size:1.1rem;display:flex;align-items:center;gap:10px;min-height:52px}
+.turnbar .tok{width:26px;height:26px;flex:none}
+.titlecard{background:var(--gold);color:var(--ink);border-radius:4px;padding:22px 14px;text-align:center}
+.titlecard h1{margin:0;font-family:var(--font-head);font-weight:700;font-size:2.1rem;line-height:1.1}
+.titlecard p{margin:8px 0 0;font-weight:700;font-size:.9rem;color:#5b4310}
+.panel{background:var(--white);color:var(--ink);border-radius:4px;padding:14px}
+.panel h2{font-family:var(--font-head);font-size:1.1rem;margin:0 0 10px;text-align:center}
+
+.controls{display:flex;flex-direction:column;gap:12px}
+.dice-row{display:flex;align-items:center;gap:14px}
+.die{width:64px;height:64px;border-radius:12px;background:#fff;border:3px solid var(--ink);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:8px;flex:none;box-shadow:0 4px 0 var(--ink)}
+.die i{width:12px;height:12px;border-radius:50%;background:var(--ink);place-self:center;visibility:hidden}
+.die i.on{visibility:visible}
+.die.rolling{animation:wobble .5s ease-in-out infinite}
+@keyframes wobble{0%{transform:rotate(0)}25%{transform:rotate(-14deg) scale(1.05)}75%{transform:rotate(14deg) scale(1.05)}100%{transform:rotate(0)}}
+.btn{border:0;border-radius:999px;padding:12px 20px;font-family:var(--font-head);font-weight:600;font-size:1.05rem;min-height:48px;transition:transform .1s,filter .15s}
+.btn:active:not(:disabled){transform:translateY(2px)}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 3px 0 #8a6510}
+.btn-gold:disabled{filter:grayscale(.8) brightness(.9);opacity:.7}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-ghost{background:transparent;border:2px solid currentColor}
+.btn-sm{padding:8px 14px;min-height:40px;font-size:.95rem}
+.roll{flex:1}
+.players{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.players li{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;background:#fff;border:2px solid transparent;font-weight:700;font-size:.95rem}
+.players li.active{border-color:var(--crimson);background:#fff2f6}
+.players .meta{margin-left:auto;font-size:.8rem;color:var(--ink-2);text-align:right;line-height:1.2}
+.players .badges{font-size:.85rem}
+.log{font-size:.88rem;color:var(--ink-2);min-height:2.6em;margin:0;line-height:1.3}
+
+.howto ol{margin:0 0 12px;padding-left:20px;font-size:.88rem;line-height:1.4}
+.howto li{margin-bottom:3px}
+.legend{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.legend li{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;line-height:1.15}
+.legend .sw{width:22px;height:22px;border-radius:4px;flex:none;display:grid;place-items:center;font-size:.75rem}
+.howto .opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+/* ---------- board ---------- */
+.board{display:grid;grid-template-columns:repeat(10,1fr);gap:clamp(3px,.8vw,8px);position:relative}
+.tile{aspect-ratio:1;border-radius:4px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:600;line-height:1;color:#fff;background:var(--bg,var(--violet));overflow:hidden;user-select:none}
+.tile .n{font-size:clamp(.62rem,1.7vw,1.15rem)}
+.tile .ic{font-size:clamp(.55rem,1.4vw,.95rem);margin-top:2px;opacity:.95}
+.tile.light{color:var(--ink)}
+.tile.gold{background:var(--gold);color:var(--ink)}
+.tile.target{outline:3px solid #fff;outline-offset:-3px}
+.tile.flash{animation:flash .9s ease}
+@keyframes flash{0%,100%{filter:none}40%{filter:brightness(1.5) drop-shadow(0 0 8px #fff)}}
+.overlay{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:visible}
+.token{position:absolute;z-index:3;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--font-head);font-weight:700;color:var(--ink);box-shadow:0 3px 6px rgba(0,0,0,.45);transition:left .16s ease,top .16s ease;pointer-events:none}
+.token.jump{transition:left .7s cubic-bezier(.3,1.4,.5,1),top .7s cubic-bezier(.3,1.4,.5,1)}
+.token.current{box-shadow:0 0 0 3px #fff,0 3px 8px rgba(0,0,0,.5)}
+.tok{border-radius:50%;border:2px solid var(--ink);display:inline-grid;place-items:center;font-family:var(--font-head);font-weight:700;color:var(--ink);width:24px;height:24px;font-size:.8rem;flex:none}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(6,16,40,.72);display:grid;place-items:center;z-index:50;padding:16px;overflow:auto}
+.modal[hidden]{display:none}
+.card{background:var(--card);color:var(--ink);border-radius:16px;width:min(680px,100%);max-height:calc(100dvh - 32px);overflow:auto;box-shadow:var(--shadow),0 0 0 4px rgba(248,239,154,.35);animation:pop .22s ease-out}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+.card-head{padding:18px 20px 6px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip,var(--violet));color:#fff;border-radius:999px;padding:5px 12px;font-family:var(--font-head);font-weight:600;font-size:.9rem}
+.chip.light{color:var(--ink)}
+.card-head h2{font-family:var(--font-head);font-size:1.4rem;margin:10px 0 4px;line-height:1.2}
+.card-head .sub{margin:0;color:var(--ink-2);font-size:.95rem}
+.card-body{padding:10px 20px}
+.card-foot{padding:6px 20px 20px;display:flex;flex-direction:column;gap:10px}
+.card-foot .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.progress{font-size:.85rem;font-weight:800;color:var(--ink-2);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px}
+.prompt{font-family:var(--font-head);font-weight:500;font-size:1.2rem;line-height:1.35;margin:0 0 14px;background:linear-gradient(135deg,#2c0f55,#0d3a78);color:#fff;padding:16px;border-radius:12px;border:2px solid var(--gold-3)}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;background:#fff;border:2px solid #d9d2e6;border-radius:12px;padding:12px 14px;min-height:48px;font-weight:700;font-size:1rem;transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--gold-3)}
+.opt .k{width:26px;height:26px;border-radius:50%;background:#efe9f8;display:grid;place-items:center;font-size:.8rem;flex:none}
+.opt.correct{background:#e3f6ee;border-color:var(--ok)}
+.opt.correct .k{background:var(--ok);color:#fff}
+.opt.wrong{background:#fdeaee;border-color:var(--bad)}
+.opt.wrong .k{background:var(--bad);color:#fff}
+.opt:disabled{opacity:1}
+.opt.dim{opacity:.5}
+.feedback{margin:12px 0 0;font-weight:800;min-height:1.4em}
+.feedback.ok{color:var(--ok)} .feedback.bad{color:var(--bad)}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.result{border-radius:12px;padding:14px 16px;font-weight:800;display:flex;gap:12px;align-items:center}
+.result .big{font-size:1.8rem}
+.result.ok{background:#e3f6ee;color:#0b5e40}
+.result.bad{background:#fdeaee;color:#8c1830}
+.result small{display:block;font-weight:600;color:var(--ink-2)}
+.timerbar{height:10px;background:#eee6f6;border-radius:99px;overflow:hidden;margin-bottom:12px}
+.timerbar span{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--gold-3));transition:width 1s linear}
+
+/* match */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.match .col{display:flex;flex-direction:column;gap:8px}
+.mbtn{background:#fff;border:2px solid #d9d2e6;border-radius:10px;padding:10px;min-height:52px;font-weight:700;font-size:.93rem;text-align:left;line-height:1.25;display:flex;gap:8px;align-items:center}
+.mbtn.sel{border-color:var(--violet);background:#f1e9ff;box-shadow:0 0 0 2px var(--violet)}
+.mbtn.done{background:#e3f6ee;border-color:var(--ok);color:#0b5e40}
+.mbtn .tag{margin-left:auto;font-size:.8rem;background:var(--ok);color:#fff;border-radius:99px;padding:1px 7px;flex:none}
+.pairs{margin:10px 0 0;padding-left:18px;font-size:.92rem}
+
+/* scramble */
+.slots,.tiles{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0}
+.slot,.ltile{width:clamp(30px,8vw,42px);height:clamp(36px,9vw,48px);border-radius:8px;font-family:var(--font-head);font-weight:700;font-size:1.25rem;display:grid;place-items:center}
+.slot{border:2px dashed #b9add0;background:#faf7ff}
+.slot.filled{border-style:solid;border-color:var(--violet);background:#fff}
+.slot.ok{border-color:var(--ok);background:#e3f6ee}
+.ltile{border:0;background:var(--crimson);color:#fff;box-shadow:0 3px 0 #7d0a31}
+.ltile.used{visibility:hidden}
+.scr-ctrl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.bhajan-reveal{background:var(--gold);color:var(--ink);border-radius:12px;padding:14px;font-family:var(--font-head);font-size:1.05rem;line-height:1.6}
+.bhajan-reveal b{background:#fff;border-radius:6px;padding:0 4px}
+.bhajan-reveal .muted{opacity:.55}
+
+/* word hunt */
+.hunt{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:420px;margin:0 auto;touch-action:none;user-select:none}
+.cell{aspect-ratio:1;border:0;border-radius:6px;background:#fff;font-family:var(--font-head);font-weight:600;font-size:clamp(.85rem,3.6vw,1.15rem);display:grid;place-items:center;padding:0;color:var(--navy)}
+.cell.hl{background:var(--gold-2)}
+.cell.anchor{box-shadow:inset 0 0 0 3px var(--violet)}
+.cell.found{color:#fff}
+.hunt-wrap{background:#ece6f6;padding:10px;border-radius:12px}
+.wordlist{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 0;padding:0;list-style:none}
+.wordlist li{padding:4px 10px;border-radius:99px;background:#fff;border:2px solid #d9d2e6;font-weight:800;font-size:.9rem}
+.wordlist li.found{text-decoration:line-through;color:#fff;border-color:transparent}
+
+/* bhajan builder */
+.line{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:12px;background:#f3eefa;border:2px dashed #c9bde0;margin-bottom:12px;align-items:center}
+.wchip{border:0;border-radius:999px;padding:10px 14px;font-family:var(--font-head);font-weight:600;font-size:1rem;background:var(--plum);color:#fff;min-height:44px}
+.line .wchip{background:var(--ok)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+
+/* wheel */
+.wheel-box{position:relative;width:min(320px,80vw);margin:6px auto 10px;aspect-ratio:1}
+.wheel{width:100%;height:100%;transition:transform 4.2s cubic-bezier(.12,.7,.15,1);border-radius:50%;box-shadow:0 0 0 6px var(--gold-3),0 8px 24px rgba(0,0,0,.3)}
+.pointer{position:absolute;left:50%;top:-14px;transform:translateX(-50%);width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:30px solid var(--crimson);filter:drop-shadow(0 2px 2px rgba(0,0,0,.4));z-index:2}
+.story{font-size:1.05rem;line-height:1.5}
+.reward{text-align:center}
+.reward .trophy{font-size:4rem;line-height:1}
+.ranks{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:6px}
+.ranks li{display:flex;align-items:center;gap:10px;background:#f6f1fd;border-radius:10px;padding:8px 12px;font-weight:800;text-align:left}
+.ranks li span:last-child{margin-left:auto;color:var(--ink-2);font-size:.9rem}
+.setup label{display:block;font-weight:800;margin:12px 0 6px}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;border:2px solid #d9d2e6;background:#fff;border-radius:10px;min-height:48px;font-family:var(--font-head);font-weight:600;font-size:1.1rem}
+.seg button[aria-pressed="true"]{background:var(--violet);color:#fff;border-color:var(--violet)}
+.names{display:grid;gap:8px}
+.names div{display:flex;gap:8px;align-items:center}
+.names input{flex:1;min-width:0;border:2px solid #d9d2e6;border-radius:10px;padding:10px 12px;font:inherit;font-weight:700;min-height:46px}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-weight:700}
+.check input{width:22px;height:22px;margin:0;flex:none}
+.check small{display:block;font-weight:600;color:var(--ink-2)}
+
+@media (max-width:840px){
+  .app{grid-template-columns:minmax(0,1fr);padding:12px;gap:12px}
+  .side{display:contents}
+  .titlecard{order:1;padding:14px}
+  .titlecard h1{font-size:1.6rem}
+  .turnbar{order:2}
+  .controls{order:3}
+  .board-wrap{order:4;width:100%;padding:8px}
+  .howto{order:5}
+}
+@media (max-width:420px){
+  .match{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:14px;padding-right:14px}
+  .card-foot{padding:6px 14px 16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .wheel{transition-duration:.6s!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="turnbar" id="turnbar" aria-live="polite">Ready for adventure!</div>
+    <div class="titlecard"><h1>MySAIYa Adventure</h1><p>Roll · Land · Play · Grow</p></div>
+    <section class="panel controls" aria-label="Dice and players">
+      <div class="dice-row">
+        <div class="die" id="die" role="img" aria-label="Die showing 1"></div>
+        <button class="btn btn-gold roll" id="roll">🎲 Roll the dice</button>
+      </div>
+      <ul class="players" id="players"></ul>
+      <p class="log" id="log" aria-live="polite"></p>
+    </section>
+    <section class="panel howto" aria-labelledby="howto-h">
+      <h2 id="howto-h">How to play?</h2>
+      <ol>
+        <li>Roll the dice and move your token.</li>
+        <li>Every tile is an adventure. Do what it says!</li>
+        <li>Pass a challenge to earn <b>Karma points</b>. Miss it and step back 2 tiles.</li>
+        <li>Gold 🎡 tiles spin the <b>Bonus Wheel</b>.</li>
+        <li>Grace ⬆ lifts you up. Lesson ⬇ slides you back.</li>
+        <li>First to tile 100 wins!</li>
+      </ol>
+      <ul class="legend" id="legend"></ul>
+      <div class="opts">
+        <button class="btn btn-dark btn-sm" id="newgame">↺ New game</button>
+      </div>
+    </section>
+  </aside>
+  <main class="board-wrap">
+    <div class="board" id="board" aria-label="Game board, tiles 1 to 100"></div>
+  </main>
+</div>
+<div class="modal" id="modal" hidden></div>
+
+<script src="adventure-content.js"></script>
+<script>
+(() => {
+"use strict";
+const CONTENT = window.ADVENTURE_CONTENT;
+
+/* ================= helpers ================= */
+const $ = (s, r = document) => r.querySelector(s);
+function el(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v === false || v == null) continue;
+    if (k === "class") e.className = v;
+    else if (k === "style") e.style.cssText = v;
+    else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e.addEventListener(k.slice(2).toLowerCase(), v);
+    else e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) {
+    if (k == null || k === false) continue;
+    e.append(k.nodeType ? k : document.createTextNode(String(k)));
+  }
+  return e;
+}
+const shuffle = (arr) => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = (a) => a[Math.floor(Math.random() * a.length)];
+const norm = (s) => String(s).toUpperCase().replace(/[^A-Z]/g, "");
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const anim = (ms) => sleep(REDUCED ? Math.min(ms, 40) : ms);
+const once = (node, ev = "click") => new Promise((r) => node.addEventListener(ev, r, { once: true }));
+const titleCase = (s) => s.charAt(0) + s.slice(1).toLowerCase();
+function mulberry32(a) { return () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+
+/* ================= content ================= */
+const DECKS = {};
+for (const [key, d] of Object.entries(CONTENT.decks)) {
+  DECKS[key] = {
+    ...d, key,
+    items: d.items.map((it, i) => Array.isArray(it)
+      ? (d.scramble ? { s: it[0], a: it[1], id: i } : { q: it[0], a: it[1], twin: it[2] || null, id: i })
+      : { ...it, id: i }),
+  };
+}
+const deckKeys = (flag) => Object.keys(DECKS).filter((k) => DECKS[k][flag]);
+const QA_DECKS = Object.keys(DECKS).filter((k) => !DECKS[k].scramble);
+
+// Bags deal every item once before any repeats.
+const bags = {};
+function draw(key, n, filter) {
+  const deck = DECKS[key]; const out = []; let bag = bags[key] || []; let guard = 0;
+  while (out.length < n && guard++ < 400) {
+    if (!bag.length) bag = shuffle(deck.items);
+    const it = bag.pop();
+    if (filter && !filter(it)) continue;
+    if (out.some((o) => norm(o.a) === norm(it.a))) continue;
+    out.push(it);
+  }
+  bags[key] = bag; return out;
+}
+function choicesFor(deck, item, n = 4) {
+  const others = shuffle(deck.items.filter((x) => norm(x.a) !== norm(item.a) && !(item.twin && x.twin === item.twin)));
+  const same = others.filter((x) => item.group && x.group === item.group);
+  const rest = others.filter((x) => !(item.group && x.group === item.group));
+  const picks = [];
+  for (const x of [...same, ...rest]) { if (!picks.some((p) => norm(p) === norm(x.a))) picks.push(x.a); if (picks.length >= n - 1) break; }
+  return shuffle([item.a, ...picks]);
+}
+
+/* ================= formats & tiles ================= */
+const FORMATS = {
+  match:    { name: "Match Up",        icon: "🔗", color: "var(--violet)",  desc: "Pair the names" },
+  scramble: { name: "Unscramble",      icon: "🔤", color: "var(--crimson)", desc: "Fix the letters" },
+  clue:     { name: "Who Am I?",       icon: "❓", color: "var(--navy-2)",  desc: "Solve the clue" },
+  fact:     { name: "Fact or Fiction", icon: "⚖️", color: "var(--indigo)",  desc: "True or false?" },
+  quick:    { name: "Quickfire",       icon: "⚡", color: "var(--orange)",  desc: "Beat the clock" },
+  hunt:     { name: "Word Hunt",       icon: "🔍", color: "var(--cyan)",    desc: "Find hidden words" },
+  bhajan:   { name: "Bhajan Builder",  icon: "🎵", color: "var(--plum)",    desc: "Order the lyrics" },
+  blank:    { name: "Fill the Blank",  icon: "✏️", color: "var(--lilac)",   desc: "Complete it", light: true },
+};
+const SPECIALS = {
+  spin:    { name: "Bonus Wheel", icon: "🎡", desc: "Spin for a bonus", gold: true },
+  reflect: { name: "Reflection",  icon: "🪔", desc: "Pause & share", color: "var(--white)", light: true },
+  grace:   { name: "Grace",       icon: "⬆",  desc: "Climb up", color: "var(--teal)" },
+  lesson:  { name: "Lesson",      icon: "⬇",  desc: "Slide back", color: "var(--pink)", light: true },
+};
+const SPIN_TILES = [7, 16, 23, 35, 41, 53, 60, 74, 82, 89, 95];
+const REFLECT_TILES = [9, 20, 29, 39, 57, 68, 77, 85, 93];
+
+function buildTiles() {
+  const tiles = {};
+  tiles[1] = { type: "start" }; tiles[100] = { type: "finish" };
+  SPIN_TILES.forEach((n) => (tiles[n] = { type: "spin" }));
+  REFLECT_TILES.forEach((n, i) => (tiles[n] = { type: "reflect", prompt: CONTENT.reflections[i % CONTENT.reflections.length] }));
+  CONTENT.grace.forEach((g) => (tiles[g.from] = { type: "grace", ...g }));
+  CONTENT.lesson.forEach((g) => (tiles[g.from] = { type: "lesson", ...g }));
+  // Fixed layout, like a printed board: formats cycle in seeded order, never two the same in a row.
+  const rnd = mulberry32(108); const order = Object.keys(FORMATS); let queue = []; let prev = null;
+  for (let n = 2; n < 100; n++) {
+    if (tiles[n]) continue;
+    if (!queue.length) { queue = [...order]; for (let i = queue.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [queue[i], queue[j]] = [queue[j], queue[i]]; } }
+    let f = queue.shift(); if (f === prev && queue.length) { queue.push(f); f = queue.shift(); }
+    tiles[n] = { type: "challenge", format: f }; prev = f;
+  }
+  return tiles;
+}
+const TILES = buildTiles();
+function tileInfo(n) {
+  const t = TILES[n];
+  if (t.type === "challenge") return { ...FORMATS[t.format], label: FORMATS[t.format].name };
+  if (t.type === "start") return { icon: "🚩", label: "Start", gold: true };
+  if (t.type === "finish") return { icon: "🏆", label: "Finish", gold: true };
+  const s = SPECIALS[t.type];
+  const extra = t.type === "grace" || t.type === "lesson" ? ` to ${t.to}` : "";
+  return { ...s, label: s.name + extra };
+}
+
+/* ================= state ================= */
+const TOKEN_COLORS = ["#ffd54a", "#2ee6c8", "#ff8fc2", "#9fd8ff"];
+const S = { players: [], turn: 0, busy: false, over: false, relaxed: false };
+const cur = () => S.players[S.turn];
+
+/* ================= board rendering ================= */
+const boardEl = $("#board");
+const tileEls = {};
+function renderBoard() {
+  boardEl.innerHTML = "";
+  for (let r = 0; r < 10; r++) {
+    const rfb = 9 - r; const base = rfb * 10;
+    for (let c = 0; c < 10; c++) {
+      const n = rfb % 2 === 0 ? base + c + 1 : base + 10 - c;
+      const info = tileInfo(n);
+      const t = el("div", {
+        class: "tile" + (info.gold ? " gold" : "") + (info.light ? " light" : ""),
+        style: info.color ? `--bg:${info.color}` : "",
+        title: `Tile ${n}: ${info.label}`, "aria-label": `Tile ${n}: ${info.label}`, role: "listitem",
+      }, el("span", { class: "n" }, n), el("span", { class: "ic", "aria-hidden": "true" }, info.icon));
+      tileEls[n] = t; boardEl.append(t);
+    }
+  }
+  boardEl.setAttribute("role", "list");
+  const ov = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  ov.setAttribute("class", "overlay"); ov.setAttribute("id", "overlay"); ov.setAttribute("aria-hidden", "true");
+  boardEl.append(ov);
+  drawOverlay();
+}
+function center(n) { const t = tileEls[n]; return { x: t.offsetLeft + t.offsetWidth / 2, y: t.offsetTop + t.offsetHeight / 2, w: t.offsetWidth }; }
+function drawOverlay() {
+  const svg = $("#overlay"); if (!svg) return;
+  const NS = "http://www.w3.org/2000/svg";
+  svg.setAttribute("viewBox", `0 0 ${boardEl.offsetWidth} ${boardEl.offsetHeight}`);
+  svg.setAttribute("width", boardEl.offsetWidth); svg.setAttribute("height", boardEl.offsetHeight);
+  svg.innerHTML = `<defs>
+    <marker id="ah-g" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f8ef9a" stroke="#1d1630" stroke-width="1"/></marker>
+    <marker id="ah-p" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f4a3c6" stroke="#1d1630" stroke-width="1"/></marker></defs>`;
+  const lines = [...CONTENT.grace.map((g) => ({ ...g, k: "g" })), ...CONTENT.lesson.map((g) => ({ ...g, k: "p" }))];
+  for (const g of lines) {
+    const a = center(g.from), b = center(g.to);
+    const dx = b.x - a.x, dy = b.y - a.y, len = Math.hypot(dx, dy) || 1;
+    const bend = Math.min(60, len * 0.22) * (g.k === "g" ? 1 : -1);
+    const cx = (a.x + b.x) / 2 + (-dy / len) * bend, cy = (a.y + b.y) / 2 + (dx / len) * bend;
+    // stop short of the target centre so the arrow sits on the tile edge
+    const ex = b.x - (b.x - cx) / Math.hypot(b.x - cx, b.y - cy) * a.w * 0.32, ey = b.y - (b.y - cy) / Math.hypot(b.x - cx, b.y - cy) * a.w * 0.32;
+    const d = `M${a.x},${a.y} Q${cx},${cy} ${ex},${ey}`;
+    const sw = Math.max(3, a.w * 0.11);
+    const under = document.createElementNS(NS, "path");
+    under.setAttribute("d", d); under.setAttribute("fill", "none"); under.setAttribute("stroke", "#1d1630"); under.setAttribute("stroke-width", sw + 3); under.setAttribute("stroke-linecap", "round"); under.setAttribute("opacity", ".55");
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d); p.setAttribute("fill", "none"); p.setAttribute("stroke", g.k === "g" ? "#f8ef9a" : "#f4a3c6");
+    p.setAttribute("stroke-width", sw); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-dasharray", g.k === "g" ? `${sw * 1.6} ${sw * 1.1}` : `${sw * .4} ${sw * 1.1}`);
+    p.setAttribute("marker-end", `url(#ah-${g.k})`);
+    svg.append(under, p);
+  }
+}
+const tokenEls = [];
+function renderTokens(jump = false) {
+  tokenEls.forEach((t) => t.remove()); tokenEls.length = 0;
+  S.players.forEach((p, i) => {
+    const t = el("div", { class: "token", style: `background:${p.color}`, "aria-hidden": "true" }, p.mark);
+    tokenEls[i] = t; boardEl.append(t);
+  });
+  placeTokens(jump);
+}
+function placeTokens(jump = false) {
+  const groups = {};
+  S.players.forEach((p, i) => (groups[p.pos] = groups[p.pos] || []).push(i));
+  const OFF = { 1: [[0, 0]], 2: [[-.2, 0], [.2, 0]], 3: [[-.2, -.2], [.2, -.2], [0, .2]], 4: [[-.2, -.2], [.2, -.2], [-.2, .2], [.2, .2]] };
+  for (const [pos, ids] of Object.entries(groups)) {
+    const c = center(+pos); const size = Math.max(16, c.w * (ids.length > 1 ? .46 : .6));
+    ids.forEach((id, k) => {
+      const t = tokenEls[id]; if (!t) return; const [ox, oy] = OFF[ids.length][k];
+      t.classList.toggle("jump", jump);
+      Object.assign(t.style, { width: size + "px", height: size + "px", left: c.x + ox * c.w - size / 2 + "px", top: c.y + oy * c.w - size / 2 + "px", fontSize: size * .5 + "px" });
+      t.classList.toggle("current", id === S.turn && !S.over);
+    });
+  }
+}
+new ResizeObserver(() => { drawOverlay(); placeTokens(); }).observe(boardEl);
+
+/* ================= sidebar ================= */
+function renderLegend() {
+  const items = [...Object.values(FORMATS), ...Object.values(SPECIALS)];
+  $("#legend").replaceChildren(...items.map((f) => el("li", {},
+    el("span", { class: "sw", style: f.gold ? "background:var(--gold)" : `background:${f.color};${f.light ? "border:1px solid #bbb" : ""}`, "aria-hidden": "true" }, f.icon),
+    el("span", {}, f.name))));
+}
+function renderPlayers() {
+  $("#players").replaceChildren(...S.players.map((p, i) => el("li", { class: i === S.turn && !S.over ? "active" : "" },
+    el("span", { class: "tok", style: `background:${p.color}`, "aria-hidden": "true" }, p.mark),
+    el("span", {}, p.name, " ", el("span", { class: "badges", title: [p.shield && "Blessing Shield", p.double && "Double points"].filter(Boolean).join(", ") }, p.shield ? "🛡" : "", p.double ? "✖2" : "")),
+    el("span", { class: "meta" }, `Tile ${p.pos}`, el("br"), `${p.points} Karma`))));
+  const p = cur(); const bar = $("#turnbar");
+  if (!p) { bar.textContent = "Ready for adventure!"; return; }
+  if (S.over) { bar.textContent = "🏆 Adventure complete!"; return; }
+  bar.replaceChildren(el("span", { class: "tok", style: `background:${p.color}` }, p.mark), `${p.name}'s turn`);
+}
+function log(msg) { $("#log").textContent = msg; }
+
+/* ================= dice ================= */
+const PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+const dieEl = $("#die");
+for (let i = 0; i < 9; i++) dieEl.append(el("i"));
+function showDie(v) { [...dieEl.children].forEach((p, i) => p.classList.toggle("on", PIPS[v].includes(i))); dieEl.setAttribute("aria-label", `Die showing ${v}`); }
+showDie(1);
+async function rollDice() {
+  const v = 1 + Math.floor(Math.random() * 6);
+  dieEl.classList.add("rolling");
+  for (let i = 0; i < (REDUCED ? 1 : 9); i++) { showDie(1 + Math.floor(Math.random() * 6)); await sleep(65); }
+  dieEl.classList.remove("rolling"); showDie(v); return v;
+}
+
+/* ================= modal ================= */
+const modal = $("#modal");
+function openModal({ chip, chipColor, chipLight, title, sub }) {
+  modal.replaceChildren();
+  const h = el("h2", { id: "m-title" }, title || "");
+  const s = el("p", { class: "sub" }, sub || "");
+  const head = el("div", { class: "card-head" }, chip ? el("span", { class: "chip" + (chipLight ? " light" : ""), style: `--chip:${chipColor}` }, chip) : null, h, s);
+  const body = el("div", { class: "card-body" }); const foot = el("div", { class: "card-foot" });
+  const card = el("div", { class: "card", role: "dialog", "aria-modal": "true", "aria-labelledby": "m-title" }, head, body, foot);
+  modal.append(card); modal.hidden = false; document.body.classList.add("modal-open");
+  return {
+    card, body, foot,
+    setTitle: (t) => (h.textContent = t), setSub: (t) => (s.textContent = t),
+    focus() { const b = card.querySelector("button:not(:disabled), input"); b && b.focus({ preventScroll: false }); },
+    close() { modal.hidden = true; modal.replaceChildren(); document.body.classList.remove("modal-open"); },
+  };
+}
+function footButton(m, label, cls = "btn-gold") {
+  const b = el("button", { class: "btn " + cls }, label);
+  m.foot.append(el("div", { class: "row" }, b)); b.focus(); return once(b);
+}
+
+/* ---------- multiple choice ---------- */
+function askMCQ(body, { progress, prompt, options, answer, fast = false, signal }) {
+  return new Promise((resolve) => {
+    const fb = el("p", { class: "feedback", "aria-live": "polite" });
+    const btns = options.map((o, i) => el("button", { class: "opt" }, el("span", { class: "k", "aria-hidden": "true" }, "ABCD"[i]), el("span", {}, o)));
+    body.replaceChildren(progress ? el("p", { class: "progress" }, progress) : "", el("p", { class: "prompt" }, prompt), el("div", { class: "opts" }, btns), fb);
+    btns[0].focus({ preventScroll: true });
+    let done = false;
+    const finish = (val) => { if (done) return; done = true; resolve(val); };
+    signal && signal.addEventListener("abort", () => { btns.forEach((b) => (b.disabled = true)); finish(null); });
+    btns.forEach((b, i) => b.addEventListener("click", async () => {
+      if (done) return;
+      const ok = norm(options[i]) === norm(answer);
+      btns.forEach((x, j) => { x.disabled = true; if (norm(options[j]) === norm(answer)) x.classList.add("correct"); else if (j !== i) x.classList.add("dim"); });
+      if (!ok) b.classList.add("wrong");
+      fb.className = "feedback " + (ok ? "ok" : "bad");
+      fb.textContent = ok ? pick(["Correct! 🌟", "Well done! ✨", "Spot on! 🙌", "Jai! That's right."]) : `Not quite. The answer is ${answer}.`;
+      if (ok || fast) { await sleep(ok ? 850 : 1300); finish(ok); }
+      else {
+        const next = el("button", { class: "btn btn-dark btn-sm" }, "Next →");
+        body.append(el("div", { class: "card-foot", style: "padding:10px 0 0" }, el("div", { class: "row" }, next))); next.focus();
+        await once(next); finish(ok);
+      }
+    }));
+  });
+}
+
+/* ================= challenge formats ================= */
+const PLAY = {
+  async clue(m, { keys = deckKeys("clue"), n = 3, need = 2 } = {}) {
+    const deck = DECKS[pick(keys)]; const items = draw(deck.key, n);
+    m.setTitle(deck.title); m.setSub(`${deck.intro} Get ${need} of ${n} right.`);
+    let right = 0;
+    for (let i = 0; i < items.length; i++) {
+      const ok = await askMCQ(m.body, { progress: `Question ${i + 1} of ${n}`, prompt: deck.ask(items[i].q), options: choicesFor(deck, items[i]), answer: items[i].a });
+      if (ok) right++;
+    }
+    m.body.replaceChildren();
+    return { pass: right >= need, points: right * 8 + (right === n ? 6 : 0), detail: `${right} of ${n} correct` };
+  },
+
+  blank(m) { return PLAY.clue(m, { keys: deckKeys("blank"), n: 3, need: 2 }); },
+
+  async fact(m) {
+    const n = 4, need = 3; let right = 0;
+    m.setTitle("Fact or Fiction?"); m.setSub(`Decide if each statement is a fact or fiction. Get ${need} of ${n} right.`);
+    for (let i = 0; i < n; i++) {
+      const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
+      const truth = Math.random() < 0.5;
+      const shown = truth ? item.a : choicesFor(deck, item).find((o) => norm(o) !== norm(item.a));
+      const ok = await new Promise((resolve) => {
+        const fb = el("p", { class: "feedback", "aria-live": "polite" });
+        const bF = el("button", { class: "opt", style: "justify-content:center" }, "✅ Fact");
+        const bX = el("button", { class: "opt", style: "justify-content:center" }, "❌ Fiction");
+        m.body.replaceChildren(el("p", { class: "progress" }, `Statement ${i + 1} of ${n} · ${deck.title}`), el("p", { class: "prompt" }, deck.fact(item.q, shown)), el("div", { class: "opts", style: "grid-template-columns:1fr 1fr" }, bF, bX), fb);
+        bF.focus({ preventScroll: true });
+        const go = async (sayFact, btn) => {
+          bF.disabled = bX.disabled = true; const good = sayFact === truth;
+          btn.classList.add(good ? "correct" : "wrong");
+          fb.className = "feedback " + (good ? "ok" : "bad");
+          fb.textContent = (good ? "Correct! " : "Not quite. ") + (truth ? "It's a fact." : `It's fiction. ${deck.fact(item.q, item.a)}`);
+          if (good && truth) { await sleep(1000); return resolve(good); }
+          const next = el("button", { class: "btn btn-dark btn-sm" }, "Next →");
+          m.body.append(el("div", { class: "row", style: "display:flex;justify-content:flex-end;margin-top:8px" }, next)); next.focus();
+          await once(next); resolve(good);
+        };
+        bF.onclick = () => go(true, bF); bX.onclick = () => go(false, bX);
+      });
+      if (ok) right++;
+    }
+    m.body.replaceChildren();
+    return { pass: right >= need, points: right * 6 + (right === n ? 6 : 0), detail: `${right} of ${n} correct` };
+  },
+
+  async quick(m) {
+    const relaxed = S.relaxed; const secs = 30; const need = 4;
+    m.setTitle("Quickfire Round");
+    m.setSub(relaxed ? `Relaxed mode: answer 6 questions, get ${need} right.` : `Get ${need} right in ${secs} seconds. Go, go, go!`);
+    const bar = el("span", { style: "width:100%" }); const box = el("div");
+    m.body.replaceChildren(relaxed ? "" : el("div", { class: "timerbar", role: "progressbar", "aria-label": "Time left" }, bar), box);
+    const ctl = new AbortController(); let left = secs; let timer;
+    if (!relaxed) timer = setInterval(() => { left--; bar.style.width = (left / secs) * 100 + "%"; if (left <= 0) { clearInterval(timer); ctl.abort(); } }, 1000);
+    let right = 0, asked = 0;
+    while (!ctl.signal.aborted && (relaxed ? asked < 6 : right < 8)) {
+      const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
+      const ok = await askMCQ(box, { progress: `${right} correct${relaxed ? ` · ${asked + 1} of 6` : ""}`, prompt: deck.ask(item.q), options: choicesFor(deck, item), answer: item.a, fast: true, signal: ctl.signal });
+      if (ok === null) break; asked++; if (ok) right++;
+    }
+    clearInterval(timer); m.body.replaceChildren();
+    return { pass: right >= need, points: right * 5, detail: `${right} correct${relaxed ? "" : " before the bell"}` };
+  },
+
+  async match(m) {
+    const deck = DECKS[pick(deckKeys("match"))]; const n = 4; const items = draw(deck.key, n); const maxMiss = 3;
+    m.setTitle(deck.title); m.setSub(`${deck.intro} Tap one on the left, then its partner on the right.`);
+    return new Promise((resolve) => {
+      let selL = null, selR = null, misses = 0, matched = 0;
+      const status = el("p", { class: "feedback", "aria-live": "polite" }, `Mistakes left: ${maxMiss}`);
+      const L = shuffle(items).map((it) => ({ it, b: el("button", { class: "mbtn" }, it.q) }));
+      const R = shuffle(items).map((it) => ({ it, b: el("button", { class: "mbtn" }, it.a.charAt(0).toUpperCase() + it.a.slice(1)) }));
+      const end = (pass) => {
+        [...L, ...R].forEach((x) => (x.b.disabled = true));
+        if (!pass) m.body.append(el("div", {}, el("p", { class: "progress", style: "margin-top:12px" }, "The correct pairs"), el("ul", { class: "pairs" }, items.map((it) => el("li", {}, el("b", {}, it.q), " → ", it.a)))));
+        resolve({ pass, points: pass ? matched * 5 + (misses === 0 ? 5 : 0) : matched * 2, detail: `${matched} of ${n} pairs matched, ${misses} mistake${misses === 1 ? "" : "s"}` });
+      };
+      const check = async () => {
+        if (!selL || !selR) return;
+        const a = selL, b = selR; selL = selR = null;
+        if (a.it.id === b.it.id) {
+          matched++;
+          for (const x of [a, b]) { x.b.classList.remove("sel"); x.b.classList.add("done"); x.b.disabled = true; x.b.append(el("span", { class: "tag" }, "✓ " + matched)); }
+          status.className = "feedback ok"; status.textContent = "A perfect pair! ✨";
+          if (matched === n) { await sleep(500); end(true); }
+        } else {
+          misses++; a.b.classList.add("shake"); b.b.classList.add("shake");
+          await sleep(400); a.b.classList.remove("sel", "shake"); b.b.classList.remove("sel", "shake");
+          status.className = "feedback bad"; status.textContent = misses >= maxMiss ? "Out of chances!" : `Not a pair. Mistakes left: ${maxMiss - misses}`;
+          if (misses >= maxMiss) end(false);
+        }
+      };
+      L.forEach((x) => x.b.addEventListener("click", () => { L.forEach((y) => y.b.classList.remove("sel")); selL = x; x.b.classList.add("sel"); check(); }));
+      R.forEach((x) => x.b.addEventListener("click", () => { R.forEach((y) => y.b.classList.remove("sel")); selR = x; x.b.classList.add("sel"); check(); }));
+      m.body.replaceChildren(el("div", { class: "match" }, el("div", { class: "col" }, L.map((x) => x.b)), el("div", { class: "col" }, R.map((x) => x.b))), status);
+      L[0].b.focus({ preventScroll: true });
+    });
+  },
+
+  async scramble(m) {
+    const deck = DECKS[pick(deckKeys("scramble"))]; const words = draw(deck.key, 3); const need = 2;
+    m.setTitle(deck.title); m.setSub(`Unscramble ${need} of 3 names to reveal the hidden bhajan.`);
+    const solved = [];
+    for (let i = 0; i < words.length; i++) {
+      const ok = await scrambleOne(m.body, words[i], `Word ${i + 1} of ${words.length}`);
+      if (ok) solved.push(words[i].a);
+    }
+    // reveal the bhajan with solved words lit up
+    const lyric = deck.bhajan.split(/\s+/).map((w) => solved.includes(norm(w)) ? el("b", {}, w) : el("span", { class: "muted" }, w));
+    m.body.replaceChildren(el("p", { class: "progress" }, "The hidden bhajan"), el("div", { class: "bhajan-reveal" }, lyric.flatMap((x) => [x, " "])));
+    return { pass: solved.length >= need, points: solved.length * 7 + (solved.length === 3 ? 4 : 0), detail: `${solved.length} of 3 names unscrambled` };
+  },
+
+  async hunt(m) {
+    const keys = deckKeys("hunt"); const deck = DECKS[pick(keys)];
+    const fits = (it) => /^[A-Z]{4,10}$/.test(norm(it.a)) && norm(it.a).length === it.a.replace(/\s/g, "").length;
+    const words = draw(deck.key, 4, fits).map((it) => norm(it.a));
+    m.setTitle(`Word Hunt: ${deck.title}`); m.setSub("Drag across a word, or tap its first and last letter. Words run across, down or diagonally. Find at least 3.");
+    const size = 10; const { grid, placed } = buildWordGrid(words, size);
+    const HUES = ["#5a1aa8", "#0e9384", "#c8104f", "#d9631a"];
+    return new Promise((resolve) => {
+      const found = new Set();
+      const cells = grid.map((ch, i) => el("button", { class: "cell", "data-i": i, "aria-label": `Row ${Math.floor(i / size) + 1}, column ${i % size + 1}, ${ch}` }, ch));
+      const list = words.map((w) => el("li", {}, w));
+      const status = el("p", { class: "feedback", "aria-live": "polite" });
+      const done = el("button", { class: "btn btn-dark btn-sm" }, "I'm done");
+      const gridEl = el("div", { class: "hunt", role: "grid", "aria-label": "Letter grid" }, cells);
+      m.body.replaceChildren(el("div", { class: "hunt-wrap" }, gridEl), el("ul", { class: "wordlist" }, list), status, el("div", { class: "row", style: "display:flex;justify-content:flex-end" }, done));
+      let anchor = null, dragging = false;
+      const lineCells = (a, b) => {
+        const r1 = Math.floor(a / size), c1 = a % size, r2 = Math.floor(b / size), c2 = b % size;
+        const dr = Math.sign(r2 - r1), dc = Math.sign(c2 - c1), len = Math.max(Math.abs(r2 - r1), Math.abs(c2 - c1));
+        if (!(r1 === r2 || c1 === c2 || Math.abs(r2 - r1) === Math.abs(c2 - c1))) return null;
+        return Array.from({ length: len + 1 }, (_, k) => (r1 + dr * k) * size + c1 + dc * k);
+      };
+      const hl = (ids) => cells.forEach((c, i) => c.classList.toggle("hl", !!ids && ids.includes(i)));
+      const setAnchor = (i) => { cells.forEach((c) => c.classList.remove("anchor")); anchor = i; if (i !== null) cells[i].classList.add("anchor"); };
+      const finish = () => {
+        window.removeEventListener("pointerup", up);
+        cells.forEach((c) => (c.disabled = true)); done.disabled = true;
+        placed.forEach((p) => { if (!found.has(p.word)) p.cells.forEach((i) => cells[i].style.boxShadow = "inset 0 0 0 3px var(--bad)"); });
+        resolve({ pass: found.size >= 3, points: found.size * 5 + (found.size === words.length ? 5 : 0), detail: `${found.size} of ${words.length} words found` });
+      };
+      const attempt = (a, b) => {
+        const ids = lineCells(a, b); setAnchor(null); hl(null);
+        if (!ids) { status.className = "feedback bad"; status.textContent = "Words go in straight lines."; return; }
+        const s = ids.map((i) => grid[i]).join(""); const rev = [...s].reverse().join("");
+        const w = words.find((x) => !found.has(x) && (x === s || x === rev));
+        if (!w) { status.className = "feedback bad"; status.textContent = "Not one of the words. Keep looking!"; gridEl.classList.add("shake"); setTimeout(() => gridEl.classList.remove("shake"), 400); return; }
+        const k = words.indexOf(w); found.add(w);
+        ids.forEach((i) => { cells[i].classList.add("found"); cells[i].style.background = HUES[k]; });
+        list[k].classList.add("found"); list[k].style.background = HUES[k];
+        status.className = "feedback ok"; status.textContent = `Found ${w}! ✨`;
+        if (found.size === words.length) setTimeout(finish, 600);
+      };
+      const cellAt = (e) => { const t = document.elementFromPoint(e.clientX, e.clientY); return t && t.classList && t.classList.contains("cell") && gridEl.contains(t) ? +t.dataset.i : null; };
+      gridEl.addEventListener("pointerdown", (e) => {
+        const i = cellAt(e); if (i === null) return; e.preventDefault();
+        if (anchor !== null && anchor !== i && !dragging) { attempt(anchor, i); return; }
+        setAnchor(i); dragging = true; hl([i]);
+      });
+      gridEl.addEventListener("pointermove", (e) => { if (!dragging) return; const i = cellAt(e); if (i !== null) hl(lineCells(anchor, i) || [anchor]); });
+      const up = (e) => { if (!dragging) return; dragging = false; const i = cellAt(e); if (i !== null && i !== anchor) attempt(anchor, i); else hl(anchor !== null ? [anchor] : null); };
+      window.addEventListener("pointerup", up);
+      // keyboard: Enter on a cell sets the start, Enter on another cell checks the line
+      gridEl.addEventListener("click", (e) => { if (e.detail !== 0) return; const t = e.target.closest(".cell"); if (!t) return; const i = +t.dataset.i; if (anchor === null) { setAnchor(i); hl([i]); } else if (anchor !== i) attempt(anchor, i); });
+      done.addEventListener("click", finish);
+      cells[0].focus({ preventScroll: true });
+    });
+  },
+
+  async bhajan(m) {
+    const deck = DECKS[pick(deckKeys("scramble"))]; const all = deck.bhajan.split(/\s+/); const len = 6;
+    const start = Math.floor(Math.random() * (all.length - len + 1)); const seg = all.slice(start, start + len);
+    m.setTitle(`Bhajan Builder: ${deck.title}`); m.setSub("Tap the words in the order they are sung. The first word is placed for you.");
+    return new Promise((resolve) => {
+      let placedN = 1, misses = 0, peeked = false; const maxMiss = 4;
+      const line = el("div", { class: "line", "aria-live": "polite" }, el("span", { class: "wchip" }, seg[0]));
+      const status = el("p", { class: "feedback", "aria-live": "polite" });
+      const chips = shuffle(seg.slice(1).map((w, i) => ({ w, i }))).map((c) => el("button", { class: "wchip" }, c.w));
+      const peek = el("button", { class: "btn btn-ghost btn-sm" }, "👀 Peek at the bhajan (−5)");
+      const finish = (pass) => {
+        chips.forEach((c) => (c.disabled = true)); peek.disabled = true;
+        if (!pass) line.replaceChildren(...seg.map((w) => el("span", { class: "wchip" }, w)));
+        resolve({ pass, points: pass ? Math.max(5, 16 + (misses === 0 ? 6 : 0) - (peeked ? 5 : 0)) : 0, detail: pass ? `Line complete with ${misses} slip${misses === 1 ? "" : "s"}` : "Too many slips. Here is the line." });
+      };
+      chips.forEach((c) => c.addEventListener("click", async () => {
+        if (norm(c.textContent) === norm(seg[placedN])) {
+          placedN++; c.remove(); line.append(el("span", { class: "wchip" }, c.textContent));
+          status.className = "feedback ok"; status.textContent = "🎶";
+          if (placedN === seg.length) { await sleep(500); finish(true); }
+          else { const first = m.body.querySelector(".chips .wchip"); first && first.focus(); }
+        } else {
+          misses++; c.classList.add("shake"); setTimeout(() => c.classList.remove("shake"), 400);
+          status.className = "feedback bad"; status.textContent = misses >= maxMiss ? "Out of chances!" : `Not next. Chances left: ${maxMiss - misses}`;
+          if (misses >= maxMiss) finish(false);
+        }
+      }));
+      peek.addEventListener("click", async () => {
+        peeked = true; peek.disabled = true;
+        const box = el("div", { class: "bhajan-reveal", style: "margin-top:10px" }, deck.bhajan);
+        m.body.append(box); await sleep(5000); box.remove();
+      });
+      m.body.replaceChildren(line, el("div", { class: "chips" }, chips), status, el("div", { style: "text-align:center" }, peek));
+      chips[0].focus({ preventScroll: true });
+    });
+  },
+};
+
+function scrambleOne(body, word, progress) {
+  const answer = norm(word.a);
+  const src = norm(word.s);
+  const isAnagram = [...src].sort().join("") === [...answer].sort().join("");
+  let letters = isAnagram ? [...src] : [...answer];
+  if (!isAnagram || letters.join("") === answer) { do { letters = shuffle([...answer]); } while (letters.join("") === answer && answer.length > 1); }
+  return new Promise((resolve) => {
+    let picked = []; let tries = 2;
+    const tiles = letters.map((ch, i) => el("button", { class: "ltile", "aria-label": `Letter ${ch}` }, ch));
+    const slots = [...answer].map(() => el("button", { class: "slot", "aria-label": "Empty" }));
+    const fb = el("p", { class: "feedback", "aria-live": "polite", style: "text-align:center" });
+    const bClear = el("button", { class: "btn btn-ghost btn-sm" }, "Clear");
+    const bSkip = el("button", { class: "btn btn-ghost btn-sm" }, "Skip");
+    const slotRow = el("div", { class: "slots" }, slots);
+    body.replaceChildren(el("p", { class: "progress" }, progress), el("p", { class: "prompt", style: "text-align:center;letter-spacing:.15em" }, letters.join(" ")), slotRow, el("div", { class: "tiles" }, tiles), el("div", { class: "scr-ctrl" }, bClear, bSkip), fb);
+    const paint = () => {
+      slots.forEach((s, i) => { const t = picked[i]; s.textContent = t !== undefined ? letters[t] : ""; s.classList.toggle("filled", t !== undefined); s.setAttribute("aria-label", t !== undefined ? letters[t] : "Empty"); });
+      tiles.forEach((t, i) => t.classList.toggle("used", picked.includes(i)));
+    };
+    const cleanup = () => document.removeEventListener("keydown", onKey);
+    const resolveAfter = async (ok) => { cleanup(); tiles.forEach((t) => (t.disabled = true)); slots.forEach((t) => (t.disabled = true)); bClear.disabled = bSkip.disabled = true; await sleep(ok ? 900 : 1500); resolve(ok); };
+    const check = () => {
+      const guess = picked.map((i) => letters[i]).join("");
+      if (guess === answer) { slots.forEach((s) => s.classList.add("ok")); fb.className = "feedback ok"; fb.textContent = `${titleCase(answer)}! Beautiful. 🌸`; resolveAfter(true); return; }
+      tries--; slotRow.classList.add("shake"); setTimeout(() => slotRow.classList.remove("shake"), 400);
+      if (tries <= 0) { fb.className = "feedback bad"; fb.textContent = `The answer was ${titleCase(answer)}.`; resolveAfter(false); return; }
+      fb.className = "feedback bad"; fb.textContent = `Not quite. ${tries} try left. Hint: it starts with “${answer[0]}”.`;
+      picked = []; paint();
+    };
+    const add = (i) => { if (picked.includes(i) || picked.length >= answer.length) return; picked.push(i); paint(); if (picked.length === answer.length) check(); };
+    tiles.forEach((t, i) => t.addEventListener("click", () => add(i)));
+    slots.forEach((s, i) => s.addEventListener("click", () => { if (picked[i] === undefined) return; picked.splice(i, 1); paint(); }));
+    bClear.onclick = () => { picked = []; paint(); };
+    bSkip.onclick = () => { fb.className = "feedback bad"; fb.textContent = `Skipped. It was ${titleCase(answer)}.`; resolveAfter(false); };
+    function onKey(e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const k = e.key.toUpperCase();
+      if (/^[A-Z]$/.test(k)) { const i = letters.findIndex((ch, j) => ch === k && !picked.includes(j)); if (i >= 0) { e.preventDefault(); add(i); } }
+      else if (e.key === "Backspace") { e.preventDefault(); picked.pop(); paint(); }
+    }
+    document.addEventListener("keydown", onKey);
+    paint(); tiles[0].focus({ preventScroll: true });
+  });
+}
+
+function buildWordGrid(words, size) {
+  const DIRS = [[0, 1], [1, 0], [1, 1], [-1, 1]];
+  for (let attempt = 0; attempt < 60; attempt++) {
+    const g = Array(size * size).fill(null); const placed = []; let ok = true;
+    for (const w of [...words].sort((a, b) => b.length - a.length)) {
+      let done = false;
+      for (let t = 0; t < 300 && !done; t++) {
+        const [dr, dc] = pick(DIRS); const r = Math.floor(Math.random() * size), c = Math.floor(Math.random() * size);
+        const er = r + dr * (w.length - 1), ec = c + dc * (w.length - 1);
+        if (er < 0 || er >= size || ec < 0 || ec >= size) continue;
+        const ids = [...w].map((_, k) => (r + dr * k) * size + c + dc * k);
+        if (ids.some((id, k) => g[id] !== null && g[id] !== w[k])) continue;
+        ids.forEach((id, k) => (g[id] = w[k])); placed.push({ word: w, cells: ids }); done = true;
+      }
+      if (!done) { ok = false; break; }
+    }
+    if (ok) { const AB = "ABDEGHIKLMNOPRSTUVY"; return { grid: g.map((x) => x || AB[Math.floor(Math.random() * AB.length)]), placed }; }
+  }
+  throw new Error("Could not build word grid");
+}
+
+/* ================= tile actions ================= */
+async function playChallenge(format, p) {
+  const F = FORMATS[format];
+  const m = openModal({ chip: `${F.icon} ${F.name}`, chipColor: F.color, chipLight: F.light, title: F.name, sub: "" });
+  const res = await PLAY[format](m, p);
+  const mult = p.double ? 2 : 1; p.double = false;
+  let note, stepBack = false;
+  if (res.pass) {
+    const pts = res.points * mult; p.points += pts;
+    note = el("div", { class: "result ok" }, el("span", { class: "big" }, "🌟"), el("div", {}, `Challenge passed! +${pts} Karma${mult > 1 ? " (doubled!)" : ""}`, el("small", {}, res.detail)));
+  } else if (p.shield) {
+    p.shield = false;
+    note = el("div", { class: "result bad" }, el("span", { class: "big" }, "🛡"), el("div", {}, "Your Blessing Shield protects you. Stay where you are!", el("small", {}, res.detail)));
+  } else {
+    stepBack = true;
+    note = el("div", { class: "result bad" }, el("span", { class: "big" }, "🙏"), el("div", {}, "Not this time. Step back 2 tiles and keep going!", el("small", {}, res.detail)));
+  }
+  m.foot.append(note);
+  await footButton(m, "Continue");
+  m.close();
+  if (stepBack) await walk(p, Math.max(1, p.pos - 2));
+  log(`${p.name}: ${F.name} ${res.pass ? "passed" : "missed"} (${res.detail}).`);
+  return false;
+}
+
+const WHEEL = [
+  { label: "Leap +3", icon: "🦘", color: "#0e9384" },
+  { label: "Roll again", icon: "🎲", color: "#c8104f" },
+  { label: "+30 Karma", icon: "🌟", color: "#d4a63a", ink: "#1d1630" },
+  { label: "Shield", icon: "🛡", color: "#0d3a78" },
+  { label: "Double", icon: "✖2", color: "#5a1aa8" },
+  { label: "Back 2", icon: "↩", color: "#f4a3c6", ink: "#1d1630" },
+  { label: "Seva Star", icon: "🤝", color: "#d9631a" },
+  { label: "Bonus Q", icon: "❓", color: "#0a7f9a" },
+];
+function wheelSVG() {
+  const NS = "http://www.w3.org/2000/svg"; const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "-150 -150 300 300"); svg.classList.add("wheel"); svg.setAttribute("aria-hidden", "true");
+  const seg = 360 / WHEEL.length; const R = 148;
+  const pt = (deg, r) => [r * Math.sin((deg * Math.PI) / 180), -r * Math.cos((deg * Math.PI) / 180)];
+  WHEEL.forEach((w, i) => {
+    const [x1, y1] = pt(i * seg, R), [x2, y2] = pt((i + 1) * seg, R);
+    const path = document.createElementNS(NS, "path");
+    path.setAttribute("d", `M0,0 L${x1},${y1} A${R},${R} 0 0 1 ${x2},${y2} Z`); path.setAttribute("fill", w.color); path.setAttribute("stroke", "#fff"); path.setAttribute("stroke-width", "2");
+    const g = document.createElementNS(NS, "g"); g.setAttribute("transform", `rotate(${i * seg + seg / 2})`);
+    const t1 = document.createElementNS(NS, "text"); t1.setAttribute("y", "-112"); t1.setAttribute("text-anchor", "middle"); t1.setAttribute("font-size", "22"); t1.textContent = w.icon;
+    const t2 = document.createElementNS(NS, "text"); t2.setAttribute("y", "-84"); t2.setAttribute("text-anchor", "middle"); t2.setAttribute("font-size", "13"); t2.setAttribute("font-family", "Fredoka, sans-serif"); t2.setAttribute("font-weight", "600"); t2.setAttribute("fill", w.ink || "#fff"); t2.textContent = w.label;
+    g.append(t1, t2); svg.append(path, g);
+  });
+  const hub = document.createElementNS(NS, "circle"); hub.setAttribute("r", "26"); hub.setAttribute("fill", "#fffdf8"); hub.setAttribute("stroke", "#d4a63a"); hub.setAttribute("stroke-width", "5");
+  const om = document.createElementNS(NS, "text"); om.setAttribute("text-anchor", "middle"); om.setAttribute("y", "8"); om.setAttribute("font-size", "22"); om.textContent = "🪷";
+  svg.append(hub, om); return svg;
+}
+async function spinWheel(p) {
+  const m = openModal({ chip: "🎡 Bonus Wheel", chipColor: "var(--gold-3)", chipLight: true, title: `${p.name}, spin the Bonus Wheel!`, sub: "Every spin brings something new." });
+  const wheel = wheelSVG();
+  m.body.append(el("div", { class: "wheel-box" }, el("div", { class: "pointer" }), wheel));
+  const spinBtn = el("button", { class: "btn btn-gold" }, "Spin!");
+  const row = el("div", { class: "row", style: "justify-content:center" }, spinBtn); m.foot.append(row); spinBtn.focus();
+  await once(spinBtn); spinBtn.disabled = true;
+  const idx = Math.floor(Math.random() * WHEEL.length); const seg = 360 / WHEEL.length;
+  const rot = 360 * 6 + (360 - (idx * seg + seg / 2)) + (Math.random() * seg * 0.6 - seg * 0.3);
+  requestAnimationFrame(() => (wheel.style.transform = `rotate(${rot}deg)`));
+  await sleep(REDUCED ? 700 : 4400);
+  row.remove();
+  const w = WHEEL[idx]; let text = ""; let after = null; let extra = false;
+  const others = S.players.filter((x) => x !== p);
+  switch (w.label) {
+    case "Leap +3": text = "Leap ahead 3 tiles!"; after = () => walk(p, Math.min(100, p.pos + 3)); break;
+    case "Roll again": text = "Lucky you! Roll again."; extra = true; break;
+    case "+30 Karma": text = "+30 Karma points!"; p.points += 30; break;
+    case "Shield": text = p.shield ? "You already hold a Blessing Shield, so here are +15 Karma instead." : "Blessing Shield! It protects you from your next missed challenge, Lesson tile or step back."; if (p.shield) p.points += 15; p.shield = true; break;
+    case "Double": text = "Your next challenge earns double Karma!"; p.double = true; break;
+    case "Back 2":
+      if (p.shield) { p.shield = false; text = "Back 2… but your Blessing Shield holds you in place!"; }
+      else { text = "Oops! Step back 2 tiles."; after = () => walk(p, Math.max(1, p.pos - 2)); }
+      break;
+    case "Seva Star": text = others.length ? "Seva Star! +15 Karma for you and +5 for every other player. Love All, Serve All." : "Seva Star! +15 Karma. Love All, Serve All."; p.points += 15; others.forEach((o) => (o.points += 5)); break;
+    case "Bonus Q": text = "Bonus question! Get it right for +20 Karma."; break;
+  }
+  m.body.append(el("div", { class: "result ok", style: "margin-top:4px" }, el("span", { class: "big" }, w.icon), el("div", {}, text)));
+  if (w.label === "Bonus Q") {
+    await footButton(m, "Show me the question"); m.foot.replaceChildren();
+    const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
+    m.setTitle("Bonus Question"); m.setSub(deck.title);
+    const ok = await askMCQ(m.body, { prompt: deck.ask(item.q), options: choicesFor(deck, item), answer: item.a, fast: true });
+    if (ok) p.points += 20;
+    m.body.append(el("div", { class: "result " + (ok ? "ok" : "bad"), style: "margin-top:10px" }, ok ? "+20 Karma! 🌟" : "No bonus this time, but now you know!"));
+  }
+  renderPlayers();
+  await footButton(m, "Continue"); m.close();
+  if (after) await after();
+  log(`${p.name} spun the wheel: ${w.label}.`);
+  return extra;
+}
+async function reflectTile(p, t) {
+  const m = openModal({ chip: "🪔 Reflection", chipColor: "var(--white)", chipLight: true, title: "Pause & Reflect", sub: "No wrong answers here. Share your thought with the group, or think it quietly." });
+  m.body.append(el("p", { class: "prompt" }, t.prompt));
+  await footButton(m, "I've reflected · +10 Karma"); p.points += 10; m.close();
+  log(`${p.name} paused to reflect. +10 Karma.`);
+  return false;
+}
+async function graceTile(p, t) {
+  const up = t.type === "grace";
+  const m = openModal({ chip: up ? "⬆ Grace" : "⬇ Lesson", chipColor: up ? "var(--teal)" : "var(--pink)", chipLight: !up, title: t.title, sub: up ? `Climb from tile ${t.from} to tile ${t.to}!` : `Slide from tile ${t.from} back to tile ${t.to}.` });
+  m.body.append(el("p", { class: "story" }, t.text));
+  let move = true;
+  if (!up && p.shield) { move = false; p.shield = false; m.body.append(el("div", { class: "result ok" }, el("span", { class: "big" }, "🛡"), el("div", {}, "Your Blessing Shield protects you. You learn the lesson without sliding back!"))); }
+  await footButton(m, up ? `Climb to ${t.to} ⬆` : move ? `Slide to ${t.to}` : "Continue"); m.close();
+  if (move) await jumpTo(p, t.to);
+  log(up ? `${p.name} climbed to ${t.to} by Grace (${t.title}).` : move ? `${p.name} learned about ${t.title} and slid to ${t.to}.` : `${p.name}'s shield blocked the slide.`);
+  return false;
+}
+async function resolveTile(p) {
+  const t = TILES[p.pos]; tileEls[p.pos].classList.add("flash"); setTimeout(() => tileEls[p.pos] && tileEls[p.pos].classList.remove("flash"), 900);
+  await anim(350);
+  switch (t.type) {
+    case "challenge": return playChallenge(t.format, p);
+    case "spin": return spinWheel(p);
+    case "reflect": return reflectTile(p, t);
+    case "grace": case "lesson": return graceTile(p, t);
+    default: return false;
+  }
+}
+
+/* ================= movement & turns ================= */
+async function walk(p, target) {
+  const step = target > p.pos ? 1 : -1;
+  while (p.pos !== target) { p.pos += step; placeTokens(); renderPlayers(); await anim(170); }
+}
+async function jumpTo(p, target) { p.pos = target; placeTokens(true); renderPlayers(); await anim(750); placeTokens(); }
+
+const rollBtn = $("#roll");
+async function takeTurn() {
+  if (S.busy || S.over || !S.players.length) return;
+  S.busy = true; rollBtn.disabled = true;
+  const p = cur(); const v = await rollDice();
+  log(`${p.name} rolled a ${v}.`);
+  await walk(p, Math.min(100, p.pos + v));
+  let extra = false;
+  if (p.pos < 100) extra = await resolveTile(p);
+  renderPlayers(); placeTokens();
+  if (p.pos >= 100) { await victory(p); S.busy = false; return; }
+  if (!extra) S.turn = (S.turn + 1) % S.players.length;
+  else log(`${p.name} rolls again!`);
+  S.busy = false; rollBtn.disabled = false; renderPlayers(); placeTokens(); rollBtn.focus();
+}
+rollBtn.addEventListener("click", takeTurn);
+
+async function victory(winner) {
+  S.over = true; rollBtn.disabled = true; renderPlayers(); placeTokens();
+  const ranked = [...S.players].sort((a, b) => (a === winner ? -1 : b === winner ? 1 : b.pos - a.pos || b.points - a.points));
+  const mostKarma = [...S.players].sort((a, b) => b.points - a.points)[0];
+  const m = openModal({ chip: "🏆 Mission complete", chipColor: "var(--gold-3)", chipLight: true, title: `${winner.name} reached tile 100!`, sub: "What an adventure. Every tile was a lesson and every lesson a blessing." });
+  m.body.append(el("div", { class: "reward" },
+    el("div", { class: "trophy", "aria-hidden": "true" }, "🏆"),
+    el("p", { style: "font-weight:800;margin:8px 0 0" }, `Badge unlocked: Value Adventurer · ${mostKarma.name} earned the most Karma (${mostKarma.points}).`),
+    el("ol", { class: "ranks" }, ranked.map((p, i) => el("li", {}, el("span", {}, ["🥇", "🥈", "🥉", "🎖"][i]), el("span", { class: "tok", style: `background:${p.color}` }, p.mark), el("span", {}, p.name), el("span", {}, `Tile ${p.pos} · ${p.points} Karma`))))));
+  const again = el("button", { class: "btn btn-gold" }, "Play again"); const fresh = el("button", { class: "btn btn-dark" }, "New players");
+  m.foot.append(el("div", { class: "row" }, fresh, again)); again.focus();
+  const choice = await Promise.race([once(again).then(() => "again"), once(fresh).then(() => "fresh")]);
+  m.close();
+  if (choice === "again") startGame(S.players.map((p) => p.name), S.relaxed); else setup();
+}
+
+/* ================= setup ================= */
+function startGame(names, relaxed) {
+  const initials = names.map((n) => n.charAt(0).toUpperCase());
+  S.players = names.map((n, i) => ({ name: n, mark: initials.filter((x) => x === initials[i]).length > 1 ? String(i + 1) : initials[i], color: TOKEN_COLORS[i], pos: 1, points: 0, shield: false, double: false }));
+  S.turn = 0; S.over = false; S.busy = false; S.relaxed = relaxed;
+  renderTokens(); renderPlayers(); rollBtn.disabled = false;
+  log(`Welcome, ${names.join(", ")}! Roll the dice to begin.`); rollBtn.focus();
+}
+function setup() {
+  S.players = []; S.over = false; renderTokens(); renderPlayers(); rollBtn.disabled = true;
+  const m = openModal({ chip: "🪷 MySAIYa Play it", chipColor: "var(--violet)", title: "Welcome to the MySAIYa Adventure", sub: "A board game of wisdom, values and bhajans. Every tile is a challenge, a blessing or a surprise." });
+  let count = 2; const defaults = ["Player 1", "Player 2", "Player 3", "Player 4"];
+  const seg = el("div", { class: "seg", role: "group", "aria-label": "Number of players" });
+  const names = el("div", { class: "names" });
+  const inputs = defaults.map((d, i) => el("input", { value: d, maxlength: 14, "aria-label": `Name of player ${i + 1}` }));
+  const paint = () => {
+    seg.replaceChildren(...[1, 2, 3, 4].map((n) => { const b = el("button", { "aria-pressed": String(n === count), type: "button" }, n === 1 ? "Solo" : n); b.onclick = () => { count = n; paint(); }; return b; }));
+    names.replaceChildren(...inputs.slice(0, count).map((inp, i) => el("div", {}, el("span", { class: "tok", style: `background:${TOKEN_COLORS[i]};width:30px;height:30px` }, i + 1), inp)));
+  };
+  paint();
+  const relaxed = el("input", { type: "checkbox", id: "relaxed" });
+  m.body.append(el("div", { class: "setup" },
+    el("label", {}, "How many adventurers?"), seg,
+    el("label", {}, "Names"), names,
+    el("label", { class: "check", for: "relaxed" }, relaxed, el("span", {}, "Relaxed mode", el("small", {}, "Turns off the Quickfire timer. Good for younger players.")))));
+  const go = el("button", { class: "btn btn-gold" }, "Start the adventure ✨");
+  m.foot.append(el("div", { class: "row" }, go)); setTimeout(() => go.focus(), 30);
+  go.addEventListener("click", () => {
+    const list = inputs.slice(0, count).map((inp, i) => inp.value.trim() || defaults[i]);
+    m.close(); startGame(list, relaxed.checked);
+  });
+}
+$("#newgame").addEventListener("click", () => { if (S.busy) return; if (!S.players.length || S.over || confirm("Start a new game? Progress will be lost.")) setup(); });
+
+/* ================= boot ================= */
+renderLegend(); renderBoard();
+// ?test=<format|spin> opens one challenge straight away, for content review.
+const test = new URLSearchParams(location.search).get("test");
+if (test) {
+  startGame(["Tester"], false);
+  const p = cur();
+  (async () => {
+    if (FORMATS[test]) await playChallenge(test, p);
+    else if (test === "spin") await spinWheel(p);
+    renderPlayers();
+  })();
+} else setup();
+})();
+</script>
+</body>
+</html>
