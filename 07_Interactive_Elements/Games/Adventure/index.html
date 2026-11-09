@@ -12,7 +12,7 @@
   --navy:#062a5a; --navy-2:#0d3a78; --panel:#7a2386; --panel-2:#6a1c76;
   --crimson:#c8104f; --violet:#5a1aa8; --indigo:#3b2380; --cyan:#0a7f9a;
   --orange:#d9631a; --plum:#a0307a; --lilac:#d9cbe8; --white:#f1eff6;
-  --teal:#0e9384; --pink:#f4a3c6; --ink:#1d1630; --ink-2:#4b4361;
+  --teal:#0e9384; --pink:#f4a3c6; --green:#17694a; --bronze:#8a5212; --ink:#1d1630; --ink-2:#4b4361;
   --gold-1:#c99a2e; --gold-2:#f8ef9a; --gold-3:#d4a63a;
   --gold:linear-gradient(135deg,#c99a2e 0%,#f6e58d 45%,#d9ac3f 75%,#f3df86 100%);
   --ok:#11845b; --bad:#c62845; --card:#fffdf8;
@@ -154,6 +154,18 @@ button:disabled{cursor:not-allowed}
 .wordlist{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 0;padding:0;list-style:none}
 .wordlist li{padding:4px 10px;border-radius:99px;background:#fff;border:2px solid #d9d2e6;font-weight:800;font-size:.9rem}
 .wordlist li.found{text-decoration:line-through;color:#fff;border-color:transparent}
+.wordlist.clues{flex-direction:column;align-items:stretch}
+.wordlist.clues li{border-radius:10px;text-align:left;font-weight:700;padding:6px 10px}
+.wordlist.clues li.found{text-decoration:none}
+.wordlist.clues li b{margin-left:4px}
+.explain{margin:12px 0 0;background:#f6f1fd;border-left:4px solid var(--gold-3);border-radius:8px;padding:10px 12px;font-size:.95rem;line-height:1.45}
+.explain .src{display:block;margin-top:6px;font-size:.82rem;color:var(--ink-2);font-style:italic}
+.hintbox{margin:10px 0 0;background:#fff8e1;border:1px dashed var(--gold-3);border-radius:8px;padding:8px 12px;font-size:.92rem}
+.level{display:inline-block;background:var(--ink);color:var(--gold-2);border-radius:99px;padding:2px 10px;font-size:.75rem;font-weight:800;margin-left:6px;letter-spacing:.02em;text-transform:none}
+.clue-list{margin:0 0 12px;padding-left:22px;display:grid;gap:6px}
+.clue-list li{background:linear-gradient(135deg,#2c0f55,#0d3a78);color:#fff;border-radius:10px;padding:10px 12px;font-family:var(--font-head);font-weight:500;line-height:1.35;animation:pop .25s ease-out}
+.clue-list li::marker{color:var(--ink-2);font-weight:800}
+.worth{font-weight:800;color:var(--ink-2);margin:0 0 8px;font-size:.9rem}
 
 /* bhajan builder */
 .line{display:flex;flex-wrap:wrap;gap:8px;min-height:56px;padding:10px;border-radius:12px;background:#f3eefa;border:2px dashed #c9bde0;margin-bottom:12px;align-items:center}
@@ -283,7 +295,8 @@ for (const [key, d] of Object.entries(CONTENT.decks)) {
   };
 }
 const deckKeys = (flag) => Object.keys(DECKS).filter((k) => DECKS[k][flag]);
-const QA_DECKS = Object.keys(DECKS).filter((k) => !DECKS[k].scramble);
+const QA_DECKS = Object.keys(DECKS).filter((k) => DECKS[k].ask && !DECKS[k].scramble);
+const itemKey = (it) => norm(it.a || it.s || it.q || it.id);
 
 // Bags deal every item once before any repeats.
 const bags = {};
@@ -293,7 +306,7 @@ function draw(key, n, filter) {
     if (!bag.length) bag = shuffle(deck.items);
     const it = bag.pop();
     if (filter && !filter(it)) continue;
-    if (out.some((o) => norm(o.a) === norm(it.a))) continue;
+    if (out.some((o) => itemKey(o) === itemKey(it))) continue;
     out.push(it);
   }
   bags[key] = bag; return out;
@@ -311,7 +324,9 @@ function choicesFor(deck, item, n = 4) {
 const FORMATS = {
   match:    { name: "Match Up",        icon: "🔗", color: "var(--violet)",  desc: "Pair the names" },
   scramble: { name: "Unscramble",      icon: "🔤", color: "var(--crimson)", desc: "Fix the letters" },
-  clue:     { name: "Who Am I?",       icon: "❓", color: "var(--navy-2)",  desc: "Solve the clue" },
+  clue:     { name: "Clue Quest",      icon: "🧭", color: "var(--navy-2)",  desc: "Solve the clue" },
+  riddle:   { name: "Who Am I?",       icon: "❓", color: "var(--bronze)",  desc: "Guess from clues" },
+  quiz:     { name: "Wisdom Quiz",     icon: "📜", color: "var(--green)",   desc: "Learn as you answer" },
   fact:     { name: "Fact or Fiction", icon: "⚖️", color: "var(--indigo)",  desc: "True or false?" },
   quick:    { name: "Quickfire",       icon: "⚡", color: "var(--orange)",  desc: "Beat the clock" },
   hunt:     { name: "Word Hunt",       icon: "🔍", color: "var(--cyan)",    desc: "Find hidden words" },
@@ -518,6 +533,47 @@ function askMCQ(body, { progress, prompt, options, answer, fast = false, signal 
   });
 }
 
+/* ---------- authored quiz question: fixed choices, second chance, explanation ---------- */
+// Resolves 2 (right first time), 1 (right on the second try) or 0.
+function askQuiz(body, deck, item, progress) {
+  return new Promise((resolve) => {
+    const options = deck.shuffle ? shuffle(item.choices) : item.choices;
+    let attempt = 1;
+    const fb = el("p", { class: "feedback", "aria-live": "polite" });
+    const extra = el("div");
+    const btns = options.map((o, i) => el("button", { class: "opt" }, el("span", { class: "k", "aria-hidden": "true" }, "ABCD"[i]), el("span", {}, o)));
+    body.replaceChildren(el("p", { class: "progress" }, progress, item.level ? el("span", { class: "level" }, item.level) : ""), el("p", { class: "prompt" }, item.q), el("div", { class: "opts" }, btns), fb, extra);
+    btns[0].focus({ preventScroll: true });
+    const finish = async (score, msg) => {
+      btns.forEach((x, j) => { x.disabled = true; if (options[j] === item.a) x.classList.add("correct"); });
+      const box = el("div", { class: "explain" }, msg || "");
+      if (item.explain && msg !== item.explain) box.append(el("span", { style: "display:block;margin-top:6px" }, el("b", {}, "Did you know? "), item.explain));
+      if (item.source) box.append(el("span", { class: "src" }, "— " + item.source));
+      extra.replaceChildren(msg || item.explain || item.source ? box : "");
+      const next = el("button", { class: "btn btn-dark btn-sm" }, "Next →");
+      body.append(el("div", { style: "display:flex;justify-content:flex-end;margin-top:10px" }, next)); next.focus();
+      await once(next); resolve(score);
+    };
+    btns.forEach((b, i) => b.addEventListener("click", () => {
+      if (b.disabled) return;
+      if (options[i] === item.a) {
+        b.classList.add("correct"); fb.className = "feedback ok";
+        fb.textContent = attempt === 1 ? pick(["Correct! 🌟", "Well done! ✨", "Spot on! 🙌"]) : "Yes! Got it on the second try. 🌸";
+        finish(attempt === 1 ? 2 : 1, attempt === 1 ? item.right : item.right2 || item.right);
+        return;
+      }
+      b.classList.add("wrong"); b.disabled = true;
+      if (attempt === 1) {
+        attempt = 2; fb.className = "feedback bad"; fb.textContent = "Not quite. Have one more try!";
+        extra.replaceChildren(item.hint ? el("p", { class: "hintbox" }, "💡 ", item.hint) : "");
+        return;
+      }
+      fb.className = "feedback bad"; fb.textContent = `The answer is: ${item.a}`;
+      finish(0, item.wrong);
+    }));
+  });
+}
+
 /* ================= challenge formats ================= */
 const PLAY = {
   async clue(m, { keys = deckKeys("clue"), n = 3, need = 2 } = {}) {
@@ -536,23 +592,40 @@ const PLAY = {
 
   async fact(m) {
     const n = 4, need = 3; let right = 0;
-    m.setTitle("Fact or Fiction?"); m.setSub(`Decide if each statement is a fact or fiction. Get ${need} of ${n} right.`);
+    const authored = deckKeys("statements");
+    m.setTitle("Fact or Fiction?"); m.setSub(`Sounds true. But is it? Get ${need} of ${n} right.`);
     for (let i = 0; i < n; i++) {
-      const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
-      const truth = Math.random() < 0.5;
-      const shown = truth ? item.a : choicesFor(deck, item).find((o) => norm(o) !== norm(item.a));
+      // Alternate: authored statements (with their own explanations) and statements built from the decks.
+      let text, truth, goodMsg, badMsg, hint, tag;
+      if (authored.length && i % 2 === 0) {
+        const deck = DECKS[pick(authored)]; const want = Math.random() < 0.5;
+        const item = draw(deck.key, 1, (x) => x.truth === want)[0] || draw(deck.key, 1)[0];
+        text = item.s; truth = item.truth; hint = item.hint; tag = item.cat || deck.title;
+        const verdict = truth ? "It's a fact." : "It's fiction.";
+        goodMsg = item.right || `Correct! ${verdict} ${item.explain || ""}`;
+        badMsg = item.wrong || `Not quite. ${verdict} ${item.explain || ""}`;
+      } else {
+        const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
+        truth = Math.random() < 0.5; tag = deck.title;
+        const shown = truth ? item.a : choicesFor(deck, item).find((o) => norm(o) !== norm(item.a));
+        text = deck.fact(item.q, shown);
+        goodMsg = "Correct! " + (truth ? "It's a fact." : `It's fiction. ${deck.fact(item.q, item.a)}`);
+        badMsg = "Not quite. " + (truth ? "It's a fact." : `It's fiction. ${deck.fact(item.q, item.a)}`);
+      }
       const ok = await new Promise((resolve) => {
         const fb = el("p", { class: "feedback", "aria-live": "polite" });
         const bF = el("button", { class: "opt", style: "justify-content:center" }, "✅ Fact");
         const bX = el("button", { class: "opt", style: "justify-content:center" }, "❌ Fiction");
-        m.body.replaceChildren(el("p", { class: "progress" }, `Statement ${i + 1} of ${n} · ${deck.title}`), el("p", { class: "prompt" }, deck.fact(item.q, shown)), el("div", { class: "opts", style: "grid-template-columns:1fr 1fr" }, bF, bX), fb);
+        const hintBtn = hint ? el("button", { class: "btn btn-ghost btn-sm", style: "margin-top:10px" }, "💡 Need a hint?") : null;
+        m.body.replaceChildren(el("p", { class: "progress" }, `Statement ${i + 1} of ${n} · ${tag}`), el("p", { class: "prompt" }, text), el("div", { class: "opts", style: "grid-template-columns:1fr 1fr" }, bF, bX), hintBtn, fb);
+        if (hintBtn) hintBtn.onclick = () => hintBtn.replaceWith(el("p", { class: "hintbox" }, "💡 ", hint));
         bF.focus({ preventScroll: true });
         const go = async (sayFact, btn) => {
           bF.disabled = bX.disabled = true; const good = sayFact === truth;
           btn.classList.add(good ? "correct" : "wrong");
           fb.className = "feedback " + (good ? "ok" : "bad");
-          fb.textContent = (good ? "Correct! " : "Not quite. ") + (truth ? "It's a fact." : `It's fiction. ${deck.fact(item.q, item.a)}`);
-          if (good && truth) { await sleep(1000); return resolve(good); }
+          fb.textContent = good ? "🌟 " + (truth ? "Fact!" : "Fiction!") : "🙏 " + (truth ? "It's actually a fact." : "It's actually fiction.");
+          m.body.append(el("p", { class: "explain" }, good ? goodMsg : badMsg));
           const next = el("button", { class: "btn btn-dark btn-sm" }, "Next →");
           m.body.append(el("div", { class: "row", style: "display:flex;justify-content:flex-end;margin-top:8px" }, next)); next.focus();
           await once(next); resolve(good);
@@ -566,21 +639,89 @@ const PLAY = {
   },
 
   async quick(m) {
-    const relaxed = S.relaxed; const secs = 30; const need = 4;
+    const relaxed = S.relaxed; const secs = 45; const need = 4;
+    const quizDecks = deckKeys("quiz");
     m.setTitle("Quickfire Round");
-    m.setSub(relaxed ? `Relaxed mode: answer 6 questions, get ${need} right.` : `Get ${need} right in ${secs} seconds. Go, go, go!`);
+    m.setSub(relaxed ? `Relaxed mode: answer 6 questions, get ${need} right.` : `Think fast. Choose wisely. Get ${need} right in ${secs} seconds. Get 8 for the Quick Thinker badge!`);
     const bar = el("span", { style: "width:100%" }); const box = el("div");
     m.body.replaceChildren(relaxed ? "" : el("div", { class: "timerbar", role: "progressbar", "aria-label": "Time left" }, bar), box);
     const ctl = new AbortController(); let left = secs; let timer;
     if (!relaxed) timer = setInterval(() => { left--; bar.style.width = (left / secs) * 100 + "%"; if (left <= 0) { clearInterval(timer); ctl.abort(); } }, 1000);
     let right = 0, asked = 0;
     while (!ctl.signal.aborted && (relaxed ? asked < 6 : right < 8)) {
-      const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
-      const ok = await askMCQ(box, { progress: `${right} correct${relaxed ? ` · ${asked + 1} of 6` : ""}`, prompt: deck.ask(item.q), options: choicesFor(deck, item), answer: item.a, fast: true, signal: ctl.signal });
+      let prompt, options, answer;
+      if (quizDecks.length && Math.random() < 0.5) {
+        const deck = DECKS[pick(quizDecks)]; const item = draw(deck.key, 1)[0];
+        prompt = item.q; options = deck.shuffle ? shuffle(item.choices) : item.choices; answer = item.a;
+      } else {
+        const deck = DECKS[pick(QA_DECKS)]; const item = draw(deck.key, 1)[0];
+        prompt = deck.ask(item.q); options = choicesFor(deck, item); answer = item.a;
+      }
+      const ok = await askMCQ(box, { progress: `${right} correct${relaxed ? ` · ${asked + 1} of 6` : ""}`, prompt, options, answer, fast: true, signal: ctl.signal });
       if (ok === null) break; asked++; if (ok) right++;
     }
     clearInterval(timer); m.body.replaceChildren();
-    return { pass: right >= need, points: right * 5, detail: `${right} correct${relaxed ? "" : " before the bell"}` };
+    const badge = !relaxed && right >= 8 ? " · Quick Thinker badge! ⚡" : "";
+    return { pass: right >= need, points: right * 5 + (badge ? 10 : 0), detail: `${right} correct${relaxed ? "" : " before the bell"}${badge}` };
+  },
+
+  async quiz(m) {
+    const deck = DECKS[pick(deckKeys("quiz"))]; const n = 3, need = 2; const items = draw(deck.key, n);
+    m.setTitle(deck.title); m.setSub(`${deck.intro} Get ${need} of ${n} right. A wrong first answer earns one more try.`);
+    let right = 0, pts = 0;
+    for (let i = 0; i < items.length; i++) {
+      const r = await askQuiz(m.body, deck, items[i], `Question ${i + 1} of ${n}`);
+      if (r > 0) right++; pts += r === 2 ? 8 : r === 1 ? 4 : 0;
+    }
+    m.body.replaceChildren();
+    return { pass: right >= need, points: pts + (right === n ? 4 : 0), detail: `${right} of ${n} correct` };
+  },
+
+  async riddle(m) {
+    const deck = DECKS[deckKeys("riddle")[0]]; const item = draw(deck.key, 1)[0];
+    const place = item.group === "place";
+    m.setTitle(place ? "Where Am I?" : "Who Am I?");
+    m.setSub("Guess early for more Karma. Each extra clue or wrong guess costs a little. Two wrong guesses and the riddle is over.");
+    const others = shuffle(deck.items.filter((x) => x.group === item.group && x.a !== item.a)).slice(0, 3).map((x) => x.a);
+    const options = shuffle([item.a, ...others]);
+    return new Promise((resolve) => {
+      let shown = 1, wrong = 0, over = false;
+      const worth = () => Math.max(4, 20 - 3 * (shown - 1) - 5 * wrong);
+      const list = el("ol", { class: "clue-list", "aria-live": "polite" });
+      const worthEl = el("p", { class: "worth" });
+      const fb = el("p", { class: "feedback", "aria-live": "polite" });
+      const more = el("button", { class: "btn btn-ghost btn-sm" }, "🔎 Next clue (−3)");
+      const btns = options.map((o, i) => el("button", { class: "opt" }, el("span", { class: "k", "aria-hidden": "true" }, "ABCD"[i]), el("span", {}, o)));
+      const paint = () => {
+        list.replaceChildren(...item.clues.slice(0, shown).map((c) => el("li", {}, c)));
+        worthEl.textContent = over ? "" : `Clue ${shown} of ${item.clues.length} · worth ${worth()} Karma if you guess now`;
+        more.disabled = over || shown >= item.clues.length;
+      };
+      const end = (pass) => {
+        over = true; shown = item.clues.length; paint();
+        btns.forEach((b, i) => { b.disabled = true; if (options[i] === item.a) b.classList.add("correct"); });
+        more.remove();
+        if (item.explain) m.body.append(el("p", { class: "explain" }, item.explain));
+        resolve({ pass, points: pass ? worth() : 0, detail: pass ? `Solved with ${shownAtGuess} clue${shownAtGuess === 1 ? "" : "s"}` : `The answer was ${item.a}` });
+      };
+      let shownAtGuess = 1;
+      more.onclick = () => { if (shown < item.clues.length) { shown++; paint(); } };
+      btns.forEach((b, i) => b.addEventListener("click", () => {
+        if (over) return;
+        if (options[i] === item.a) {
+          shownAtGuess = shown;
+          fb.className = "feedback ok"; fb.textContent = `Yes! It's ${item.a}. 🌟`;
+          end(true); return;
+        }
+        wrong++; b.classList.add("wrong"); b.disabled = true;
+        if (wrong >= 2) { fb.className = "feedback bad"; fb.textContent = `Not quite. I am ${item.a}.`; end(false); return; }
+        fb.className = "feedback bad"; fb.textContent = "Not me! Here's another clue…";
+        if (shown < item.clues.length) shown++;
+        paint();
+      }));
+      m.body.replaceChildren(list, worthEl, el("div", { class: "opts" }, btns), el("div", { style: "margin-top:10px" }, more), fb);
+      paint(); btns[0].focus({ preventScroll: true });
+    });
   },
 
   async match(m) {
@@ -634,19 +775,25 @@ const PLAY = {
 
   async hunt(m) {
     const keys = deckKeys("hunt"); const deck = DECKS[pick(keys)];
-    const fits = (it) => /^[A-Z]{4,10}$/.test(norm(it.a)) && norm(it.a).length === it.a.replace(/\s/g, "").length;
-    const words = draw(deck.key, 4, fits).map((it) => norm(it.a));
-    m.setTitle(`Word Hunt: ${deck.title}`); m.setSub("Drag across a word, or tap its first and last letter. Words run across, down or diagonally. Find at least 3.");
-    const size = 10; const { grid, placed } = buildWordGrid(words, size);
+    const fits = (it) => /^[A-Za-z ]+$/.test(it.a) && norm(it.a).length >= 3 && norm(it.a).length <= 12;
+    const items = draw(deck.key, 4, fits); const words = items.map((it) => norm(it.a));
+    const clueMode = items.every((it) => it.q); let peeked = false;
+    m.setTitle(deck.title.startsWith("Word Hunt") ? deck.title : `Word Hunt: ${deck.title}`);
+    m.setSub(clueMode
+      ? "Solve each clue, then find the answer in the grid. Drag across it, or tap its first and last letter. Find at least 3."
+      : "Drag across a word, or tap its first and last letter. Words run across, down or diagonally. Find at least 3.");
+    const size = Math.max(10, ...words.map((w) => w.length)); const { grid, placed } = buildWordGrid(words, size);
     const HUES = ["#5a1aa8", "#0e9384", "#c8104f", "#d9631a"];
     return new Promise((resolve) => {
       const found = new Set();
       const cells = grid.map((ch, i) => el("button", { class: "cell", "data-i": i, "aria-label": `Row ${Math.floor(i / size) + 1}, column ${i % size + 1}, ${ch}` }, ch));
-      const list = words.map((w) => el("li", {}, w));
+      const list = items.map((it, k) => el("li", {}, clueMode ? `${it.q} (${words[k].length})` : words[k]));
+      const peek = clueMode ? el("button", { class: "btn btn-ghost btn-sm" }, "👀 Show the words (−5)") : null;
+      if (peek) peek.onclick = () => { peeked = true; peek.remove(); list.forEach((li, k) => { if (!found.has(words[k])) li.append(el("b", {}, `→ ${words[k]}`)); }); };
       const status = el("p", { class: "feedback", "aria-live": "polite" });
       const done = el("button", { class: "btn btn-dark btn-sm" }, "I'm done");
-      const gridEl = el("div", { class: "hunt", role: "grid", "aria-label": "Letter grid" }, cells);
-      m.body.replaceChildren(el("div", { class: "hunt-wrap" }, gridEl), el("ul", { class: "wordlist" }, list), status, el("div", { class: "row", style: "display:flex;justify-content:flex-end" }, done));
+      const gridEl = el("div", { class: "hunt", role: "grid", "aria-label": "Letter grid", style: `grid-template-columns:repeat(${size},1fr);max-width:${size > 10 ? 480 : 420}px` }, cells);
+      m.body.replaceChildren(el("div", { class: "hunt-wrap" }, gridEl), el(clueMode ? "ol" : "ul", { class: "wordlist" + (clueMode ? " clues" : "") }, list), status, el("div", { class: "row", style: "display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap" }, peek || el("span"), done));
       let anchor = null, dragging = false;
       const lineCells = (a, b) => {
         const r1 = Math.floor(a / size), c1 = a % size, r2 = Math.floor(b / size), c2 = b % size;
@@ -660,7 +807,8 @@ const PLAY = {
         window.removeEventListener("pointerup", up);
         cells.forEach((c) => (c.disabled = true)); done.disabled = true;
         placed.forEach((p) => { if (!found.has(p.word)) p.cells.forEach((i) => cells[i].style.boxShadow = "inset 0 0 0 3px var(--bad)"); });
-        resolve({ pass: found.size >= 3, points: found.size * 5 + (found.size === words.length ? 5 : 0), detail: `${found.size} of ${words.length} words found` });
+        list.forEach((li, k) => { if (!found.has(words[k]) && clueMode && !li.querySelector("b")) li.append(el("b", {}, `→ ${words[k]}`)); });
+        resolve({ pass: found.size >= 3, points: Math.max(0, found.size * 5 + (found.size === words.length ? 5 : 0) - (peeked ? 5 : 0)), detail: `${found.size} of ${words.length} words found` });
       };
       const attempt = (a, b) => {
         const ids = lineCells(a, b); setAnchor(null); hl(null);
@@ -671,6 +819,7 @@ const PLAY = {
         const k = words.indexOf(w); found.add(w);
         ids.forEach((i) => { cells[i].classList.add("found"); cells[i].style.background = HUES[k]; });
         list[k].classList.add("found"); list[k].style.background = HUES[k];
+        if (clueMode) { const old = list[k].querySelector("b"); if (old) old.remove(); list[k].append(el("b", {}, `→ ${items[k].a}`)); }
         status.className = "feedback ok"; status.textContent = `Found ${w}! ✨`;
         if (found.size === words.length) setTimeout(finish, 600);
       };
